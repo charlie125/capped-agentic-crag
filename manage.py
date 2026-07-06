@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# 5 Jul 26 edited
 os.environ["LANGSMITH_TRACING"] = "true"
 os.environ["LANGSMITH_ENDPOINT"] = "https://eu.api.smith.langchain.com"
 os.environ["LANGSMITH_PROJECT"] = "Tracking RAG system"
