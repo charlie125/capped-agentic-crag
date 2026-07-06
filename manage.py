@@ -2,11 +2,14 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # 5 Jul 26 edited
 os.environ["LANGSMITH_TRACING"] = "true"
 os.environ["LANGSMITH_ENDPOINT"] = "https://eu.api.smith.langchain.com"
-os.environ["LANGSMITH_API_KEY"] = "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"
 os.environ["LANGSMITH_PROJECT"] = "Tracking RAG system"
 os.environ["LANGCHAIN_HIDE_INPUTS"] = "true"
 os.environ["LANGCHAIN_HIDE_OUTPUTS"] = "true"
