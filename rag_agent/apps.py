@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class CoreConfig(AppConfig):
+class RagAgentConfig(AppConfig):
     name = 'rag_agent'
