@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import QueryForm
 from .models import *
 from rag_agent.vector_db import vector_db_search
+from rag_agent.linear_rag import linear_rag_respones
 
 # Create your views here.
 
@@ -9,7 +10,7 @@ from rag_agent.vector_db import vector_db_search
 def test(request):
     user_query = ''
     vector_db_answering = ""
-    llm_answering = 'LLM_test'
+    llm_answering = ''
 
     if request.method == "POST":
         form = QueryForm(request.POST)
@@ -17,6 +18,7 @@ def test(request):
             user_query = form.cleaned_data['query']
             vector_db_answering = [
                 val[0] for key, val in vector_db_search(user_query).items()]
+            llm_answering = linear_rag_respones(user_query)
 
     else:
         form = QueryForm()
