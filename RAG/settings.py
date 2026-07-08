@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
-    'rag_agent',
     'basic',
+    'rag_agent',
 ]
 
 MIDDLEWARE = [
