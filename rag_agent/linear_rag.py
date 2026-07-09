@@ -5,7 +5,7 @@ from .vector_db import vector_db_search
 
 
 def linear_rag_respones(user_query):
-    llm = ChatOllama(model='llama3.1', temperature=0)
+    llm = ChatOllama(model="llama3.1", temperature=0)
 
     SYSTEM_PROMPT = """You are a strict internal corporate compliance assistant.
     Your core mission is to answer the user's query using ONLY the provided internal database context.
@@ -29,7 +29,8 @@ def linear_rag_respones(user_query):
     chain = prompt | llm | StrOutputParser()
 
     responses = chain.invoke({
-        'query': user_query,
-        'context': db_result
+        "query": user_query,
+        "context": db_result
     })
+
     return responses
