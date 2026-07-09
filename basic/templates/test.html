@@ -12,12 +12,8 @@
     {{user_query}}
 
     <h3>Vector Database</h3>
-
-    {% for doc in vector_db_answering %}
-    {{ doc }}
+    {{ vector_db_answering }}
     <p></p>
-    {% endfor %}
-    </div>
 
     <h3>LLM</h3>
     {{llm_answering}}
