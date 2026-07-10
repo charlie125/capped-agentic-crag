@@ -1,7 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import ChatOllama
-from .vector_db import vector_db_search
+from vector_store import vector_db_search
 
 
 def linear_rag_respones(user_query):
