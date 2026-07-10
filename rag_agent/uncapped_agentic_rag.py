@@ -1,7 +1,6 @@
 from langchain_core.messages import BaseMessage, AIMessage, HumanMessage, ToolMessage
-from langchain_ollama import OllamaEmbeddings, ChatOllama
+from langchain_ollama import ChatOllama
 from langchain.tools import tool
-from langchain_chroma import Chroma
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 from langgraph.graph.message import add_messages
@@ -9,7 +8,7 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-from vector_db import vector_db_search
+from vector_store import vector_db_search
 import io
 
 llm = ChatOllama(model="llama3.1", temperature=0)
@@ -36,7 +35,7 @@ def retriever_tool(query: str) -> str:
 
 
 def generate_query_or_respond(state: AgentState) -> AgentState:
-    """Call the model to generate a response based on the current state. 
+    """Call the model to generate a response based on the current state.
     Given the question, it will decide to retrieve using the retriever tool, or simply respond to the user.
     """
 
@@ -89,8 +88,6 @@ def rewrite_question(state: AgentState) -> AgentState:
                 if isinstance(msg, HumanMessage)][-1]
     prompt = REWRITE_PROMPT.format(question=question)
     response = llm.invoke([{"role": "user", "content": prompt}])
-    print(question)
-
     return {"messages": [HumanMessage(content=response.content)]}
 
 
@@ -161,6 +158,7 @@ workflow.add_edge("rewrite_question", "generate_query_or_respond")
 graph = workflow.compile()
 
 result = graph.invoke({"messages": "RAG"})
+print(result)
 
 # image_bytes = graph.get_graph().draw_mermaid_png()
 
