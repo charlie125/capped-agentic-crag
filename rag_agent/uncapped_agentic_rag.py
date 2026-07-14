@@ -61,7 +61,9 @@ def grade_documents(state: AgentState) -> Literal["generate_answer", "rewrite_qu
     question = [msg.content for msg in state["messages"]
                 if isinstance(msg, HumanMessage)][-1]
 
-    context = state["messages"][-1].content
+    context_messages = [
+        msg.content for msg in state["messages"] if isinstance(msg, ToolMessage)]
+    context = context_messages[-1] if context_messages else "No context found."
 
     prompt = GRADE_PROMPT.format(question=question, context=context)
     response = llm.with_structured_output(GradeDocuments).invoke(
@@ -107,7 +109,11 @@ def generate_answer(state: AgentState) -> AgentState:
 
     question = [msg.content for msg in state["messages"]
                 if isinstance(msg, HumanMessage)][-1]
-    context = state["messages"][-1].content
+
+    context_messages = [
+        msg.content for msg in state["messages"] if isinstance(msg, ToolMessage)]
+    context = context_messages[-1] if context_messages else "No context found."
+
     prompt = GENERATE_PROMPT.format(question=question, context=context)
     response = llm.invoke([{"role": "user", "content": prompt}])
     return {"messages": [response]}
