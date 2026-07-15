@@ -8,7 +8,7 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-from .vector_store import vector_db_search
+from vector_store import vector_db_search
 import io
 from pprint import pprint
 
@@ -89,6 +89,7 @@ def rewrite_question(state: AgentState) -> AgentState:
 
     REWRITE_PROMPT = (
         "Look at the input and try to reason about the underlying semantic intent / meaning.\n"
+        "Please improve the question based on the domain of the retrieved documents.\n"
         "Here is the initial question:"
         "\n ------- \n"
         "{question}"
@@ -205,6 +206,8 @@ workflow.add_conditional_edges(
 workflow.add_edge("give_up_msg", END)
 
 graph = workflow.compile()
+
+graph.invoke({"messages": "BEACH", "rewrite_counts": 0})
 
 # image_bytes = graph.get_graph().draw_mermaid_png()
 
