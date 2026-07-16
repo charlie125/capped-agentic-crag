@@ -2,3 +2,5 @@
 .venv/
 vector_db/
 *.sqlite3
+__pycache__/
+*.pyc
