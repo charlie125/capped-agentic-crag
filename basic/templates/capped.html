@@ -9,15 +9,15 @@
 
 <body>
     <h3>User query</h3>
-    {{user_query}}
+    {{ user_query }}
 
     <h3>LLM</h3>
-    {{llm_answering}}
+    {{ llm_answering }}
 
 
     <form method="post">
         {%csrf_token%}
-        {{form.query}}
+        {{ form.query }}
     </form>
 
 </body>

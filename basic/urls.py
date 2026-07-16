@@ -4,5 +4,8 @@ from . import views
 app_name = "basic"
 
 urlpatterns = [
-    path("", views.test, name="test"),
+    path("", views.linear, name="linear"),
+    path("uncapped", views.uncapped, name="uncapped"),
+    path("capped", views.capped, name="capped"),
+
 ]
