@@ -163,8 +163,21 @@ workflow.add_edge("rewrite_question", "generate_query_or_respond")
 
 graph = workflow.compile()
 
-result = graph.invoke({"messages": "RAG"})
-print(result)
+
+def uncapped_rag(query):
+    result = graph.invoke({"messages": query})
+
+    ai_response = [each.content for each in result["messages"]
+                   if isinstance(each, AIMessage)][-1]
+
+    tool_message = [each.content for each in result["messages"]
+                    if isinstance(each, ToolMessage)][-1]
+
+    data = {
+        "retrieved_contexts": [tool_message],
+        "response": str(ai_response),
+    }
+    return data
 
 # image_bytes = graph.get_graph().draw_mermaid_png()
 
