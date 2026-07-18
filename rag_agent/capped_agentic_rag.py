@@ -207,7 +207,25 @@ workflow.add_edge("give_up_msg", END)
 
 graph = workflow.compile()
 
-graph.invoke({"messages": "BEACH", "rewrite_counts": 0})
+
+def capped_rag(query):
+    result = graph.invoke(
+        {"messages": query, "rewrite_counts": 0})
+
+    ai_response = [each.content for each in result["messages"]
+                   if isinstance(each, AIMessage)][-1]
+
+    tool_message = [each.content for each in result["messages"]
+                    if isinstance(each, ToolMessage)][-1]
+
+    data = {
+        "retrieved_contexts": [tool_message],
+        "response": str(ai_response),
+    }
+    return data
+
+
+# print(capped_rag(query="What anonymity protections are offered to employees who submit a workplace grievance complaint?"))
 
 # image_bytes = graph.get_graph().draw_mermaid_png()
 
