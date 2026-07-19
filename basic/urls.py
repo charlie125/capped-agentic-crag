@@ -4,8 +4,6 @@ from . import views
 app_name = "basic"
 
 urlpatterns = [
-    path("", views.linear, name="linear"),
-    path("uncapped", views.uncapped, name="uncapped"),
-    path("capped", views.capped, name="capped"),
-
+    path("", views.index, name="index"),
+    path("dashboard", views.dashboard, name="dashboard"),
 ]
