@@ -1,0 +1,320 @@
+/* ==========================================
+       狀態一：初始置中樣式 (當沒有 histories 時)
+       ========================================== */
+.welcome-stage-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 75vh !important;
+    box-sizing: border-box !important;
+    padding: 40px 0 !important;
+}
+
+.chat-welcome-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 840px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+}
+
+.welcome-title {
+    text-align: center !important;
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: #000000;
+    margin-bottom: 32px !important;
+    letter-spacing: -0.5px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    width: 100% !important;
+}
+
+.search-bar-container {
+    display: flex !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 64px !important;
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 9999px !important;
+    padding: 0 28px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+    box-sizing: border-box !important;
+}
+
+.search-bar-container:focus-within {
+    border-color: #b4b4b4 !important;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.03) !important;
+}
+
+.search-bar-container input {
+    flex: 1 !important;
+    height: 100% !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1.15rem !important;
+    color: #000000 !important;
+    background: transparent !important;
+}
+
+.mode-pill-group {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 20px !important;
+    width: 100% !important;
+    flex-wrap: wrap !important;
+}
+
+.mode-pill {
+    background-color: #ffffff !important;
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 9999px !important;
+    padding: 10px 22px !important;
+    font-size: 1rem !important;
+    color: #000000 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    cursor: pointer !important;
+    transition: border-color 0.2s ease, background-color 0.2s ease !important;
+}
+
+.mode-pill:hover {
+    border-color: #b4b4b4 !important;
+    background-color: #fafafa !important;
+}
+
+.mode-pill.is-active {
+    background-color: #000000 !important;
+    border-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================
+       狀態二：聊天室流佈局 (當有 histories 時)
+       ========================================== */
+.chat-stage-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 98vh !important;
+    width: 100% !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+}
+
+.message-stream-area {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 24px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.messages-inner-wrapper {
+    width: 100% !important;
+    max-width: 840px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+}
+
+/* 使用者訊息列 */
+.user-message-row {
+    display: flex !important;
+    justify-content: flex-end !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 0 14px 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+}
+
+.user-message-bubble {
+    background-color: #f3f3f3 !important;
+    color: #000000 !important;
+    padding: 10px 18px !important;
+    border-radius: 20px !important;
+    font-size: 1.16rem !important;
+    line-height: 1.5 !important;
+    font-weight: 300 !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    display: inline-block !important;
+    width: max-content !important;
+    min-width: unset !important;
+    max-width: 70% !important;
+    height: auto !important;
+    min-height: unset !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+}
+
+/* Agent 訊息列 */
+.agent-message-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    color: #000000 !important;
+    line-height: 1.6 !important;
+    font-size: 1.05rem !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    clear: both !important;
+}
+
+/* 思考中動畫 */
+.thinking-dots {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 12px 4px !important;
+}
+
+.thinking-dots span {
+    width: 8px !important;
+    height: 8px !important;
+    background-color: #737373 !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+    animation: wave-bounce 1.4s infinite ease-in-out both !important;
+}
+
+.thinking-dots span:nth-child(1) {
+    animation-delay: -0.32s !important;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: -0.16s !important;
+}
+
+@keyframes wave-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.6);
+        opacity: 0.4;
+    }
+
+    40% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* 工具列按鈕 */
+.agent-action-toolbar {
+    display: flex !important;
+    gap: 14px !important;
+    margin-top: 14px !important;
+}
+
+.action-icon-btn {
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    color: #737373 !important;
+}
+
+.action-icon-btn:hover {
+    color: #000000 !important;
+}
+
+.action-svg {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* 底部固定安全輸入欄 */
+.bottom-sticky-bar {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background-color: #ffffff !important;
+    padding: 8px 0 8px 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.enhanced-search-bar {
+    display: flex !important;
+    align-items: center !important;
+    width: calc(100% - 48px) !important;
+    max-width: 840px !important;
+    height: 64px !important;
+    margin: 0 auto !important;
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 9999px !important;
+    padding: 0 28px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03) !important;
+    box-sizing: border-box !important;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.enhanced-search-bar:focus-within {
+    border-color: #b4b4b4 !important;
+}
+
+.enhanced-search-bar input {
+    flex: 1 !important;
+    height: 100% !important;
+    border: none !important;
+    outline: none !important;
+    font-size: 1.15rem !important;
+    color: #000000 !important;
+    background: transparent !important;
+}
+
+/* 按鈕樣式 */
+.left-add-btn,
+.mic-btn {
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    color: #191919 !important;
+    display: flex !important;
+    align-items: center;
+}
+
+.left-add-btn {
+    margin-right: 10px !important;
+}
+
+.right-buttons-group {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.send-button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #191919 !important;
+    transition: transform 0.1s ease !important;
+}
+
+.send-button:active {
+    transform: scale(0.95) !important;
+}
+
+.send-icon {
+    width: 22px !important;
+    height: 22px !important;
+}
