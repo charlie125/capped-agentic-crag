@@ -10,12 +10,13 @@ import random
 
 
 def index(request):
-    sentence = random.choice(['How may I assist you today?', 'What can I do for you today?',
-                              'Please let me know how I can be of assistance.', 'How can I help you today?', 'How can I help you out today?', 'How can I make your day easier today?'])
+    Greeting.objects.create(sentences="Hello, How are you?")
+    sentence = random.choice(
+        [char.sentences for char in Greeting.objects.all()])
     ai_response = ""
     user_query = ""
     histories = UserQuery.objects.all()
-    mode = request.GET.get("mode")
+    mode = request.GET.get("mode", "linear")
 
     if request.method == "POST":
         form = QueryForm(request.POST)
@@ -25,17 +26,18 @@ def index(request):
             if mode == "linear":
                 ai_response = linear_rag_respones(user_query=user_query)
             elif mode == "uncapped":
-                ai_response = uncapped_rag.invoke({"messages": user_query})
+                ai_response = uncapped_rag.invoke(
+                    {"messages": user_query}).strip()
             elif mode == "capped":
                 ai_response = capped_rag.invoke(
-                    {"messages": user_query, "rewrite_count": 0})
+                    {"messages": user_query, "rewrite_counts": 0}).strip()
 
         UserQuery.objects.create(
-            user_query=user_query, ai_mode=mode, ai_response=ai_answering)
+            user_query=user_query, ai_response=ai_response)
     else:
         form = QueryForm()
-    return render(request, 'index.html', {'form': form, 'histories': histories, 'sentence': sentence, "mode": mode})
+    return render(request, 'index.html', {'form': form, 'histories': histories, 'sentence': sentence, "mode": mode, "ai_response": ai_response})
 
 
 def dashboard(request):
-    pass
+    return render(request, "dashboard.html")

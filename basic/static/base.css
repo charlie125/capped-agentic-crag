@@ -2,12 +2,20 @@ html,
 body {
     margin: 0 !important;
     padding: 0 !important;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .mode-nav-dropdown {
     position: relative;
     display: inline-block;
     margin: 20px 0 0 20px;
+    flex-shrink: 0;
 }
 
 .mode-nav-trigger {

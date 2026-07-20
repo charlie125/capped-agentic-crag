@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,20 +10,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <style>
-        html,
-        body {
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
+    <div class="mode-nav-dropdown">
+        <button type="button" class="mode-nav-trigger" id="mode-nav-trigger"
+            onclick="document.getElementById('mode-nav-menu').classList.toggle('open')">
+            <span id="mode-nav-current">{{ mode|default:"Linear"|capfirst }}</span>
+            <svg class="mode-nav-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9l6 6 6-6" />
+            </svg>
+        </button>
+
+        <ul class="mode-nav-menu" id="mode-nav-menu">
+            <li><a href="?mode=linear" class="mode-nav-option {% if mode == "linear" %}active{% endif %}">Linear</a></li>
+            <li><a href="?mode=uncapped" class="mode-nav-option {% if mode == "uncapped" %}active{% endif%}">Uncapped</a></li>
+            <li><a href="?mode=capped" class="mode-nav-option {% if mode == "capped" %}active{% endif%}">Capped</a></li>
+        </ul>
+    </div>
+
     {% block content %}
     {% endblock %}
+
+    <script>
+        document.addEventListener('click', function (e) {
+            const dropdown = document.querySelector('.mode-nav-dropdown');
+            const menu = document.getElementById('mode-nav-menu');
+            if (dropdown && !dropdown.contains(e.target)) {
+                menu.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 
 </html>

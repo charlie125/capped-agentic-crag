@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}AI Agent{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if not histories %}
+
+<div class="welcome-stage-wrapper">
+    <form method="POST" class="chat-welcome-container">
+        {% csrf_token %}
+        <h1 class="welcome-title">{{ sentence }}</h1>
+
+        <div class="search-bar-container">
+            {{ form.user_query }}
+
+            <button type="submit" class="send-button" title="Send to Agent">
+                <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                </svg>
+            </button>
+        </div>
+
+        <input type="hidden" name="mode" id="mode-input" value="linear">
+        {{ form.selected_mode }}
+    </form>
+</div>
+
+{% else %}
+<div class="chat-stage-wrapper">
+
+    <div class="message-stream-area">
+        <div class="messages-inner-wrapper">
+
+            {% for each in histories %}
+            <div class="user-message-row">
+                <div class="user-message-bubble">{{ each.user_query }}</div>
+            </div>
+
+            <div class="agent-message-row">
+                {% if each.ai_response %}
+                <div class="agent-response-text">{{ each.ai_response|linebreaksbr }}</div>
+
+                {% elif forloop.last %}
+                <div class="thinking-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <form method="POST" class="bottom-sticky-bar">
+        {% csrf_token %}
+        <div class="enhanced-search-bar">
+
+            {{ form.user_query }}
+
+            <div class="right-buttons-group">
+                <button type="submit" class="send-button" title="Send to Agent">
+                    <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endif %}
+
+<script>
+    (function () {
+        var streamArea = document.querySelector('.message-stream-area');
+        if (streamArea) {
+            streamArea.scrollTop = streamArea.scrollHeight;
+        }
+    })();
+</script>
+
+{% endblock %}

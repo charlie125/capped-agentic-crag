@@ -1,6 +1,3 @@
-/* ==========================================
-       狀態一：初始置中樣式 (當沒有 histories 時)
-       ========================================== */
 .welcome-stage-wrapper {
     display: flex !important;
     justify-content: center !important;
@@ -71,6 +68,7 @@
 }
 
 .mode-pill {
+    display: inline-block !important;
     background-color: #ffffff !important;
     border: 1px solid #e3e3e3 !important;
     border-radius: 9999px !important;
@@ -78,6 +76,7 @@
     font-size: 1rem !important;
     color: #000000 !important;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    text-decoration: none !important;
     cursor: pointer !important;
     transition: border-color 0.2s ease, background-color 0.2s ease !important;
 }
@@ -93,13 +92,11 @@
     color: #ffffff !important;
 }
 
-/* ==========================================
-       狀態二：聊天室流佈局 (當有 histories 時)
-       ========================================== */
 .chat-stage-wrapper {
     display: flex !important;
     flex-direction: column !important;
-    height: 98vh !important;
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
     width: 100% !important;
     background-color: #ffffff !important;
     box-sizing: border-box !important;
@@ -124,13 +121,12 @@
     box-sizing: border-box !important;
 }
 
-/* 使用者訊息列 */
 .user-message-row {
     display: flex !important;
     justify-content: flex-end !important;
     width: 100% !important;
     padding: 0 !important;
-    margin: 0 0 14px 0 !important;
+    margin: 0 0 28px 0 !important;
     background: transparent !important;
     border: none !important;
     box-sizing: border-box !important;
@@ -159,7 +155,6 @@
     white-space: pre-wrap !important;
 }
 
-/* Agent 訊息列 */
 .agent-message-row {
     display: flex !important;
     flex-direction: column !important;
@@ -175,7 +170,16 @@
     clear: both !important;
 }
 
-/* 思考中動畫 */
+.agent-response-text {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    white-space: pre-wrap !important;
+}
+
 .thinking-dots {
     display: flex !important;
     align-items: center !important;
@@ -215,7 +219,6 @@
     }
 }
 
-/* 工具列按鈕 */
 .agent-action-toolbar {
     display: flex !important;
     gap: 14px !important;
@@ -238,13 +241,13 @@
     height: 18px !important;
 }
 
-/* 底部固定安全輸入欄 */
 .bottom-sticky-bar {
     width: 100% !important;
     box-sizing: border-box !important;
     background-color: #ffffff !important;
     padding: 8px 0 8px 0 !important;
     flex-shrink: 0 !important;
+    margin-bottom: 20px;
 }
 
 .enhanced-search-bar {
@@ -277,7 +280,6 @@
     background: transparent !important;
 }
 
-/* 按鈕樣式 */
 .left-add-btn,
 .mic-btn {
     background: none !important;
