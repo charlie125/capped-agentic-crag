@@ -1,0 +1,102 @@
+[
+    {
+        "user_input": "What is the mandatory deadline for reporting a suspected data breach to the DPO?",
+        "reference": "Any employee who becomes aware of an actual or suspected personal data breach must report it to the DPO immediately, and no later than 4 hours after discovery."
+    },
+    {
+        "user_input": "Within how many hours must the DPO notify the supervisory authority of a breach likely to result in risk to data subjects?",
+        "reference": "The DPO must notify the competent supervisory authority without undue delay, and in any case within 72 hours of becoming aware of the breach."
+    },
+    {
+        "user_input": "How long are unsuccessful job applicants' data retained for?",
+        "reference": "Job applicant data for unsuccessful candidates is retained for 12 months, after which it must be deleted unless the candidate separately consents to inclusion in a talent pool."
+    },
+    {
+        "user_input": "What is the standard timeframe for responding to a data subject access request (DSAR)?",
+        "reference": "The Company must respond to data subject rights requests within one calendar month of receipt, extendable by two further months for complex requests with notification to the data subject."
+    },
+    {
+        "user_input": "Within how many business days must a DSAR be logged and forwarded to the DPO after an employee receives it?",
+        "reference": "All requests must be logged in the DSAR register and routed to the DPO within 2 business days of receipt by any employee."
+    },
+    {
+        "user_input": "What lawful bases under Article 6 GDPR can processing rely on?",
+        "reference": "Processing may rely on consent, necessity for performance of a contract, compliance with a legal obligation, protection of vital interests, performance of a task in the public interest, or legitimate interests pursued by the Company."
+    },
+    {
+        "user_input": "Under what conditions can Special Category Data be processed?",
+        "reference": "Special Category Data may only be processed where an additional condition under Article 9 GDPR is satisfied, such as explicit consent or necessity for employment law obligations."
+    },
+    {
+        "user_input": "When is a Data Protection Impact Assessment (DPIA) mandatory?",
+        "reference": "A DPIA is mandatory before processing likely to result in high risk, including systematic and extensive profiling with legal effects, large-scale processing of Special Category Data, systematic large-scale monitoring of public areas, or deployment of novel high-risk technologies."
+    },
+    {
+        "user_input": "What must a Data Processing Agreement (DPA) with a third-party processor specify?",
+        "reference": "The DPA must specify the subject matter and duration of processing, the nature and purpose of processing, the type of personal data and categories of data subjects, and the obligations and rights of the controller."
+    },
+    {
+        "user_input": "Can a data processor engage a sub-processor without authorization?",
+        "reference": "No. Processors must not engage a sub-processor without prior specific or general written authorization of the Company, and any sub-processing arrangement must impose equivalent data protection obligations."
+    },
+    {
+        "user_input": "What is the maximum administrative fine for GDPR non-compliance mentioned in the policy?",
+        "reference": "Regulatory non-compliance with GDPR may result in administrative fines of up to €20 million or 4% of total worldwide annual turnover, whichever is higher."
+    },
+    {
+        "user_input": "Where are CCTV cameras prohibited from being installed?",
+        "reference": "Cameras must not be installed in areas where individuals have a reasonable expectation of privacy, including restrooms and break rooms."
+    },
+    {
+        "user_input": "What cookie categories require opt-in consent before being set?",
+        "reference": "All cookie categories other than Strictly Necessary cookies -- namely Performance, Functional, and Targeting/Advertising cookies -- require opt-in consent."
+    },
+    {
+        "user_input": "What must happen if the Company discovers it has collected a child's personal data without parental consent?",
+        "reference": "Where the Company becomes aware it has inadvertently collected personal data from a child under 16 without appropriate parental consent, such data must be erased within 5 business days of discovery."
+    },
+    {
+        "user_input": "How long are whistleblowing reports retained?",
+        "reference": "Whistleblowing reports are retained for 5 years by Legal/Compliance under a legal obligation basis."
+    },
+    {
+        "user_input": "What is pseudonymization as defined in the policy's glossary?",
+        "reference": "Pseudonymization is processing personal data such that it can no longer be attributed to a specific data subject without additional information kept separately."
+    },
+    {
+        "user_input": "What residual risk rating was given to the Customer Behavioral Analytics Module DPIA after mitigation?",
+        "reference": "After mitigation measures were applied, the residual risk was rated as Low, and the DPO recommended approval subject to quarterly bias audit reporting."
+    },
+    {
+        "user_input": "What is the default retention period for customer transaction records?",
+        "reference": "Customer transaction records are retained for a default period of 7 years."
+    },
+    {
+        "user_input": "Within what timeframe must personal data be deleted or anonymized after its retention period expires?",
+        "reference": "At the expiry of the applicable retention period, personal data must be securely deleted or irreversibly anonymized within 30 calendar days."
+    },
+    {
+        "user_input": "Can an employee forward a customer's personal data to a colleague outside their business unit?",
+        "reference": "Only if the recipient has a legitimate business need to access the data consistent with the original purpose of collection."
+    },
+    {
+        "user_input": "What must the Procurement function maintain regarding third-party vendors?",
+        "reference": "The Procurement function must maintain an approved vendor register indicating each vendor's data processing role, transfer mechanism (if applicable), and last audit date."
+    },
+    {
+        "user_input": "Where must all cross-border data flows be documented prior to a transfer taking place?",
+        "reference": "All cross-border data flows must be documented in the Company's Transfer Impact Assessment (TIA) register prior to transfer taking place."
+    },
+    {
+        "user_input": "How long must records of online cookie consent be retained to demonstrate compliance?",
+        "reference": "A record of consent, including timestamp, IP address hash, and consent string, must be retained for 12 months to demonstrate compliance in the event of a regulatory audit."
+    },
+    {
+        "user_input": "What mandatory training module must new hires complete and what is the timeframe?",
+        "reference": "New hires must complete the Onboarding Data Protection Briefing within their first 14 days of employment."
+    },
+    {
+        "user_input": "What is the approved data transfer mechanism in use for the United States?",
+        "reference": "The approved transfer mechanism in use for the United States is Standard Contractual Clauses (SCCs) combined with supplementary encryption measures."
+    }
+]
