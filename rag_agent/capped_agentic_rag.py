@@ -8,7 +8,8 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-from .vector_store import vector_db_search
+# from .vector_store_propositional import propositional_vector_search
+from vector_store import vector_db_search
 import io
 
 
@@ -225,8 +226,14 @@ def capped_rag_testing(user_query):
     tool_message = [each.content for each in result["messages"]
                     if isinstance(each, ToolMessage)][-1]
 
+    try:
+        parsed_chunks = json.loads(tool_message)
+        retrieved_contexts = [item["chunk_context"] for item in parsed_chunks]
+    except:
+        retrieved_contexts = [tool_message]
+
     data = {
-        "retrieved_contexts": [tool_message],
+        "retrieved_contexts": retrieved_contexts,
         "response": str(ai_response),
     }
     return data
