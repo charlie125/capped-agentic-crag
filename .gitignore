@@ -1,6 +1,7 @@
 .env
 .venv/
 vector_db/
+vector_db_propositional/
 *.sqlite3
 __pycache__/
 *.pyc
