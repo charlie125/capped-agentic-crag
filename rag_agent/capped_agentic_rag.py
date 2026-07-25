@@ -8,9 +8,8 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-from vector_store import vector_db_search
+from .vector_store import vector_db_search
 import io
-from pprint import pprint
 
 
 llm = ChatOllama(model="llama3.1", temperature=0)
@@ -94,7 +93,10 @@ def rewrite_question(state: AgentState) -> AgentState:
         "\n ------- \n"
         "{question}"
         "\n ------- \n"
-        "Formulate an improved question:"
+        "Respond with ONLY the rewritten question text. No preamble, no explanation, "
+        "no alternatives, no markdown formatting, no bullet points.\n"
+        "BAD example: 'Here is an improved question: What is the deadline...'\n"
+        "GOOD example: 'What is the deadline...'"
     )
 
     question = [msg.content for msg in state["messages"]
@@ -208,9 +210,14 @@ workflow.add_edge("give_up_msg", END)
 graph = workflow.compile()
 
 
-def capped_rag(query):
+# image_bytes = graph.get_graph().draw_mermaid_png()
+# img = Image.open(io.BytesIO(image_bytes))
+# img.show()
+
+
+def capped_rag_testing(user_query):
     result = graph.invoke(
-        {"messages": query, "rewrite_counts": 0})
+        {"messages": user_query, "rewrite_counts": 0})
 
     ai_response = [each.content for each in result["messages"]
                    if isinstance(each, AIMessage)][-1]
@@ -223,11 +230,3 @@ def capped_rag(query):
         "response": str(ai_response),
     }
     return data
-
-
-# print(capped_rag(query="What anonymity protections are offered to employees who submit a workplace grievance complaint?"))
-
-# image_bytes = graph.get_graph().draw_mermaid_png()
-
-# img = Image.open(io.BytesIO(image_bytes))
-# img.show()

@@ -8,7 +8,7 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-from vector_store import vector_db_search
+from .vector_store import vector_db_search
 import io
 
 llm = ChatOllama(model="llama3.1", temperature=0)
@@ -79,11 +79,15 @@ def rewrite_question(state: AgentState) -> AgentState:
 
     REWRITE_PROMPT = (
         "Look at the input and try to reason about the underlying semantic intent / meaning.\n"
+        "Please improve the question based on the domain of the retrieved documents.\n"
         "Here is the initial question:"
         "\n ------- \n"
         "{question}"
         "\n ------- \n"
-        "Formulate an improved question:"
+        "Respond with ONLY the rewritten question text. No preamble, no explanation, "
+        "no alternatives, no markdown formatting, no bullet points.\n"
+        "BAD example: 'Here is an improved question: What is the deadline...'\n"
+        "GOOD example: 'What is the deadline...'"
     )
 
     question = [msg.content for msg in state["messages"]
@@ -164,8 +168,13 @@ workflow.add_edge("rewrite_question", "generate_query_or_respond")
 graph = workflow.compile()
 
 
-def uncapped_rag(query):
-    result = graph.invoke({"messages": query})
+# image_bytes = graph.get_graph().draw_mermaid_png()
+# img = Image.open(io.BytesIO(image_bytes))
+# img.show()
+
+
+def uncapped_rag_testing(user_query):
+    result = graph.invoke({"messages": user_query})
 
     ai_response = [each.content for each in result["messages"]
                    if isinstance(each, AIMessage)][-1]
@@ -178,8 +187,3 @@ def uncapped_rag(query):
         "response": str(ai_response),
     }
     return data
-
-# image_bytes = graph.get_graph().draw_mermaid_png()
-
-# img = Image.open(io.BytesIO(image_bytes))
-# img.show()
