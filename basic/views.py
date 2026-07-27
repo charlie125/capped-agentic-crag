@@ -10,9 +10,6 @@ import random
 
 
 def index(request):
-    Greeting.objects.create(sentences="Hello, How are you?")
-    sentence = random.choice(
-        [char.sentences for char in Greeting.objects.all()])
     ai_response = ""
     user_query = ""
     histories = UserQuery.objects.all()
@@ -36,8 +33,4 @@ def index(request):
             user_query=user_query, ai_response=ai_response)
     else:
         form = QueryForm()
-    return render(request, 'index.html', {'form': form, 'histories': histories, 'sentence': sentence, "mode": mode, "ai_response": ai_response})
-
-
-def dashboard(request):
-    return render(request, "dashboard.html")
+    return render(request, 'index.html', {'form': form, 'histories': histories, "mode": mode, "ai_response": ai_response})

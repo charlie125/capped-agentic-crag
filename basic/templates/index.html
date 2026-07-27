@@ -14,7 +14,7 @@
 <div class="welcome-stage-wrapper">
     <form method="POST" class="chat-welcome-container">
         {% csrf_token %}
-        <h1 class="welcome-title">{{ sentence }}</h1>
+        <h1 class="welcome-title">How can I help you?</h1>
 
         <div class="search-bar-container">
             {{ form.user_query }}

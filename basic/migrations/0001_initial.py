@@ -12,25 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Greeting',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('sentences', models.CharField(max_length=200, null=True)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='ResourceMonitor',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mode', models.CharField(max_length=100, null=True)),
-                ('cpu_usage', models.FloatField(null=True)),
-                ('memory_rss', models.FloatField(null=True)),
-            ],
-        ),
-        migrations.CreateModel(
             name='UserQuery',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('user_query', models.CharField(max_length=150, null=True)),
                 ('ai_response', models.CharField(max_length=150, null=True)),
                 ('created_at', models.TimeField(auto_now_add=True)),
