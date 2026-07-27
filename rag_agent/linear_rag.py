@@ -41,7 +41,7 @@ def linear_rag_respones(user_query):
     return response
 
 
-def eval_linear_rag(user_query):
+def linear_rag_testing(user_query):
     response, db_result = run_linear_rag(user_query)
     data = {"retrieved_contexts": [db_result], "response": str(response), }
     return data
