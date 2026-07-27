@@ -8,7 +8,6 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from PIL import Image
-# from .vector_store_propositional import propositional_vector_search
 from vector_store import vector_db_search
 import io
 
@@ -218,7 +217,7 @@ graph = workflow.compile()
 
 def capped_rag_testing(user_query):
     result = graph.invoke(
-        {"messages": user_query, "rewrite_counts": 0})
+        {"messages": user_query, "rewrite_counts": 0}, {"recursion_limit": 1000})
 
     ai_response = [each.content for each in result["messages"]
                    if isinstance(each, AIMessage)][-1]
