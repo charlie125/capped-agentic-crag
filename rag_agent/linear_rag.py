@@ -1,3 +1,4 @@
+import json
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import ChatOllama
@@ -43,5 +44,10 @@ def linear_rag_respones(user_query):
 
 def linear_rag_testing(user_query):
     response, db_result = run_linear_rag(user_query)
-    data = {"retrieved_contexts": [db_result], "response": str(response), }
+
+    cleaned_contexts = [each["chunk_context"]
+                        for each in json.loads(db_result)]
+
+    data = {"retrieved_contexts": cleaned_contexts,
+            "response": str(response), }
     return data
