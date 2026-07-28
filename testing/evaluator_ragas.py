@@ -1,3 +1,4 @@
+from linear_rag import linear_rag_testing
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from ragas.llms import LangchainLLMWrapper, llm_factory
 from ragas import SingleTurnSample, EvaluationDataset
@@ -16,16 +17,11 @@ from langchain_ollama import OllamaEmbeddings, ChatOllama
 from ragas.run_config import RunConfig
 import json
 import os
-import pprint
-from kxy500.rag_agent.capped_agentic_rag import capped_rag_testing
-from kxy500.rag_agent.uncapped_agentic_rag import uncapped_rag
-from kxy500.rag_agent.linear_rag import linear_rag_testing
-
+import time
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(script_dir, "ragas_test.json")
 
-sample_space = []
 
 # Create Sample for testing
 # user_input: input,
@@ -33,82 +29,89 @@ sample_space = []
 # response:  AI response,
 # reference: Ground truth / answer
 
-with open(json_path, "r") as files:
-    cases = json.load(files)
+def set_up_sample(condition):
 
-    for each in cases:
-        # This section is to switch for testing three different systems
+    sample_space = []
 
-        # capped_data = capped_rag_testing(user_query=each["user_input"])
+    with open(json_path, "r") as files:
+        cases = json.load(files)
 
-        # sample = SingleTurnSample(
-        #     user_input=each["user_input"],
-        #     retrieved_contexts=capped_data["retrieved_contexts"],
-        #     response=capped_data["response"],
-        #     reference=each["reference"]
-        # )
+        counts = 0
+        with open("linear_timing_log.txt", "a") as f:
+            for each in cases:
+                start = time.perf_counter()
 
-        # linear_data = linear_rag_testing(user_query=each["user_input"])
+                if condition == "linear":
+                    retrieved = linear_rag_testing(
+                        user_query=each["user_input"])
+                elif condition == "uncapped":
+                    retrieved = uncapped_rag_testing(
+                        user_query=each["user_input"])
+                elif condition == "capped":
+                    retrieved = capped_rag_testing(
+                        user_query=each["user_input"])
 
-        # sample = SingleTurnSample(
-        #     user_input=each["user_input"],
-        #     retrieved_contexts=linear_data["retrieved_contexts"],
-        #     response=linear_data["response"],
-        #     reference=each["reference"]
-        # )
+                end = time.perf_counter()
 
-        # uncapped_data = uncapped_rag_testing(user_query=each["user_input"])
+                total = round(end - start, 2)
+                print(total)
 
-        # sample = SingleTurnSample(
-        #     user_input=each["user_input"],
-        #     retrieved_contexts=uncapped_data["retrieved_contexts"],
-        #     response=uncapped_data["response"],
-        #     reference=each["reference"]
-        # )
+                t = {"id": counts, "start": start, "end": end,
+                     "total": total, "condition": condition}
 
-        sample_space.append(sample)
+                f.write(f"{json.dumps(t)}\n")
+                counts += 1
 
-created_dataset = EvaluationDataset(samples=sample_space)
-print(f"Length of dataset: {len(sample_space)}")
-print(created_dataset)
+                sample = SingleTurnSample(
+                    user_input=each["user_input"],
+                    retrieved_contexts=retrieved["retrieved_contexts"],
+                    response=retrieved["response"],
+                    reference=each["reference"]
+                )
 
+                sample_space.append(sample)
 
-# LLM and embeddings
-lc_chat = ChatOllama(
-    model="llama3.1",
-    temperature=0,
-    base_url="http://localhost:11434"
-)
-
-lc_embed = OllamaEmbeddings(
-    model="nomic-embed-text",
-    base_url="http://localhost:11434"
-)
-
-llm = LangchainLLMWrapper(lc_chat)
-embedding = LangchainEmbeddingsWrapper(lc_embed)
+    created_dataset = EvaluationDataset(samples=sample_space)
+    print(f"Length of dataset: {len(sample_space)}")
+    print(created_dataset)
+    return created_dataset
 
 
-# Evaluation steps
-run_config = RunConfig(timeout=600, max_retries=2, max_workers=1)
+def evaluator(created_dataset):
+    # LLM and embeddings
+    lc_chat = ChatOllama(
+        model="llama3.1",
+        temperature=0,
+        base_url="http://localhost:11434"
+    )
 
-result = evaluate(
-    dataset=created_dataset,
-    metrics=[
-        faithfulness,
-        answer_relevancy,
-        context_precision,
-        context_recall,
-    ],
-    llm=llm,
-    embeddings=embedding,
-    run_config=run_config
-)
+    lc_embed = OllamaEmbeddings(
+        model="nomic-embed-text",
+        base_url="http://localhost:11434"
+    )
 
+    llm = LangchainLLMWrapper(lc_chat)
+    embedding = LangchainEmbeddingsWrapper(lc_embed)
 
-print("\n--- Evaluation Score ---")
-print(result)
+    # Evaluation steps
+    run_config = RunConfig(timeout=600, max_retries=2, max_workers=1)
 
-df = result.to_pandas()
-print("\n--- Statistics ---")
-print(df)
+    result = evaluate(
+        dataset=created_dataset,
+        metrics=[
+            faithfulness,
+            answer_relevancy,
+            context_precision,
+            context_recall,
+        ],
+        llm=llm,
+        embeddings=embedding,
+        run_config=run_config
+    )
+
+    print("\n--- Evaluation Score ---")
+    print(result)
+
+    df = result.to_pandas()
+    print("\n--- Statistics ---")
+    print(df)
