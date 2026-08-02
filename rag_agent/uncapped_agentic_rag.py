@@ -170,7 +170,7 @@ graph = workflow.compile()
 
 
 def uncapped_rag_testing(user_query):
-    result = graph.invoke({"messages": user_query})
+    result = graph.invoke({"messages": user_query}, {"recursion_limit": 1000})
 
     ai_response = [each.content for each in result["messages"]
                    if isinstance(each, AIMessage)][-1]
