@@ -186,18 +186,36 @@ def monitor_run(graph, invoke_input: dict, sample_interval: float = 0.2) -> tupl
 # Diagnostic helper -- run this FIRST to sanity-check which processes are
 # being detected, before trusting any monitor_run() output.
 # =========================================================================
-def debug_print_targets():
+is_set = False
+
+
+def debug_print_targets(file):
+    global is_set
+
     procs = find_target_processes()
+
     if not procs:
         print("No matching processes found right now (ollama serve idle, "
               "or llama-server not currently loaded).")
         return
-    for p in procs:
-        try:
-            print(f"PID {p.pid} | {p.name()} | RSS {p.memory_info().rss / 1024**2:.1f} MB "
-                  f"| cmdline: {' '.join(p.cmdline())}")
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            print(f"PID {p.pid} | (process ended before we could read it)")
+
+    with open(f"{file}.txt", "a") as f:
+        if not is_set:
+            f.write("========= Before invoke ==========\n")
+            is_set = True
+        else:
+            f.write("========= After invoke ==========\n")
+
+        for p in procs:
+            try:
+                print(f"PID {p.pid} | {p.name()} | RSS {p.memory_info().rss / 1024**2:.1f} MB "
+                      f"| cmdline: {' '.join(p.cmdline())}")
+                f.write(f"PID {p.pid} | {p.name()} | RSS {p.memory_info().rss / 1024**2:.1f} MB "
+                        f"| cmdline: {' '.join(p.cmdline())}\n")
+                print("Target has been added to report")
+
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                print(f"PID {p.pid} | (process ended before we could read it)")
 
 
 is_warm = False
