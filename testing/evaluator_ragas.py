@@ -1,11 +1,14 @@
-from linear_rag import linear_rag_testing
+import json
+import os
+import time
+import pandas as pd
+
+# ragas metrics
 from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.llms import LangchainLLMWrapper, llm_factory
+from ragas.llms import LangchainLLMWrapper
 from ragas import SingleTurnSample, EvaluationDataset
 from ragas.embeddings.base import embedding_factory
-from openai import AsyncOpenAI
-import pandas as pd
-from datasets import load_dataset
+from ragas.run_config import RunConfig
 from ragas import evaluate
 from ragas.metrics import (
     faithfulness,
@@ -13,11 +16,17 @@ from ragas.metrics import (
     context_precision,
     context_recall,
 )
+
+
+# Local model and embedding
 from langchain_ollama import OllamaEmbeddings, ChatOllama
-from ragas.run_config import RunConfig
-import json
-import os
-import time
+
+
+# import three rag system
+from linear_rag import linear_rag_testing
+from uncapped_rag import uncapped_rag_testing
+from capped_rag import capped_rag_testing
+
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 json_path = os.path.join(script_dir, "ragas_test.json")
