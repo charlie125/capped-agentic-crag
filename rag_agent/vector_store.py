@@ -1,15 +1,28 @@
 import os
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import Chroma
 import json
 
-from pprint import pprint
+# LangChain
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+
+
+# Ollama Embedding model
+from langchain_ollama import OllamaEmbeddings
+
+
+# Vector Database
+from langchain_chroma import Chroma
+
 
 embeddings = OllamaEmbeddings(
     model="nomic-embed-text")
-PERSIST_DIR = "./vector_db"
+
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+PERSIST_DIR = os.path.join(PROJECT_ROOT, "data", "vector_db")
+
+FILE_LOCATION = os.path.join(
+    PROJECT_ROOT, "data", "Corporate Data Protection and GDPR Compliance Policy.pdf")
 
 
 # checking local vector database exist
@@ -21,8 +34,7 @@ def set_up_vector_db():
             embedding_function=embeddings
         )
     else:
-
-        file_location = "File path"
+        file_location = FILE_LOCATION
         loader = PyPDFLoader(file_location)
         pages = loader.load()
 
@@ -41,9 +53,9 @@ def set_up_vector_db():
     return vector_database
 
 
-def formate_data(plaint_data):
+def format_data(plain_data):
     formatted_chunks = []
-    for x, (doc, score) in enumerate(plaint_data, 1):
+    for x, (doc, score) in enumerate(plain_data, 1):
         json_item = {
             "chunk_id": f"chunk{x}",
             "chunk_context": doc.page_content.replace("-\n", "").replace("\n", " "),
@@ -60,5 +72,5 @@ def vector_db_search(user_query):
     vector_database = set_up_vector_db()
     docs_and_scores = vector_database.similarity_search_with_score(
         user_query, k=3)
-    vector_db_results = formate_data(docs_and_scores)
+    vector_db_results = format_data(docs_and_scores)
     return vector_db_results
