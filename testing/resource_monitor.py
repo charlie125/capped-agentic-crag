@@ -15,7 +15,7 @@ whatever matches are found at that moment.
 
 Usage:
     from resource_monitor import monitor_run
-    from capped_agentic_rag import graph
+    from rag_agent.capped_crag import build_capped_graph
 
     result, stats = monitor_run(
         graph, {"messages": "your question", "rewrite_counts": 0})
@@ -28,7 +28,7 @@ import statistics
 import psutil
 import os
 import sys
-from kxy500.rag_agent.capped_agentic_rag import graph as capped_graph
+from rag_agent.capped_crag import build_capped_graph
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -247,20 +247,22 @@ def warm_up_llm(graph, n=3):
 # =========================================================================
 if __name__ == "__main__":
 
-    warm_up_llm(capped_graph)
+    graph = build_capped_graph()
+
+    warm_up_llm(graph)
 
     print("Targets BEFORE invoke:")
-    debug_print_targets()
+    debug_print_targets("refined_1")
     print()
 
     result, stats = monitor_run(
-        capped_graph,
-        {"messages": "What compensation or remedy is offered to a data subject whose data was breached?", "rewrite_counts": 0},
+        graph,
+        {"messages": "What is the mandatory deadline for reporting a suspected data breach to the DPO?", "rewrite_counts": 0},
     )
 
     print()
     print("Targets AFTER invoke:")
-    debug_print_targets()
+    debug_print_targets("refined_1")
 
     print()
     print("=" * 80)
