@@ -23,9 +23,9 @@ from langchain_ollama import OllamaEmbeddings, ChatOllama
 
 
 # import three rag system
-from linear_rag import linear_rag_testing
-from uncapped_rag import uncapped_rag_testing
-from capped_rag import capped_rag_testing
+from naive_rag import naive_testing
+from uncapped_rag import uncapped_testing
+from capped_rag import capped_testing
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -46,12 +46,12 @@ def set_up_sample(condition):
         cases = json.load(files)
 
         counts = 0
-        with open("linear_timing_log.txt", "a") as f:
+        with open(f"{condition}_latency.txt", "a") as f:
             for each in cases:
                 start = time.perf_counter()
 
-                if condition == "linear":
-                    retrieved = linear_rag_testing(
+                if condition == "naive":
+                    retrieved = naive_rag_testing(
                         user_query=each["user_input"])
                 elif condition == "uncapped":
                     retrieved = uncapped_rag_testing(
