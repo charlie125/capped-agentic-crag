@@ -89,15 +89,11 @@ def uncapped_main(user_query):
 
         REWRITE_PROMPT = (
             "Look at the input and try to reason about the underlying semantic intent / meaning.\n"
-            "Please improve the question based on the domain of the retrieved documents.\n"
             "Here is the initial question:"
             "\n ------- \n"
             "{question}"
             "\n ------- \n"
-            "Respond with ONLY the rewritten question text. No preamble, no explanation, "
-            "no alternatives, no markdown formatting, no bullet points.\n"
-            "BAD example: 'Here is an improved question: What is the deadline...'\n"
-            "GOOD example: 'What is the deadline...'"
+            "Formulate an improved question:"
         )
 
         question = [msg.content for msg in state["messages"]
