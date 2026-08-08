@@ -92,7 +92,10 @@ def capped_main(user_query):
         REWRITE_PROMPT = (
             "Look at the input and try to reason about the underlying semantic intent / meaning.\n"
             "Please improve the question based on the domain of the retrieved documents.\n"
-            "Here is the initial question:"
+            "Here is the user's original question for context:\n"
+            "{original_question}\n"
+            "\n"
+            "Here is the current question that needs to be improved:"
             "\n ------- \n"
             "{question}"
             "\n ------- \n"
@@ -102,9 +105,13 @@ def capped_main(user_query):
             "GOOD example: 'What is the deadline...'"
         )
 
+        original_question = [
+            msg.content for msg in state["messages"] if isinstance(msg, HumanMessage)][0]
         question = [msg.content for msg in state["messages"]
                     if isinstance(msg, HumanMessage)][-1]
-        prompt = REWRITE_PROMPT.format(question=question)
+
+        prompt = REWRITE_PROMPT.format(
+            original_question=original_question, question=question)
         response = llm.invoke([{"role": "user", "content": prompt}])
 
         new_count = state["rewrite_counts"] + 1
@@ -116,10 +123,13 @@ def capped_main(user_query):
         return {"messages": [HumanMessage(content=response.content)], "rewrite_counts": new_count}
 
     def counts_check_point(state: AgentState) -> AgentState:
+        """ This node is for placeholder to check counts"""
         return {}
 
     def route_after_count(state: AgentState) -> str:
-        if state["rewrite_counts"] >= 3:
+        """ This node is used to check counts"""
+
+        if state["rewrite_counts"] >= 2:
             return "end"
         return "continue"
 
@@ -217,6 +227,9 @@ def capped_main(user_query):
     # image_bytes = graph.get_graph().draw_mermaid_png()
     # img = Image.open(io.BytesIO(image_bytes))
     # img.show()
+
+    print([msg.content for msg in result["messages"]
+          if isinstance(msg, AIMessage)][-1])
 
     return result
 
