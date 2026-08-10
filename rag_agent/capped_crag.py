@@ -12,7 +12,7 @@ from langgraph.graph.message import add_messages
 from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
-from .vector_store import vector_db_search
+from vector_store import vector_db_search
 from langgraph.checkpoint.memory import MemorySaver
 
 memory = MemorySaver()
@@ -51,7 +51,7 @@ def build_capped_graph(use_memory=True):
 
         print("")
         print(f"input query: {query}")
-        print("=" * 100)
+        print("=" * 80)
 
         retrieved_docs = vector_db_search(query)
         return retrieved_docs
@@ -89,7 +89,7 @@ def build_capped_graph(use_memory=True):
             [{"role": "user", "content": prompt}]
         )
         print(f"Grade: {response.binary_score}")
-        print("=" * 100)
+        print("=" * 80)
         if response.binary_score == "yes":
             return "generate_answer"
         return "check_counts"
@@ -125,13 +125,14 @@ def build_capped_graph(use_memory=True):
         new_count = state["rewrite_counts"] + 1
 
         print(f"rewrite: {response.content}")
-        print("=" * 100)
+        print("=" * 80)
         print(f"Rewrite counts: {new_count}")
 
         return {"messages": [HumanMessage(content=response.content)], "rewrite_counts": new_count}
 
     def counts_check_point(state: AgentState) -> AgentState:
         """This node is a placeholder to check counts"""
+
         return {}
 
     def route_after_count(state: AgentState) -> str:
@@ -226,12 +227,12 @@ def build_capped_graph(use_memory=True):
         return workflow.compile()
 
 
-def capped_main(user_query, session_id="default_user"):
+def capped_main(user_query):
     """Synchronous, non-streaming entry point (used by testing/evaluation scripts)."""
 
-    config = {"recursion_limit": 1000,
-              "configurable": {"thread_id": session_id}}
-    graph = build_capped_graph()
+    config = {"recursion_limit": 1000}
+
+    graph = build_capped_graph(use_memory=False)
 
     result = graph.invoke(
         {"messages": [HumanMessage(content=user_query)], "rewrite_counts": 0},
@@ -297,3 +298,6 @@ def capped_testing(user_query):
         "response": str(ai_response),
     }
     return data
+
+
+print(capped_main("How long are payroll records kept, and which department manages them?"))
