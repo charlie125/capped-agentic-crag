@@ -5,5 +5,5 @@ app_name = "basic"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("dashboard", views.dashboard, name="dashboard"),
+    path("stream/", views.stream_view, name="stream_view"),
 ]

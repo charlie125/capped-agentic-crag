@@ -10,61 +10,42 @@
 {% block content %}
 
 {% if not histories %}
-
-<div class="welcome-stage-wrapper">
-    <form method="POST" class="chat-welcome-container">
+<div class="welcome-stage-wrapper" id="welcome-wrapper">
+    <form class="chat-welcome-container" id="chat-form-welcome">
         {% csrf_token %}
         <h1 class="welcome-title">How can I help you?</h1>
-
         <div class="search-bar-container">
             {{ form.user_query }}
-
             <button type="submit" class="send-button" title="Send to Agent">
                 <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
             </button>
         </div>
-
-        <input type="hidden" name="mode" id="mode-input" value="linear">
-        {{ form.selected_mode }}
     </form>
 </div>
 
 {% else %}
-<div class="chat-stage-wrapper">
-
+<div class="chat-stage-wrapper" id="chat-stage">
     <div class="message-stream-area">
-        <div class="messages-inner-wrapper">
-
+        <div class="messages-inner-wrapper" id="messages-inner-wrapper">
             {% for each in histories %}
             <div class="user-message-row">
                 <div class="user-message-bubble">{{ each.user_query }}</div>
             </div>
-
             <div class="agent-message-row">
                 {% if each.ai_response %}
                 <div class="agent-response-text">{{ each.ai_response|linebreaksbr }}</div>
-
-                {% elif forloop.last %}
-                <div class="thinking-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
                 {% endif %}
             </div>
             {% endfor %}
-
         </div>
     </div>
 
-    <form method="POST" class="bottom-sticky-bar">
+    <form class="bottom-sticky-bar" id="chat-form-bottom">
         {% csrf_token %}
         <div class="enhanced-search-bar">
-
             {{ form.user_query }}
-
             <div class="right-buttons-group">
                 <button type="submit" class="send-button" title="Send to Agent">
                     <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -79,10 +60,138 @@
 
 <script>
     (function () {
-        var streamArea = document.querySelector('.message-stream-area');
-        if (streamArea) {
-            streamArea.scrollTop = streamArea.scrollHeight;
+        const currentMode = "{{ mode }}";
+
+        function scrollToBottom() {
+            const area = document.querySelector('.message-stream-area');
+            if (area) area.scrollTop = area.scrollHeight;
         }
+        scrollToBottom();
+
+        function getOrCreateStreamArea() {
+            let wrapper = document.getElementById('chat-stage');
+            if (wrapper) {
+                return document.getElementById('messages-inner-wrapper');
+            }
+
+            const welcome = document.getElementById('welcome-wrapper');
+            if (welcome) welcome.remove();
+
+            const stage = document.createElement('div');
+            stage.className = 'chat-stage-wrapper';
+            stage.id = 'chat-stage';
+            stage.innerHTML = `
+            <div class="message-stream-area">
+                <div class="messages-inner-wrapper" id="messages-inner-wrapper"></div>
+            </div>
+            <form class="bottom-sticky-bar" id="chat-form-bottom">
+                {% csrf_token %}
+                <div class="enhanced-search-bar">
+                    {{ form.user_query }}
+                    <div class="right-buttons-group">
+                        <button type="submit" class="send-button" title="Send to Agent">
+                            <svg class="send-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        `;
+            document.querySelector('.block-content') ? null : null;
+            document.body.appendChild(stage);
+            bindForm(document.getElementById('chat-form-bottom'));
+            return document.getElementById('messages-inner-wrapper');
+        }
+
+        function sendQuery(form) {
+            const input = form.querySelector('[name="user_query"]');
+            const query = input.value.trim();
+            if (!query) return;
+
+            const streamArea = getOrCreateStreamArea();
+
+            const userRow = document.createElement('div');
+            userRow.className = 'user-message-row';
+            const userBubble = document.createElement('div');
+            userBubble.className = 'user-message-bubble';
+            userBubble.textContent = query;
+            userRow.appendChild(userBubble);
+            streamArea.appendChild(userRow);
+
+            const agentRow = document.createElement('div');
+            agentRow.className = 'agent-message-row';
+            agentRow.innerHTML = `
+            <div class="thinking-panel" style="display:none;">
+                <button class="thinking-toggle" type="button">Thinking ▾</button>
+                <ul class="thinking-steps"></ul>
+            </div>
+            <div class="thinking-dots">
+                <span></span><span></span><span></span>
+            </div>
+            <div class="agent-response-text"></div>
+        `;
+            streamArea.appendChild(agentRow);
+
+            const thinkingPanel = agentRow.querySelector('.thinking-panel');
+            const thinkingSteps = agentRow.querySelector('.thinking-steps');
+            const thinkingDots = agentRow.querySelector('.thinking-dots');
+            const agentText = agentRow.querySelector('.agent-response-text');
+            const toggleBtn = agentRow.querySelector('.thinking-toggle');
+
+            toggleBtn.addEventListener('click', () => {
+                const collapsed = thinkingSteps.style.display === 'none';
+                thinkingSteps.style.display = collapsed ? 'block' : 'none';
+                toggleBtn.textContent = collapsed ? 'Thinking ▾' : 'Thinking ▸';
+            });
+
+            input.value = '';
+            scrollToBottom();
+
+            const es = new EventSource(`/stream/?q=${encodeURIComponent(query)}&mode=${currentMode}`);
+
+            es.addEventListener('thinking', (ev) => {
+                const { label } = JSON.parse(ev.data);
+                thinkingPanel.style.display = 'block';
+                const li = document.createElement('li');
+                li.className = 'thinking-step-item';
+                li.textContent = label;
+                thinkingSteps.appendChild(li);
+                scrollToBottom();
+            });
+
+            es.addEventListener('token', (ev) => {
+                const { text } = JSON.parse(ev.data);
+                thinkingDots.classList.add('is-hidden');
+                agentText.textContent += text;
+                scrollToBottom();
+            });
+
+            es.addEventListener('done', () => {
+                thinkingDots.classList.add('is-hidden');
+                if (thinkingSteps.children.length > 0) {
+                    thinkingSteps.style.display = 'none';
+                    toggleBtn.textContent = 'Thinking ▸ (done)';
+                }
+                es.close();
+            });
+
+            es.addEventListener('error', () => {
+                thinkingDots.classList.add('is-hidden');
+                es.close();
+            });
+        }
+
+        function bindForm(form) {
+            if (!form) return;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                sendQuery(form);
+            });
+        }
+
+        bindForm(document.getElementById('chat-form-welcome'));
+        bindForm(document.getElementById('chat-form-bottom'));
     })();
 </script>
 
