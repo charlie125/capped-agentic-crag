@@ -1,102 +1,127 @@
 [
     {
         "user_input": "What is the mandatory deadline for reporting a suspected data breach to the DPO?",
-        "reference": "Any employee who becomes aware of an actual or suspected personal data breach must report it to the DPO immediately, and no later than 4 hours after discovery."
+        "reference": "Any employee who becomes aware of an actual or suspected personal data breach must report it to the DPO immediately, and no later than 4 hours after discovery.",
+        "category": "single-hop"
     },
     {
         "user_input": "Within how many hours must the DPO notify the supervisory authority of a breach likely to result in risk to data subjects?",
-        "reference": "The DPO must notify the competent supervisory authority without undue delay, and in any case within 72 hours of becoming aware of the breach."
+        "reference": "The DPO must notify the competent supervisory authority without undue delay, and in any case within 72 hours of becoming aware of the breach.",
+        "category": "single-hop"
     },
     {
         "user_input": "How long are unsuccessful job applicants' data retained for?",
-        "reference": "Job applicant data for unsuccessful candidates is retained for 12 months, after which it must be deleted unless the candidate separately consents to inclusion in a talent pool."
+        "reference": "Job applicant data for unsuccessful candidates is retained for 12 months, after which it must be deleted unless the candidate separately consents to inclusion in a talent pool.",
+        "category": "single-hop"
     },
     {
         "user_input": "What is the standard timeframe for responding to a data subject access request (DSAR)?",
-        "reference": "The Company must respond to data subject rights requests within one calendar month of receipt, extendable by two further months for complex requests with notification to the data subject."
+        "reference": "The Company must respond to data subject rights requests within one calendar month of receipt, extendable by two further months for complex requests with notification to the data subject.",
+        "category": "single-hop"
     },
     {
         "user_input": "Within how many business days must a DSAR be logged and forwarded to the DPO after an employee receives it?",
-        "reference": "All requests must be logged in the DSAR register and routed to the DPO within 2 business days of receipt by any employee."
+        "reference": "All requests must be logged in the DSAR register and routed to the DPO within 2 business days of receipt by any employee.",
+        "category": "single-hop"
     },
     {
         "user_input": "What lawful bases under Article 6 GDPR can processing rely on?",
-        "reference": "Processing may rely on consent, necessity for performance of a contract, compliance with a legal obligation, protection of vital interests, performance of a task in the public interest, or legitimate interests pursued by the Company."
+        "reference": "Processing may rely on consent, necessity for performance of a contract, compliance with a legal obligation, protection of vital interests, performance of a task in the public interest, or legitimate interests pursued by the Company.",
+        "category": "single-hop"
     },
     {
         "user_input": "Under what conditions can Special Category Data be processed?",
-        "reference": "Special Category Data may only be processed where an additional condition under Article 9 GDPR is satisfied, such as explicit consent or necessity for employment law obligations."
+        "reference": "Special Category Data may only be processed where an additional condition under Article 9 GDPR is satisfied, such as explicit consent or necessity for employment law obligations.",
+        "category": "single-hop"
     },
     {
         "user_input": "When is a Data Protection Impact Assessment (DPIA) mandatory?",
-        "reference": "A DPIA is mandatory before processing likely to result in high risk, including systematic and extensive profiling with legal effects, large-scale processing of Special Category Data, systematic large-scale monitoring of public areas, or deployment of novel high-risk technologies."
+        "reference": "A DPIA is mandatory before processing likely to result in high risk, including systematic and extensive profiling with legal effects, large-scale processing of Special Category Data, systematic large-scale monitoring of public areas, or deployment of novel high-risk technologies.",
+        "category": "single-hop"
     },
     {
         "user_input": "What must a Data Processing Agreement (DPA) with a third-party processor specify?",
-        "reference": "The DPA must specify the subject matter and duration of processing, the nature and purpose of processing, the type of personal data and categories of data subjects, and the obligations and rights of the controller."
+        "reference": "The DPA must specify the subject matter and duration of processing, the nature and purpose of processing, the type of personal data and categories of data subjects, and the obligations and rights of the controller.",
+        "category": "single-hop"
     },
     {
         "user_input": "Can a data processor engage a sub-processor without authorization?",
-        "reference": "No. Processors must not engage a sub-processor without prior specific or general written authorization of the Company, and any sub-processing arrangement must impose equivalent data protection obligations."
+        "reference": "No. Processors must not engage a sub-processor without prior specific or general written authorization of the Company, and any sub-processing arrangement must impose equivalent data protection obligations.",
+        "category": "single-hop"
     },
     {
         "user_input": "What is the maximum administrative fine for GDPR non-compliance mentioned in the policy?",
-        "reference": "Regulatory non-compliance with GDPR may result in administrative fines of up to €20 million or 4% of total worldwide annual turnover, whichever is higher."
+        "reference": "Regulatory non-compliance with GDPR may result in administrative fines of up to €20 million or 4% of total worldwide annual turnover, whichever is higher.",
+        "category": "single-hop"
     },
     {
         "user_input": "Where are CCTV cameras prohibited from being installed?",
-        "reference": "Cameras must not be installed in areas where individuals have a reasonable expectation of privacy, including restrooms and break rooms."
+        "reference": "Cameras must not be installed in areas where individuals have a reasonable expectation of privacy, including restrooms and break rooms.",
+        "category": "single-hop"
     },
     {
         "user_input": "What cookie categories require opt-in consent before being set?",
-        "reference": "All cookie categories other than Strictly Necessary cookies -- namely Performance, Functional, and Targeting/Advertising cookies -- require opt-in consent."
+        "reference": "All cookie categories other than Strictly Necessary cookies -- namely Performance, Functional, and Targeting/Advertising cookies -- require opt-in consent.",
+        "category": "single-hop"
     },
     {
         "user_input": "What must happen if the Company discovers it has collected a child's personal data without parental consent?",
-        "reference": "Where the Company becomes aware it has inadvertently collected personal data from a child under 16 without appropriate parental consent, such data must be erased within 5 business days of discovery."
+        "reference": "Where the Company becomes aware it has inadvertently collected personal data from a child under 16 without appropriate parental consent, such data must be erased within 5 business days of discovery.",
+        "category": "single-hop"
     },
     {
         "user_input": "How long are whistleblowing reports retained?",
-        "reference": "Whistleblowing reports are retained for 5 years by Legal/Compliance under a legal obligation basis."
+        "reference": "Whistleblowing reports are retained for 5 years by Legal/Compliance under a legal obligation basis.",
+        "category": "single-hop"
     },
     {
         "user_input": "What is pseudonymization as defined in the policy's glossary?",
-        "reference": "Pseudonymization is processing personal data such that it can no longer be attributed to a specific data subject without additional information kept separately."
+        "reference": "Pseudonymization is processing personal data such that it can no longer be attributed to a specific data subject without additional information kept separately.",
+        "category": "single-hop"
     },
     {
         "user_input": "What residual risk rating was given to the Customer Behavioral Analytics Module DPIA after mitigation?",
-        "reference": "After mitigation measures were applied, the residual risk was rated as Low, and the DPO recommended approval subject to quarterly bias audit reporting."
+        "reference": "After mitigation measures were applied, the residual risk was rated as Low, and the DPO recommended approval subject to quarterly bias audit reporting.",
+        "category": "single-hop"
     },
     {
         "user_input": "What is the default retention period for customer transaction records?",
-        "reference": "Customer transaction records are retained for a default period of 7 years."
+        "reference": "Customer transaction records are retained for a default period of 7 years.",
+        "category": "single-hop"
     },
     {
         "user_input": "Within what timeframe must personal data be deleted or anonymized after its retention period expires?",
-        "reference": "At the expiry of the applicable retention period, personal data must be securely deleted or irreversibly anonymized within 30 calendar days."
+        "reference": "At the expiry of the applicable retention period, personal data must be securely deleted or irreversibly anonymized within 30 calendar days.",
+        "category": "single-hop"
     },
     {
         "user_input": "Can an employee forward a customer's personal data to a colleague outside their business unit?",
-        "reference": "Only if the recipient has a legitimate business need to access the data consistent with the original purpose of collection."
+        "reference": "Only if the recipient has a legitimate business need to access the data consistent with the original purpose of collection.",
+        "category": "single-hop"
     },
     {
-        "user_input": "What must the Procurement function maintain regarding third-party vendors?",
-        "reference": "The Procurement function must maintain an approved vendor register indicating each vendor's data processing role, transfer mechanism (if applicable), and last audit date."
+        "user_input": "If an employee discovers unauthorized access to CCTV footage, within what timeframe must they report it to the DPO, and what is the standard retention period for that footage?",
+        "reference": "The employee must report the suspected data breach to the DPO immediately, and in no case later than 4 hours after discovery[cite: 1]. The standard retention period for CCTV footage is 30 days[cite: 1].",
+        "category": "multi-hop"
     },
     {
-        "user_input": "Where must all cross-border data flows be documented prior to a transfer taking place?",
-        "reference": "All cross-border data flows must be documented in the Company's Transfer Impact Assessment (TIA) register prior to transfer taking place."
+        "user_input": "A former employee whose employment terminated 4 years ago submits a Data Subject Access Request (DSAR) for their HR records. Does the company still hold their data, and what is the standard timeframe to respond?",
+        "reference": "Yes, the company still holds the data because employee HR records are retained for 6 years post-termination[cite: 1]. The standard timeframe to respond to the DSAR is within one calendar month of receipt, which can be extended by two further months for complex requests[cite: 1].",
+        "category": "multi-hop"
     },
     {
-        "user_input": "How long must records of online cookie consent be retained to demonstrate compliance?",
-        "reference": "A record of consent, including timestamp, IP address hash, and consent string, must be retained for 12 months to demonstrate compliance in the event of a regulatory audit."
+        "user_input": "If the marketing team discovers they inadvertently collected marketing consent from a 15-year-old, how quickly must the data be erased, and how long would the consent have normally been valid if they were an adult?",
+        "reference": "The data must be erased within 5 business days of discovery[cite: 1]. For an adult, the marketing consent would normally remain valid for 3 years from the date given, or until withdrawn[cite: 1].",
+        "category": "multi-hop"
     },
     {
-        "user_input": "What mandatory training module must new hires complete and what is the timeframe?",
-        "reference": "New hires must complete the Onboarding Data Protection Briefing within their first 14 days of employment."
+        "user_input": "If a user opts into performance cookies for website analytics, how long must the record of their consent be retained, and what is the retention period for the aggregated website analytics data?",
+        "reference": "A record of the cookie consent must be retained for 12 months[cite: 1]. The aggregated website analytics data is retained for 26 months[cite: 1].",
+        "category": "multi-hop"
     },
     {
-        "user_input": "What is the approved data transfer mechanism in use for the United States?",
-        "reference": "The approved transfer mechanism in use for the United States is Standard Contractual Clauses (SCCs) combined with supplementary encryption measures."
+        "user_input": "An employee in the Facilities department manages the access control logs. How long should they retain these logs, and what mandatory data protection training must they complete annually?",
+        "reference": "Access control logs (badge swipes) must be retained by the Facilities department for 90 days[cite: 1]. As part of the 'All employees' group, they must complete the GDPR Fundamentals training annually[cite: 1].",
+        "category": "multi-hop"
     }
 ]
