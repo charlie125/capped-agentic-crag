@@ -1,43 +1,14 @@
-"""
-Local Resource Monitor for Ollama-backed LangGraph pipelines (v2)
-====================================================================
-FIX from v1: Ollama on Apple Silicon spawns a SEPARATE child process
-called `llama-server` to actually run inference (load model weights,
-run GPU compute). The `ollama serve` process itself is just a thin
-API gateway/scheduler and barely uses any CPU/RAM.
-
-`llama-server` is DYNAMIC -- it may not exist yet when you start
-monitoring (if Ollama hasn't loaded a model), and it may disappear
-after inference completes (if Ollama unloads idle models). So instead
-of grabbing ONE process handle up front, we re-scan for matching
-processes on EVERY sample tick, and sum resource usage across
-whatever matches are found at that moment.
-
-Usage:
-    from resource_monitor import monitor_run
-    from rag_agent.capped_crag import build_capped_graph
-
-    result, stats = monitor_run(
-        graph, {"messages": "your question", "rewrite_counts": 0})
-    print(stats)
-"""
-
 import time
 import threading
 import statistics
-import psutil
 import os
-import sys
+import json
+import psutil
+from langchain_core.messages import HumanMessage
 from rag_agent.capped_crag import build_capped_graph
+from rag_agent.uncapped_crag import build_uncapped_graph
 
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-
-# Process names to track. Both are needed:
-#   - "ollama"        -> catches `ollama serve` (API gateway, low usage)
-#   - "llama-server"   -> catches the dynamically-spawned inference worker
-#                         (real GPU/CPU/RAM usage happens here)
 TARGET_KEYWORDS = ("ollama", "llama-server", "llama_server")
 
 
@@ -162,111 +133,207 @@ class ResourceSampler:
         }
 
 
-def monitor_run(graph, invoke_input: dict, sample_interval: float = 0.2) -> tuple:
+def get_target_processes_info():
     """
-    Wraps graph.invoke(invoke_input) with resource monitoring.
+    Returns a list of dictionaries containing info about the detected target processes.
+    """
+    procs = find_target_processes()
+    info_list = []
+
+    if not procs:
+        print("No matching processes found right now (ollama serve idle, "
+              "or llama-server not currently loaded).")
+        return info_list
+
+    for p in procs:
+        try:
+            rss_mb = p.memory_info().rss / 1024**2
+            cmdline = " ".join(p.cmdline())
+            name = p.name()
+            print(
+                f"PID {p.pid} | {name} | RSS {rss_mb:.1f} MB | cmdline: {cmdline}")
+
+            info_list.append({
+                "pid": p.pid,
+                "name": name,
+                "rss_mb": round(rss_mb, 2),
+                "cmdline": cmdline
+            })
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            print(f"PID {p.pid} | (process ended before we could read it)")
+
+    return info_list
+
+
+def monitor_run(graph, query, sample_interval: float = 0.2) -> tuple:
+    """
+    Wraps graph execution with resource monitoring.
     Returns (result, stats).
     """
-
+    config = {"recursion_limit": 1000}
     sampler = ResourceSampler(interval=sample_interval)
 
     sampler.start()
     start_time = time.perf_counter()
 
-    result = graph.invoke(invoke_input, {"recursion_limit": 1000})
+    result = graph.invoke(
+        {"messages": [HumanMessage(content=query)], "rewrite_counts": 0}, config)
 
     elapsed = time.perf_counter() - start_time
     stats = sampler.stop()
     stats["wall_clock_seconds"] = elapsed
 
+    # Calculate token usage from messages
+    prompt_tokens = 0
+    completion_tokens = 0
+    total_tokens = 0
+
+    messages = []
+    if isinstance(result, dict) and "messages" in result:
+        messages = result.get("messages", [])
+    elif isinstance(result, tuple) and len(result) > 0:
+        if hasattr(result[0], "response_metadata") or hasattr(result[0], "usage_metadata"):
+            messages = [result[0]]
+
+    if not isinstance(messages, list):
+        messages = [messages]
+
+    for msg in messages:
+        if not hasattr(msg, "response_metadata") and not hasattr(msg, "usage_metadata"):
+            continue
+
+        p_tok = 0
+        c_tok = 0
+        t_tok = 0
+
+        # 1. Try new LangChain usage_metadata
+        if hasattr(msg, "usage_metadata") and msg.usage_metadata:
+            p_tok = msg.usage_metadata.get("input_tokens", 0)
+            c_tok = msg.usage_metadata.get("output_tokens", 0)
+            t_tok = msg.usage_metadata.get("total_tokens", 0)
+
+        # 2. Try older response_metadata
+        if p_tok == 0 and c_tok == 0 and hasattr(msg, "response_metadata") and msg.response_metadata:
+            token_usage = msg.response_metadata.get("token_usage", {})
+            p_tok = token_usage.get("prompt_tokens", 0)
+            c_tok = token_usage.get("completion_tokens", 0)
+
+            # 3. Try Ollama specific keys in response_metadata
+            if p_tok == 0 and c_tok == 0:
+                p_tok = msg.response_metadata.get("prompt_eval_count", 0)
+                c_tok = msg.response_metadata.get("eval_count", 0)
+
+            if t_tok == 0:
+                t_tok = token_usage.get("total_tokens", 0)
+
+        if t_tok == 0:
+            t_tok = p_tok + c_tok
+
+        prompt_tokens += p_tok
+        completion_tokens += c_tok
+        total_tokens += t_tok
+
+    stats["prompt_tokens"] = prompt_tokens
+    stats["completion_tokens"] = completion_tokens
+    stats["total_tokens"] = total_tokens
+
+    if elapsed > 0:
+        stats["tokens_per_second"] = round(completion_tokens / elapsed, 2)
+    else:
+        stats["tokens_per_second"] = 0.0
+
     return result, stats
 
 
-# =========================================================================
-# Diagnostic helper -- run this FIRST to sanity-check which processes are
-# being detected, before trusting any monitor_run() output.
-# =========================================================================
-is_set = False
-
-
-def debug_print_targets(file):
-    global is_set
-
-    procs = find_target_processes()
-
-    if not procs:
-        print("No matching processes found right now (ollama serve idle, "
-              "or llama-server not currently loaded).")
-        return
-
-    with open(f"{file}.txt", "a") as f:
-        if not is_set:
-            f.write("========= Before invoke ==========\n")
-            is_set = True
-        else:
-            f.write("========= After invoke ==========\n")
-
-        for p in procs:
-            try:
-                print(f"PID {p.pid} | {p.name()} | RSS {p.memory_info().rss / 1024**2:.1f} MB "
-                      f"| cmdline: {' '.join(p.cmdline())}")
-                f.write(f"PID {p.pid} | {p.name()} | RSS {p.memory_info().rss / 1024**2:.1f} MB "
-                        f"| cmdline: {' '.join(p.cmdline())}\n")
-                print("Target has been added to report")
-
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                print(f"PID {p.pid} | (process ended before we could read it)")
-
-
-is_warm = False
-
-
 def warm_up_llm(graph, n=3):
-    global is_warm
     warm_times = []
 
-    if not is_warm:
-        for i in range(n):
-            result, stats = monitor_run(
-                graph,
-                {"messages": "What is the mandatory deadline for reporting a suspected data breach to the DPO?",
-                 "rewrite_counts": 0}
-            )
-
-            warm_times.append(stats["wall_clock_seconds"])
-            print(f"Run {i+1}: {stats['wall_clock_seconds']:.2f}s")
-            print(f"Times of warm: {len(warm_times)}")
-
-        is_warm = True
+    print(f"Warming up LLM ({n} runs)...")
+    for i in range(n):
+        result, stats = monitor_run(
+            graph,
+            "What is the mandatory deadline for reporting a suspected data breach to the DPO?"
+        )
+        warm_times.append(stats["wall_clock_seconds"])
+        print(f"Run {i+1}: {stats['wall_clock_seconds']:.2f}s")
+        print(f"Times of warm: {len(warm_times)}")
 
     print("Warm up complete")
 
 
-# =========================================================================
-# Example usage
-# =========================================================================
-if __name__ == "__main__":
+def main(question, graph, test_name):
+    # Path to the test file
 
-    graph = build_capped_graph()
-
-    warm_up_llm(graph)
+    print("-" * 80)
 
     print("Targets BEFORE invoke:")
-    debug_print_targets("refined_1")
+    targets_before = get_target_processes_info()
     print()
 
-    result, stats = monitor_run(
-        graph,
-        {"messages": "What is the mandatory deadline for reporting a suspected data breach to the DPO?", "rewrite_counts": 0},
-    )
+    warm_up_llm(graph)
+    print()
+
+    all_run_stats = []
+
+    result, stats = monitor_run(graph, question)
+
+    stats["question"] = question
+    all_run_stats.append(stats)
+
+    print(
+        f"  -> Finished in {stats['wall_clock_seconds']:.2f}s | TPS: {stats.get('tokens_per_second', 0)}")
 
     print()
     print("Targets AFTER invoke:")
-    debug_print_targets("refined_1")
+    targets_after = get_target_processes_info()
+
+    # Calculate some aggregated averages
+    n_runs = len(all_run_stats)
+    avg_tps = sum(s.get("tokens_per_second", 0)
+                  for s in all_run_stats) / n_runs if n_runs > 0 else 0
+    avg_time = sum(s.get("wall_clock_seconds", 0)
+                   for s in all_run_stats) / n_runs if n_runs > 0 else 0
+
+    final_report = {
+        "summary": {
+            "total_runs": n_runs,
+            "average_tps": round(avg_tps, 2),
+            "average_wall_clock_seconds": round(avg_time, 2)
+        },
+        "diagnostic_targets_before": targets_before,
+        "diagnostic_targets_after": targets_after,
+        "runs": all_run_stats
+    }
 
     print()
     print("=" * 80)
-    print("RESOURCE STATS")
+    print("BATCH RESOURCE STATS SUMMARY")
     print("=" * 80)
-    for k, v in stats.items():
-        print(f"{k}: {v}")
+
+    print(json.dumps(final_report["summary"], indent=4))
+
+    # Export to a JSON file
+    output_filename = f"resource_stats_{test_name}.json"
+    with open(output_filename, "w", encoding="utf-8") as f:
+        json.dump(final_report, f, indent=4, ensure_ascii=False)
+
+    print("-" * 80)
+    print(
+        f"Detailed batch stats have been successfully exported to {output_filename}")
+
+
+if __name__ == "__main__":
+    capped_graph = build_capped_graph(use_memory=False)
+    uncapped_graph = build_uncapped_graph(use_memory=False)
+
+    question = "What is the mandatory deadline for reporting a suspected data breach to the DPO?"
+
+    print("=== RUNNING CAPPED TEST ===")
+    main(question, capped_graph, test_name="capped")
+
+    # print("=== RUNNING UNCAPPED TEST ===")
+    # main(question, uncapped_graph, test_name="uncapped")
+
+    os.system("ollama stop llama3.1")
+    os.system("ollama stop nomic-embed-text")
+    print("All model has been stopped!")
