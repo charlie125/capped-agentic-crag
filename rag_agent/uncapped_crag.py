@@ -186,30 +186,6 @@ def uncapped_main(user_query):
     return ai_response
 
 
-def uncapped_stream(user_query, session_id):
-    """Generator for Django SSE view: yields {'type': 'thinking'|'token', ...}"""
-
-    config = {"recursion_limit": 1000,
-              "configurable": {"thread_id": session_id}}
-
-    graph = build_uncapped_graph()
-
-    stream = graph.stream(
-        {"messages": [HumanMessage(content=user_query)]}, config, stream_mode="messages",
-    )
-
-    seen_nodes = set()
-    for chunk, metadata in stream:
-        node = metadata.get("langgraph_node")
-
-        if node and node not in seen_nodes:
-            seen_nodes.add(node)
-            yield {"type": "thinking", "node": node, "label": NODE_LABELS.get(node, node)}
-
-        if node in FINAL_NODES and isinstance(chunk, AIMessage) and chunk.content:
-            yield {"type": "token", "text": chunk.content}
-
-
 def uncapped_testing(user_query):
     graph = build_uncapped_graph(use_memory=False)
 
@@ -234,3 +210,27 @@ def uncapped_testing(user_query):
         "response": str(ai_response),
     }
     return data
+
+
+def uncapped_stream(user_query, session_id):
+    """Generator for Django SSE view: yields {'type': 'thinking'|'token', ...}"""
+
+    config = {"recursion_limit": 1000,
+              "configurable": {"thread_id": session_id}}
+
+    graph = build_uncapped_graph()
+
+    stream = graph.stream(
+        {"messages": [HumanMessage(content=user_query)]}, config, stream_mode="messages",
+    )
+
+    seen_nodes = set()
+    for chunk, metadata in stream:
+        node = metadata.get("langgraph_node")
+
+        if node and node not in seen_nodes:
+            seen_nodes.add(node)
+            yield {"type": "thinking", "node": node, "label": NODE_LABELS.get(node, node)}
+
+        if node in FINAL_NODES and isinstance(chunk, AIMessage) and chunk.content:
+            yield {"type": "token", "text": chunk.content}
