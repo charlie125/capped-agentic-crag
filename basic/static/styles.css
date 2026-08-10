@@ -320,3 +320,37 @@
     width: 22px !important;
     height: 22px !important;
 }
+
+.thinking-panel {
+    margin-bottom: 8px;
+    font-size: 0.85em;
+    color: #888;
+}
+
+.thinking-toggle {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.thinking-steps {
+    list-style: none;
+    padding-left: 12px;
+    margin: 4px 0;
+    border-left: 2px solid #444;
+}
+
+.thinking-step-item {
+    padding: 2px 0;
+    opacity: 0.7;
+}
+
+.thinking-step-item::before {
+    content: "→ ";
+}
+
+.thinking-dots.is-hidden {
+    display: none !important;
+}
