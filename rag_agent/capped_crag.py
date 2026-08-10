@@ -245,32 +245,6 @@ def capped_main(user_query):
     return ai_response
 
 
-def capped_stream(user_query, session_id):
-    """Generator for Django SSE view: yields {'type': 'thinking'|'token', ...}"""
-
-    config = {"recursion_limit": 1000,
-              "configurable": {"thread_id": session_id}}
-
-    graph = build_capped_graph()
-
-    stream = graph.stream(
-        {"messages": [HumanMessage(content=user_query)], "rewrite_counts": 0},
-        config,
-        stream_mode="messages",
-    )
-
-    seen_nodes = set()
-    for chunk, metadata in stream:
-        node = metadata.get("langgraph_node")
-
-        if node and node not in seen_nodes:
-            seen_nodes.add(node)
-            yield {"type": "thinking", "node": node, "label": NODE_LABELS.get(node, node)}
-
-        if node in FINAL_NODES and isinstance(chunk, AIMessage) and chunk.content:
-            yield {"type": "token", "text": chunk.content}
-
-
 def capped_testing(user_query):
     graph = build_capped_graph(use_memory=False)
 
@@ -300,4 +274,27 @@ def capped_testing(user_query):
     return data
 
 
-print(capped_main("How long are payroll records kept, and which department manages them?"))
+def capped_stream(user_query, session_id):
+    """Generator for Django SSE view: yields {'type': 'thinking'|'token', ...}"""
+
+    config = {"recursion_limit": 1000,
+              "configurable": {"thread_id": session_id}}
+
+    graph = build_capped_graph()
+
+    stream = graph.stream(
+        {"messages": [HumanMessage(content=user_query)], "rewrite_counts": 0},
+        config,
+        stream_mode="messages",
+    )
+
+    seen_nodes = set()
+    for chunk, metadata in stream:
+        node = metadata.get("langgraph_node")
+
+        if node and node not in seen_nodes:
+            seen_nodes.add(node)
+            yield {"type": "thinking", "node": node, "label": NODE_LABELS.get(node, node)}
+
+        if node in FINAL_NODES and isinstance(chunk, AIMessage) and chunk.content:
+            yield {"type": "token", "text": chunk.content}
