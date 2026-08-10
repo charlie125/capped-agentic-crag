@@ -169,18 +169,20 @@ def build_uncapped_graph(use_memory=True):
         return workflow.compile()
 
 
-def uncapped_main(user_query, session_id="default_user"):
+def uncapped_main(user_query):
     """Synchronous, non-streaming entry point (used by testing/evaluation scripts)."""
 
-    config = {"recursion_limit": 1000,
-              "configurable": {"thread_id": session_id}}
+    config = {"recursion_limit": 1000}
 
-    graph = build_uncapped_graph()
+    graph = build_uncapped_graph(use_memory=False)
     result = graph.invoke(
-        {"messages": [HumanMessage(content=user_query)]}, config)
+        {"messages": [HumanMessage(content=user_query)]},
+        config,
+    )
 
     ai_response = [msg.content for msg in result["messages"]
                    if isinstance(msg, AIMessage)][-1]
+
     return ai_response
 
 
