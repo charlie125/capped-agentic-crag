@@ -57,7 +57,8 @@ def format_data(plain_data):
     formatted_chunks = []
 
     for doc, _ in plain_data:
-        page_label = doc.metadata.get("page_label", "N/A")
+        page_label = doc.metadata.get("page", "N/A")
+        human_readable_page = page_label + 1
         clean_text = doc.page_content.replace("-\n", "").replace("\n", " ")
         formatted_chunks.append(
             f"[Source: 'Corporate Data Protection and GDPR Compliance Policy', Page: {page_label}]: {clean_text}")
