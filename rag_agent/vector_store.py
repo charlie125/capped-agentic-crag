@@ -55,17 +55,16 @@ def set_up_vector_db():
 
 def format_data(plain_data):
     formatted_chunks = []
-    for x, (doc, score) in enumerate(plain_data, 1):
-        json_item = {
-            "chunk_id": f"chunk{x}",
-            "chunk_context": doc.page_content.replace("-\n", "").replace("\n", " "),
-            "similarity_score": score
-        }
-        formatted_chunks.append(json_item)
 
-    json_prompt_string = json.dumps(
-        formatted_chunks, ensure_ascii=False, indent=2)
-    return json_prompt_string
+    for doc, _ in plain_data:
+        page_label = doc.metadata.get("page_label", "N/A")
+        clean_text = doc.page_content.replace("-\n", "").replace("\n", " ")
+        formatted_chunks.append(
+            f"[Source: 'Corporate Data Protection and GDPR Compliance Policy', Page: {page_label}]: {clean_text}")
+
+    text_prompt_string = "\n\n".join(formatted_chunks)
+
+    return text_prompt_string
 
 
 def vector_db_search(user_query):
