@@ -15,15 +15,6 @@ from langgraph.checkpoint.memory import MemorySaver
 memory = MemorySaver()
 llm = ChatOllama(model="llama3.1", temperature=0)
 
-NODE_LABELS = {
-    "generate_query_or_respond": "Deciding whether to retrieve documents...",
-    "retrieve": "Retrieving relevant documents...",
-    "rewrite_question": "Rewriting the question...",
-    "generate_answer": "Generating answer...",
-}
-
-FINAL_NODES = ("generate_answer",)
-
 
 def build_uncapped_graph(use_memory=True):
     """Build (but don't invoke) the uncapped agentic CRAG graph."""
@@ -210,6 +201,16 @@ def uncapped_testing(user_query):
         "response": str(ai_response),
     }
     return data
+
+
+NODE_LABELS = {
+    "generate_query_or_respond": "Deciding whether to retrieve documents...",
+    "retrieve": "Retrieving relevant documents...",
+    "rewrite_question": "Rewriting the question...",
+    "generate_answer": "Generating answer...",
+}
+
+FINAL_NODES = ("generate_answer",)
 
 
 def uncapped_stream(user_query, session_id):
