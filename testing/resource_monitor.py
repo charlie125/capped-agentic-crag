@@ -5,8 +5,7 @@ import os
 import json
 import psutil
 from langchain_core.messages import HumanMessage
-from rag_agent.capped_crag import build_capped_graph
-from rag_agent.uncapped_crag import build_uncapped_graph
+from crag_testing import build_general_graph
 
 
 TARGET_KEYWORDS = ("ollama", "llama-server", "llama_server")
@@ -323,16 +322,26 @@ def main(question, graph, test_name):
 
 
 if __name__ == "__main__":
-    capped_graph = build_capped_graph(use_memory=False)
-    uncapped_graph = build_uncapped_graph(use_memory=False)
+    k = 1
+    test_name = ""
+
+    if k > 2:
+        print("=== Uncapped activated ===")
+        test_name = "uncapped"
+    else:
+        print("=== Capped activated ===")
+        test_name = "capped"
+
+    general_graph = build_general_graph(use_memory=False, k=k)
 
     question = "What is the mandatory deadline for reporting a suspected data breach to the DPO?"
 
-    print("=== RUNNING CAPPED TEST ===")
-    main(question, capped_graph, test_name="capped")
+    print("=== RUNNING general_graph TEST ===")
 
-    # print("=== RUNNING UNCAPPED TEST ===")
-    # main(question, uncapped_graph, test_name="uncapped")
+    if test_name:
+        main(question, general_graph, test_name=test_name)
+    else:
+        print("Test Name Error")
 
     os.system("ollama stop llama3.1")
     os.system("ollama stop nomic-embed-text")
