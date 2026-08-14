@@ -1,4 +1,5 @@
 import json
+import ast
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import ChatOllama
@@ -62,9 +63,22 @@ def naive_stream(user_query):
 def naive_testing(user_query):
     response, db_result = run_naive_rag(user_query)
 
-    cleaned_contexts = [each["chunk_context"]
-                        for each in json.loads(db_result)]
+    if hasattr(response, "content"):
+        response_content = response.content
+    elif isinstance(response, str):
+        response_content = response
+    else:
+        response_content = str(response)
 
-    data = {"retrieved_contexts": cleaned_contexts,
-            "response": str(response), }
+    if isinstance(db_result, str):
+        cleaned_contexts = [db_result]
+    elif isinstance(db_result, list):
+        cleaned_contexts = [str(item) for item in db_result]
+    else:
+        cleaned_contexts = [str(db_result)]
+
+    data = {
+        "retrieved_contexts": cleaned_contexts,
+        "response": response_content
+    }
     return data
