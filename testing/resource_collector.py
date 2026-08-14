@@ -10,6 +10,7 @@ from pathlib import Path
 # 1. System Pipelines
 # ---------------------------------------------------------
 from rag_agent.naive_rag import naive_testing
+from rag_agent.uncapped_crag import uncapped_testing
 from rag_agent.capped_crag import capped_testing
 
 
