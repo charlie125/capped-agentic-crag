@@ -262,6 +262,7 @@ def capped_testing(user_query):
     data = {
         "retrieved_contexts": retrieved_contexts,
         "response": str(ai_response),
+        "_raw_messages": list(result["messages"]),
     }
     return data
 
