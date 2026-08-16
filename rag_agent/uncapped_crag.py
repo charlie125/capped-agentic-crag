@@ -96,6 +96,8 @@ def build_uncapped_graph(use_memory=True):
         return {"messages": [HumanMessage(content=response.content)]}
 
     def generate_answer(state: AgentState) -> AgentState:
+        """Generate an answer from question and retrieved context."""
+
         GENERATE_PROMPT = (
             "You are an assistant for question-answering tasks. "
             "Use the following pieces of retrieved context to answer the question. "
