@@ -186,17 +186,23 @@ def uncapped_testing(user_query):
     result = graph.invoke(
         {"messages": [HumanMessage(content=user_query)]}, config)
 
-    ai_response = [each.content for each in result["messages"]
-                   if isinstance(each, AIMessage)][-1]
+    ai_messages = [each.content for each in result["messages"]
+                   if isinstance(each, AIMessage)]
+    ai_response = ai_messages[-1] if ai_messages else ""
 
-    tool_message = [each.content for each in result["messages"]
-                    if isinstance(each, ToolMessage)][-1]
+    tool_messages = [each.content for each in result["messages"]
+                     if isinstance(each, ToolMessage)]
+    tool_message = tool_messages[-1] if tool_messages else ""
 
-    try:
-        parsed_chunks = json.loads(tool_message)
-        retrieved_contexts = [item["chunk_context"] for item in parsed_chunks]
-    except:
-        retrieved_contexts = [tool_message]
+    if tool_message:
+        try:
+            parsed_chunks = json.loads(tool_message)
+            retrieved_contexts = [item["chunk_context"]
+                                  for item in parsed_chunks]
+        except Exception:
+            retrieved_contexts = [tool_message]
+    else:
+        retrieved_contexts = []
 
     data = {
         "retrieved_contexts": retrieved_contexts,
@@ -212,7 +218,7 @@ NODE_LABELS = {
     "generate_answer": "Generating answer...",
 }
 
-FINAL_NODES = ("generate_answer",)
+FINAL_NODES = ("generate_query_or_respond", "generate_answer")
 
 
 def uncapped_stream(user_query, session_id):

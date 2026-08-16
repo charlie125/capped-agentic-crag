@@ -1,4 +1,5 @@
 import json
+import time
 
 # Local LLM
 from langchain_ollama import ChatOllama
@@ -247,17 +248,23 @@ def capped_testing(user_query):
         config,
     )
 
-    ai_response = [each.content for each in result["messages"]
-                   if isinstance(each, AIMessage)][-1]
+    ai_messages = [each.content for each in result["messages"]
+                   if isinstance(each, AIMessage)]
+    ai_response = ai_messages[-1] if ai_messages else ""
 
-    tool_message = [each.content for each in result["messages"]
-                    if isinstance(each, ToolMessage)][-1]
+    tool_messages = [each.content for each in result["messages"]
+                     if isinstance(each, ToolMessage)]
+    tool_message = tool_messages[-1] if tool_messages else ""
 
-    try:
-        parsed_chunks = json.loads(tool_message)
-        retrieved_contexts = [item["chunk_context"] for item in parsed_chunks]
-    except:
-        retrieved_contexts = [tool_message]
+    if tool_message:
+        try:
+            parsed_chunks = json.loads(tool_message)
+            retrieved_contexts = [item["chunk_context"]
+                                  for item in parsed_chunks]
+        except Exception:
+            retrieved_contexts = [tool_message]
+    else:
+        retrieved_contexts = []
 
     data = {
         "retrieved_contexts": retrieved_contexts,
@@ -276,7 +283,7 @@ NODE_LABELS = {
     "give_up_msg": "Rewrite limit reached, preparing fallback response...",
 }
 
-FINAL_NODES = ("generate_answer", "give_up_msg")
+FINAL_NODES = ("generate_query_or_respond", "generate_answer", "give_up_msg")
 
 
 def capped_stream(user_query, session_id):
@@ -302,4 +309,11 @@ def capped_stream(user_query, session_id):
             yield {"type": "thinking", "node": node, "label": NODE_LABELS.get(node, node)}
 
         if node in FINAL_NODES and isinstance(chunk, AIMessage) and chunk.content:
-            yield {"type": "token", "text": chunk.content}
+            if node == "give_up_msg":
+                words = chunk.content.split(" ")
+                for i, word in enumerate(words):
+                    space = " " if i < len(words) - 1 else ""
+                    yield {"type": "token", "text": word + space}
+                    time.sleep(0.03)
+            else:
+                yield {"type": "token", "text": chunk.content}
