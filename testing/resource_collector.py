@@ -1,17 +1,18 @@
+from rag_agent.naive_rag import naive_testing
+from rag_agent.mock_uncapped import uncapped_testing
+from rag_agent.capped_crag import capped_testing
 import time
 import threading
 import statistics
 import os
 import json
+import sys
 import psutil
 from pathlib import Path
 
 # ---------------------------------------------------------
 # 1. System Pipelines
 # ---------------------------------------------------------
-from rag_agent.naive_rag import naive_testing
-from rag_agent.uncapped_crag import uncapped_testing
-from rag_agent.capped_crag import capped_testing
 
 
 TARGET_KEYWORDS = ("ollama", "llama-server", "llama_server")
@@ -19,7 +20,6 @@ TARGET_KEYWORDS = ("ollama", "llama-server", "llama_server")
 
 def find_target_processes() -> list:
     """Return psutil.Process objects for all processes matching TARGET_KEYWORDS."""
-
     matches = []
     for proc in psutil.process_iter(['pid', 'name']):
         name = (proc.info['name'] or "").lower()
@@ -118,7 +118,73 @@ class ResourceSampler:
 
 
 # ---------------------------------------------------------
-# 2. Experimental Control Procedures
+# 2. Token Usage Extraction (mirrors resource_monitor.py)
+# ---------------------------------------------------------
+def extract_token_usage(messages: list, elapsed: float) -> dict:
+    """
+    Three-tier token extraction from LangChain message objects.
+
+    Attempts, in order:
+      1. New LangChain ``usage_metadata`` (input_tokens / output_tokens)
+      2. Older ``response_metadata["token_usage"]`` (prompt_tokens / completion_tokens)
+      3. Ollama-specific ``response_metadata`` keys (prompt_eval_count / eval_count)
+
+    Returns a dict with prompt_tokens, completion_tokens, total_tokens,
+    tokens_per_second, and llm_calls.
+    """
+    prompt_tokens = 0
+    completion_tokens = 0
+    total_tokens = 0
+
+    for msg in messages:
+        if not hasattr(msg, "response_metadata") and not hasattr(msg, "usage_metadata"):
+            continue
+
+        p_tok = 0
+        c_tok = 0
+        t_tok = 0
+
+        # 1. Try new LangChain usage_metadata
+        if hasattr(msg, "usage_metadata") and msg.usage_metadata:
+            p_tok = msg.usage_metadata.get("input_tokens", 0)
+            c_tok = msg.usage_metadata.get("output_tokens", 0)
+            t_tok = msg.usage_metadata.get("total_tokens", 0)
+
+        # 2. Try older response_metadata
+        if p_tok == 0 and c_tok == 0 and hasattr(msg, "response_metadata") and msg.response_metadata:
+            token_usage = msg.response_metadata.get("token_usage", {})
+            p_tok = token_usage.get("prompt_tokens", 0)
+            c_tok = token_usage.get("completion_tokens", 0)
+
+            # 3. Try Ollama specific keys in response_metadata
+            if p_tok == 0 and c_tok == 0:
+                p_tok = msg.response_metadata.get("prompt_eval_count", 0)
+                c_tok = msg.response_metadata.get("eval_count", 0)
+
+            if t_tok == 0:
+                t_tok = token_usage.get("total_tokens", 0)
+
+        if t_tok == 0:
+            t_tok = p_tok + c_tok
+
+        prompt_tokens += p_tok
+        completion_tokens += c_tok
+        total_tokens += t_tok
+
+    tokens_per_second = round(
+        completion_tokens / elapsed, 2) if elapsed > 0 else 0.0
+
+    return {
+        "prompt_tokens": prompt_tokens,
+        "completion_tokens": completion_tokens,
+        "total_tokens": total_tokens,
+        "tokens_per_second": tokens_per_second,
+        "llm_calls": len(messages),
+    }
+
+
+# ---------------------------------------------------------
+# 3. Experimental Control Procedures
 # ---------------------------------------------------------
 def reset_context_and_warmup(condition: str, is_initial=False):
     """
@@ -127,7 +193,6 @@ def reset_context_and_warmup(condition: str, is_initial=False):
     Stops the Ollama server (clearing the KV cache) and re-warms the
     target pipeline with a fixed dummy query before resuming evaluation.
     """
-
     print("\n[System] Stopping Ollama to clear KV Cache...")
     os.system("ollama stop llama3.1")
     os.system("ollama stop nomic-embed-text")
@@ -148,14 +213,16 @@ def reset_context_and_warmup(condition: str, is_initial=False):
 
 
 # ---------------------------------------------------------
-# 3. Stage 1: Resource + Response Collection Main Loop
+# 4. Stage 1: Resource + Response + Token Collection Main Loop
 # ---------------------------------------------------------
 def run_resource_collection(condition: str):
     """
-    Stage 1 (Hardware Collection):
+    Stage 1 (Hardware + Token Collection):
     Runs the target pipeline against every test question and, for each one,
     simultaneously records:
-      - wall-clock latency and CPU/RAM usage (via ResourceSampler)
+      - wall-clock latency, CPU/RAM usage (via ResourceSampler)
+      - token consumption: prompt_tokens, completion_tokens, total_tokens,
+        tokens_per_second, llm_calls (via extract_token_usage)
       - the model's actual generated `response` and `retrieved_contexts`
 
     All fields are packed into a single record per question and written
@@ -204,12 +271,20 @@ def run_resource_collection(condition: str):
         stats = sampler.stop()
         elapsed = round(time.perf_counter() - start_time, 2)
 
-        print(
-            f"   -> Latency: {elapsed}s | Peak RAM: {stats['peak_ram_mb']} MB")
+        # Extract token usage from raw LangChain messages, then discard them
+        raw_messages = retrieved.pop("_raw_messages", [])
+        token_stats = extract_token_usage(raw_messages, elapsed)
 
-        # Bundle resource metrics together with the generation artifacts
-        # (response / retrieved_contexts) in a single record, guaranteeing
-        # both evaluation dimensions originate from the same model call.
+        print(
+            f"   -> Latency: {elapsed}s | Peak RAM: {stats['peak_ram_mb']} MB"
+            f" | Tokens: {token_stats['total_tokens']}"
+            f" ({token_stats['tokens_per_second']} tok/s)"
+            f" | LLM calls: {token_stats['llm_calls']}"
+        )
+
+        # Bundle resource metrics + token stats + generation artifacts
+        # in a single record, guaranteeing all evaluation dimensions
+        # originate from the same model call.
         record = {
             "id": idx,
             "category": category,
@@ -222,6 +297,11 @@ def run_resource_collection(condition: str):
             "peak_cpu_pct": stats["peak_cpu_pct"],
             "avg_ram_mb": stats["avg_ram_mb"],
             "peak_ram_mb": stats["peak_ram_mb"],
+            "prompt_tokens": token_stats["prompt_tokens"],
+            "completion_tokens": token_stats["completion_tokens"],
+            "total_tokens": token_stats["total_tokens"],
+            "tokens_per_second": token_stats["tokens_per_second"],
+            "llm_calls": token_stats["llm_calls"],
         }
         report_records.append(record)
 
