@@ -30,7 +30,9 @@ def run_naive_rag(user_query):
 
     db_result = vector_db_search(user_query)
 
-    chain = prompt | llm | StrOutputParser()
+    # Keep raw AIMessage (preserves usage_metadata for token tracking).
+    # StrOutputParser is only used in naive_stream for SSE chunking.
+    chain = prompt | llm
 
     responses = chain.invoke({
         "query": user_query,
@@ -77,8 +79,12 @@ def naive_testing(user_query):
     else:
         cleaned_contexts = [str(db_result)]
 
+    # Wrap in list for uniform token extraction in pure_resource_collector
+    raw_messages = [response] if hasattr(response, "usage_metadata") else []
+
     data = {
         "retrieved_contexts": cleaned_contexts,
-        "response": response_content
+        "response": response_content,
+        "_raw_messages": raw_messages,
     }
     return data
