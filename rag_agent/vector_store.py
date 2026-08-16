@@ -61,7 +61,7 @@ def format_data(plain_data):
         human_readable_page = page_label + 1
         clean_text = doc.page_content.replace("-\n", "").replace("\n", " ")
         formatted_chunks.append(
-            f"[Source: 'Corporate Data Protection and GDPR Compliance Policy', Page: {page_label}]: {clean_text}")
+            f"[Source: 'Corporate Data Protection and GDPR Compliance Policy', Page: {human_readable_page}]: {clean_text}")
 
     text_prompt_string = "\n\n".join(formatted_chunks)
 
