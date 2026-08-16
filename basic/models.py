@@ -4,6 +4,7 @@ from django.db import models
 
 
 class UserQuery(models.Model):
-    user_query = models.CharField(max_length=150, null=True)
-    ai_response = models.CharField(max_length=150, null=True)
+    user_query = models.TextField(null=True, blank=True)
+    ai_response = models.TextField(null=True, blank=True)
     created_at = models.TimeField(auto_now_add=True)
+
