@@ -1,5 +1,4 @@
 import json
-import os
 import time
 
 # Local LLM
@@ -15,33 +14,10 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from .vector_store import vector_db_search
-from .vector_store_propositional import (propositional_vector_search,
-                                         propositional_vector_search_budgeted)
 from langgraph.checkpoint.memory import MemorySaver
 
 memory = MemorySaver()
 llm = ChatOllama(model="llama3.1", temperature=0)
-
-
-RETRIEVAL_MODES = {
-    "standard": vector_db_search,                          # 1200/200 chunks, k=3
-    "propositional": propositional_vector_search,          # propositions, k=3
-    "propositional_bud": propositional_vector_search_budgeted,  # propositions, equal budget
-}
-
-# Retrieval mode for the granularity ablation (§5.5.3), selected at run time so
-# that every mode executes this same revision:
-#     RETRIEVAL_MODE=propositional python -m testing.resource_collector
-# Unset, the primary experiment's baseline runs.
-RETRIEVAL_MODE = os.environ.get("RETRIEVAL_MODE", "standard")
-
-if RETRIEVAL_MODE not in RETRIEVAL_MODES:
-    raise ValueError(
-        f"RETRIEVAL_MODE={RETRIEVAL_MODE!r} is not one of "
-        f"{sorted(RETRIEVAL_MODES)} -- a typo would otherwise run the wrong "
-        f"mode under the right report filename.")
-
-retrieve_context = RETRIEVAL_MODES[RETRIEVAL_MODE]
 
 
 def build_capped_graph(use_memory=True):
@@ -65,10 +41,9 @@ def build_capped_graph(use_memory=True):
 
         print("")
         print(f"input query: {query}")
-        print(f"retrieval mode: {RETRIEVAL_MODE}")
         print("=" * 80)
 
-        retrieved_docs = retrieve_context(query)
+        retrieved_docs = vector_db_search(query)
         return retrieved_docs
 
     def generate_query_or_respond(state: AgentState) -> AgentState:
