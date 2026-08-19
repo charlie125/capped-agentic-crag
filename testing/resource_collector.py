@@ -1,6 +1,6 @@
 from rag_agent.naive_rag import naive_testing
-from rag_agent.mock_uncapped import uncapped_testing
-from rag_agent.capped_crag import capped_testing
+from rag_agent.uncapped_crag_k6 import uncapped_testing
+from rag_agent.capped_crag import capped_testing, RETRIEVAL_MODE
 import time
 import threading
 import statistics
