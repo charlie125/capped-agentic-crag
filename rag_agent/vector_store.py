@@ -19,8 +19,8 @@ embeddings = OllamaEmbeddings(
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Corpus and vector stores live inside the project, so that they are carried
-# by the repository and the standard and propositional stores sit side by side.
+# Corpus and vector store live inside the project, so that they are carried
+# by the repository.
 DATA_ROOT = os.path.join(PROJECT_ROOT, "data")
 
 PERSIST_DIR = os.path.join(DATA_ROOT, "vector_db")
