@@ -15,7 +15,6 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 1. **RQ1 (Self-Correction vs. Single-Pass):** On a fully local 8B model, what differences in generation quality and refusal behaviour does an Agentic CRAG architecture employing a self-correction loop exhibit relative to a single-pass Naive RAG architecture?
 2. **RQ2 (Cost of the Iteration Cap):** What effect does a state-enforced iteration cap have on local resource consumption (latency, CPU time, memory, tokens) relative to an uncapped control? On which question types does the loop actually fire, and what form do its cascading failures take?
 3. **RQ3 (Resource–Quality Relationship):** What relationship holds between hardware load metrics (CPU, memory, latency) and the four RAGAS quality scores?
-4. **RQ4 (Retrieval Granularity):** Does Proposition Chunking, validated on open-domain factual corpora, transfer to RegTech regulatory text whose clauses are mutually dependent? Specifically, under conditions matching standard chunking on unit count and on token budget respectively, what happens to Context Precision and Context Recall?
 
 ---
 
@@ -62,12 +61,10 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   ├── uncapped_crag.py          # Uncapped Agentic CRAG baseline
 │   ├── uncapped_crag_k6.py          # Benchmark harness with safety ceiling (K=6)
 │   ├── naive_rag.py              # Single-pass Naive RAG baseline
-│   ├── vector_store.py           # Standard chunking (1200/200): loader, ChromaDB setup and search
-│   └── vector_store_propositional.py  # Proposition chunking: equal-count and equal-budget retrieval
+│   └── vector_store.py           # Standard chunking (1200/200): loader, ChromaDB setup and search
 ├── data/                         # Local compliance knowledge base
 │   ├── Corporate Data Protection and GDPR Compliance Policy.pdf
-│   ├── vector_db/                # Persisted Chroma store, standard chunks
-│   └── vector_db_propositional/  # Persisted Chroma store, atomic propositions
+│   └── vector_db/                # Persisted Chroma store, standard chunks
 ├── testing/                      # Decoupled experimental benchmarking suite
 │   ├── resource_collector.py     # Stage 1: Hardware profiling and token collection
 │   ├── ragas_tester.py           # Stage 2: Offline RAGAS quality evaluation
@@ -148,11 +145,7 @@ Outputs final scores to `ragas_results_<condition>.csv`.
    * The uncapped loop does not terminate on its own: on Case IDs 17 and 20 it reached `llm_calls` = 22, exactly the ceiling implied by the harness's safety cap of K=6, meaning it was halted rather than converged. The gaps reported here are therefore **lower bounds** on the cost of a genuinely uncapped implementation.
 2. **Computational Cost Substitution (Prefill vs. Decode):**
    * Capped CRAG pays an upfront compute-bound Prefill cost during grading/rewriting to prune context, eliminating Naive RAG's memory-bandwidth bound "Context Dumping" (e.g., 298 decode tokens reduced to 89 tokens on Case ID 13).
-3. **Retrieval-Granularity Ablation on Proposition Chunking** (three retrieval modes, full 25 questions):
-   * **At equal unit count (k=3),** proposition chunking raises Context Precision from **0.6800** to **0.7200**, as the finer representation predicts — but generation quality falls with it, Faithfulness dropping from **0.7567** to **0.6233** on the markedly smaller context it supplies.
-   * **At equal token budget** (the protocol Chen et al. actually specify), Context Recall falls from **0.8200** to **0.6947**: with the budget held level, decomposing conditional GDPR clauses into atomic propositions severs the cross-sentence dependencies an answer needs.
-   * The transfer is therefore not a uniform loss but a trade: precision improves where the comparison is by unit count, recall degrades where it is by budget.
-4. **Prompt Refinement Efficiency:**
+3. **Prompt Refinement Efficiency:**
    * Enforcing strict negative constraints on intermediate rewrite prompts eliminated preamble bloat, reducing 2-iteration rewrite latency by **~43%** (15.42s -> 8.77s).
 
 ---
