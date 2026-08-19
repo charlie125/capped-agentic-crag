@@ -14,10 +14,27 @@ from typing import TypedDict, Annotated, Sequence
 from typing import Literal
 from pydantic import BaseModel, Field
 from .vector_store import vector_db_search
+from .vector_store_propositional import (propositional_vector_search,
+                                         propositional_vector_search_budgeted)
 from langgraph.checkpoint.memory import MemorySaver
 
 memory = MemorySaver()
 llm = ChatOllama(model="llama3.1", temperature=0)
+
+
+# Retrieval mode for the granularity ablation (§5.5.3). Set this before each run:
+#   "standard"          -- 1200/200 chunks, k=3 (primary experiment baseline)
+#   "propositional"     -- atomic propositions, k=3 (equal unit count)
+#   "propositional_bud" -- atomic propositions, equal token budget (Chen et al.)
+RETRIEVAL_MODE = "propositional_bud"
+
+RETRIEVAL_MODES = {
+    "standard": vector_db_search,
+    "propositional": propositional_vector_search,
+    "propositional_bud": propositional_vector_search_budgeted,
+}
+
+retrieve_context = RETRIEVAL_MODES[RETRIEVAL_MODE]
 
 
 def build_capped_graph(use_memory=True):
@@ -41,9 +58,10 @@ def build_capped_graph(use_memory=True):
 
         print("")
         print(f"input query: {query}")
+        print(f"retrieval mode: {RETRIEVAL_MODE}")
         print("=" * 80)
 
-        retrieved_docs = vector_db_search(query)
+        retrieved_docs = retrieve_context(query)
         return retrieved_docs
 
     def generate_query_or_respond(state: AgentState) -> AgentState:
