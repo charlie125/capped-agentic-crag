@@ -19,10 +19,14 @@ embeddings = OllamaEmbeddings(
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PERSIST_DIR = os.path.join(PROJECT_ROOT, "data", "vector_db")
+# Corpus and vector stores live inside the project, so that they are carried
+# by the repository and the standard and propositional stores sit side by side.
+DATA_ROOT = os.path.join(PROJECT_ROOT, "data")
+
+PERSIST_DIR = os.path.join(DATA_ROOT, "vector_db")
 
 FILE_LOCATION = os.path.join(
-    PROJECT_ROOT, "data", "Corporate Data Protection and GDPR Compliance Policy.pdf")
+    DATA_ROOT, "Corporate Data Protection and GDPR Compliance Policy.pdf")
 
 
 # checking local vector database exist
