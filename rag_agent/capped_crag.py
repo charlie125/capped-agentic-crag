@@ -1,4 +1,5 @@
 import json
+import os
 import time
 
 # Local LLM
@@ -22,17 +23,23 @@ memory = MemorySaver()
 llm = ChatOllama(model="llama3.1", temperature=0)
 
 
-# Retrieval mode for the granularity ablation (§5.5.3). Set this before each run:
-#   "standard"          -- 1200/200 chunks, k=3 (primary experiment baseline)
-#   "propositional"     -- atomic propositions, k=3 (equal unit count)
-#   "propositional_bud" -- atomic propositions, equal token budget (Chen et al.)
-RETRIEVAL_MODE = "propositional_bud"
-
 RETRIEVAL_MODES = {
-    "standard": vector_db_search,
-    "propositional": propositional_vector_search,
-    "propositional_bud": propositional_vector_search_budgeted,
+    "standard": vector_db_search,                          # 1200/200 chunks, k=3
+    "propositional": propositional_vector_search,          # propositions, k=3
+    "propositional_bud": propositional_vector_search_budgeted,  # propositions, equal budget
 }
+
+# Retrieval mode for the granularity ablation (§5.5.3), selected at run time so
+# that every mode executes this same revision:
+#     RETRIEVAL_MODE=propositional python -m testing.resource_collector
+# Unset, the primary experiment's baseline runs.
+RETRIEVAL_MODE = os.environ.get("RETRIEVAL_MODE", "standard")
+
+if RETRIEVAL_MODE not in RETRIEVAL_MODES:
+    raise ValueError(
+        f"RETRIEVAL_MODE={RETRIEVAL_MODE!r} is not one of "
+        f"{sorted(RETRIEVAL_MODES)} -- a typo would otherwise run the wrong "
+        f"mode under the right report filename.")
 
 retrieve_context = RETRIEVAL_MODES[RETRIEVAL_MODE]
 
