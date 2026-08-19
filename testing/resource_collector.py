@@ -215,7 +215,7 @@ def reset_context_and_warmup(condition: str, is_initial=False):
 # ---------------------------------------------------------
 # 4. Stage 1: Resource + Response + Token Collection Main Loop
 # ---------------------------------------------------------
-def run_resource_collection(condition: str):
+def run_resource_collection(condition: str, suffix: str):
     """
     Stage 1 (Hardware + Token Collection):
     Runs the target pipeline against every test question and, for each one,
@@ -305,8 +305,23 @@ def run_resource_collection(condition: str):
         }
         report_records.append(record)
 
-    # Write a single unified report (consumed by ragas_tester.py)
-    report_filename = f"resource_report_{condition}.json"
+    # The suffix names the retrieval mode of the granularity ablation (§5.5.3),
+    # so an ablation run can never overwrite the primary experiment's report.
+    report_filename = (f"resource_report_{condition}_{suffix}.json" if suffix
+                       else f"resource_report_{condition}.json")
+
+    # Never silently clobber an existing report: an overwritten run cannot be
+    # recovered, and a re-run of the standard mode targets the same filename as
+    # the archived baseline by construction. Park the old file under a numbered
+    # .bak instead, and say so.
+    if os.path.exists(report_filename):
+        n = 1
+        while os.path.exists(f"{report_filename}.bak{n}"):
+            n += 1
+        backup = f"{report_filename}.bak{n}"
+        os.rename(report_filename, backup)
+        print(f"\n[Notice] Existing report preserved as {backup}")
+
     with open(report_filename, "w", encoding="utf-8") as f:
         json.dump(report_records, f, indent=4, ensure_ascii=False)
     print(f"\n[Success] Resource + response report saved to {report_filename}")
@@ -315,13 +330,22 @@ def run_resource_collection(condition: str):
 
 
 if __name__ == "__main__":
-    target_condition = "naive"
+    # Architecture only -- must be "naive", "uncapped" or "capped", since this
+    # value routes the pipeline. The ablation mode is appended to the filename
+    # separately, via vector_strategy below.
+    target_condition = "capped"
+
+    # Taken from capped_crag.RETRIEVAL_MODE rather than set here, so the report
+    # filename can never disagree with the retrieval mode actually executed.
+    # "standard" yields the unsuffixed name used by the primary experiment.
+    vector_strategy = "" if RETRIEVAL_MODE == "standard" else RETRIEVAL_MODE
 
     print("=" * 60)
     print(f"STAGE 1 - RESOURCE COLLECTION: {target_condition.upper()}")
+    print(f"RETRIEVAL MODE: {RETRIEVAL_MODE}")
     print("=" * 60)
 
-    run_resource_collection(target_condition)
+    run_resource_collection(target_condition, vector_strategy)
 
     os.system("ollama stop llama3.1")
     os.system("ollama stop nomic-embed-text")
