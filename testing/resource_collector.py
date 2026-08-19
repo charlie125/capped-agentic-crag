@@ -1,6 +1,6 @@
 from rag_agent.naive_rag import naive_testing
 from rag_agent.uncapped_crag_k6 import uncapped_testing
-from rag_agent.capped_crag import capped_testing, RETRIEVAL_MODE
+from rag_agent.capped_crag import capped_testing
 import time
 import threading
 import statistics
@@ -305,8 +305,6 @@ def run_resource_collection(condition: str, suffix: str):
         }
         report_records.append(record)
 
-    # The suffix names the retrieval mode of the granularity ablation (§5.5.3),
-    # so an ablation run can never overwrite the primary experiment's report.
     report_filename = (f"resource_report_{condition}_{suffix}.json" if suffix
                        else f"resource_report_{condition}.json")
 
@@ -331,21 +329,14 @@ def run_resource_collection(condition: str, suffix: str):
 
 if __name__ == "__main__":
     # Architecture only -- must be "naive", "uncapped" or "capped", since this
-    # value routes the pipeline. The ablation mode is appended to the filename
-    # separately, via vector_strategy below.
+    # value routes the pipeline.
     target_condition = "capped"
-
-    # Taken from capped_crag.RETRIEVAL_MODE rather than set here, so the report
-    # filename can never disagree with the retrieval mode actually executed.
-    # "standard" yields the unsuffixed name used by the primary experiment.
-    vector_strategy = "" if RETRIEVAL_MODE == "standard" else RETRIEVAL_MODE
 
     print("=" * 60)
     print(f"STAGE 1 - RESOURCE COLLECTION: {target_condition.upper()}")
-    print(f"RETRIEVAL MODE: {RETRIEVAL_MODE}")
     print("=" * 60)
 
-    run_resource_collection(target_condition, vector_strategy)
+    run_resource_collection(target_condition, "")
 
     os.system("ollama stop llama3.1")
     os.system("ollama stop nomic-embed-text")
