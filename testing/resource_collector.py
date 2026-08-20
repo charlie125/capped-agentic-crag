@@ -131,6 +131,16 @@ def extract_token_usage(messages: list, elapsed: float) -> dict:
 
     Returns a dict with prompt_tokens, completion_tokens, total_tokens,
     tokens_per_second, and llm_calls.
+
+    ``llm_calls`` is ``len(messages)`` — the length of the final graph
+    state's message list (Human + AI + Tool messages), not a literal
+    count of ``.invoke()`` calls. It undercounts calls whose response is
+    used only for routing and never appended to the message list (e.g.
+    a grading node), and its count includes non-model messages (the
+    initial human question, tool-call results). It remains a reliable
+    *relative* signal for whether a graph's self-correction loop fired
+    (values above the single-pass baseline indicate looping), but should
+    not be read as the literal number of model invocations.
     """
     prompt_tokens = 0
     completion_tokens = 0
