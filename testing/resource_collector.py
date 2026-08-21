@@ -18,16 +18,6 @@ from pathlib import Path
 TARGET_KEYWORDS = ("ollama", "llama-server", "llama_server")
 
 
-def find_target_processes() -> list:
-    """Return psutil.Process objects for all processes matching TARGET_KEYWORDS."""
-    matches = []
-    for proc in psutil.process_iter(['pid', 'name']):
-        name = (proc.info['name'] or "").lower()
-        if any(keyword in name for keyword in TARGET_KEYWORDS):
-            matches.append(psutil.Process(proc.info['pid']))
-    return matches
-
-
 class ResourceSampler:
     """
     Background sampler that periodically polls CPU% and RSS memory
