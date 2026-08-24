@@ -1,0 +1,38 @@
+[
+    {
+        "subset_id": "S1",
+        "category": "Direct Lookup",
+        "user_input": "What is the mandatory deadline for reporting a suspected data breach to the DPO?",
+        "reference": "Any employee who becomes aware of an actual or suspected personal data breach must report it to the DPO immediately, and no later than 4 hours after discovery."
+    },
+    {
+        "subset_id": "S2",
+        "category": "Direct Lookup",
+        "user_input": "What is the maximum administrative fine for GDPR non-compliance mentioned in the policy?",
+        "reference": "Regulatory non-compliance with GDPR may result in administrative fines of up to €20 million or 4% of total worldwide annual turnover, whichever is higher."
+    },
+    {
+        "subset_id": "S3",
+        "category": "Ambiguous / Multi-rewrite",
+        "user_input": "When is a Data Protection Impact Assessment (DPIA) mandatory?",
+        "reference": "A DPIA is mandatory before processing likely to result in high risk, including systematic and extensive profiling with legal effects, large-scale processing of Special Category Data, systematic large-scale monitoring of public areas, or deployment of novel high-risk technologies."
+    },
+    {
+        "subset_id": "S4",
+        "category": "Ambiguous / Multi-rewrite",
+        "user_input": "What residual risk rating was given to the Customer Behavioral Analytics Module DPIA after mitigation?",
+        "reference": "After mitigation measures were applied, the residual risk was rated as Low, and the DPO recommended approval subject to quarterly bias audit reporting."
+    },
+    {
+        "subset_id": "S5",
+        "category": "Unanswered Edge Case",
+        "user_input": "How many days of annual paid leave are employees entitled to?",
+        "reference": "This information is not covered by the document. The policy addresses data protection and GDPR compliance, not annual leave entitlements."
+    },
+    {
+        "subset_id": "S6",
+        "category": "Unanswered Edge Case",
+        "user_input": "What technical encryption standard (e.g. AES-256) does the Company use to protect data at rest?",
+        "reference": "This information is not covered by the document. Section 10.3 states that IT Security implements encryption at rest and in transit as a general measure, but no specific encryption standard or algorithm is specified."
+    }
+]

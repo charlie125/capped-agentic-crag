@@ -1,0 +1,344 @@
+[
+    {
+        "id": 1,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 532.812739763,
+        "end": 537.291862465,
+        "total": 4.48
+    },
+    {
+        "id": 1,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 537.291979758,
+        "end": 541.269687309,
+        "total": 3.98
+    },
+    {
+        "id": 1,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 541.269813487,
+        "end": 546.259920985,
+        "total": 4.99
+    },
+    {
+        "id": 1,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 546.260071659,
+        "end": 550.983735911,
+        "total": 4.72
+    },
+    {
+        "id": 1,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 550.983796906,
+        "end": 556.373033512,
+        "total": 5.39
+    },
+    {
+        "id": 1,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 556.373096759,
+        "end": 562.649392713,
+        "total": 6.28
+    },
+    {
+        "iteration_times_k": 1,
+        "mean_scores": {
+            "faithfulness": 0.49999999999999994,
+            "answer_relevancy": 0.44335934944238437,
+            "context_precision": 0.5833333332861111,
+            "context_recall": 0.9166666666666666
+        }
+    },
+    {
+        "id": 2,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 790.875864134,
+        "end": 795.608279201,
+        "total": 4.73
+    },
+    {
+        "id": 2,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 795.608398608,
+        "end": 799.614478765,
+        "total": 4.01
+    },
+    {
+        "id": 2,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 799.614599156,
+        "end": 804.643684503,
+        "total": 5.03
+    },
+    {
+        "id": 2,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 804.643810705,
+        "end": 814.135203542,
+        "total": 9.49
+    },
+    {
+        "id": 2,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 814.135264562,
+        "end": 822.310387154,
+        "total": 8.18
+    },
+    {
+        "id": 2,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 822.310449068,
+        "end": 830.700931085,
+        "total": 8.39
+    },
+    {
+        "iteration_times_k": 2,
+        "mean_scores": {
+            "faithfulness": 0.5555555555555555,
+            "answer_relevancy": 0.48280159251029636,
+            "context_precision": 0.5833333332861111,
+            "context_recall": 0.9166666666666666
+        }
+    },
+    {
+        "id": 3,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 1067.126167222,
+        "end": 1071.744120985,
+        "total": 4.62
+    },
+    {
+        "id": 3,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 1071.744239289,
+        "end": 1075.748380546,
+        "total": 4.0
+    },
+    {
+        "id": 3,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 1075.748497325,
+        "end": 1080.767435748,
+        "total": 5.02
+    },
+    {
+        "id": 3,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 1080.767551357,
+        "end": 1094.752591164,
+        "total": 13.99
+    },
+    {
+        "id": 3,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 1094.752654584,
+        "end": 1107.308594302,
+        "total": 12.56
+    },
+    {
+        "id": 3,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 1107.308656483,
+        "end": 1120.881053145,
+        "total": 13.57
+    },
+    {
+        "iteration_times_k": 3,
+        "mean_scores": {
+            "faithfulness": 0.38888888888888884,
+            "answer_relevancy": 0.4384033300244081,
+            "context_precision": 0.5555555555111111,
+            "context_recall": 0.7777777777777778
+        }
+    },
+    {
+        "id": 4,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 1335.621897066,
+        "end": 1340.239743526,
+        "total": 4.62
+    },
+    {
+        "id": 4,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 1340.239862525,
+        "end": 1344.24440809,
+        "total": 4.0
+    },
+    {
+        "id": 4,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 1344.244521088,
+        "end": 1349.261745142,
+        "total": 5.02
+    },
+    {
+        "id": 4,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 1349.261862056,
+        "end": 1367.049467947,
+        "total": 17.79
+    },
+    {
+        "id": 4,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 1367.049530241,
+        "end": 1384.19975659,
+        "total": 17.15
+    },
+    {
+        "id": 4,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 1384.199816738,
+        "end": 1401.945505041,
+        "total": 17.75
+    },
+    {
+        "iteration_times_k": 4,
+        "mean_scores": {
+            "faithfulness": 0.38888888888888884,
+            "answer_relevancy": 0.4461492385119241,
+            "context_precision": 0.5277777777430556,
+            "context_recall": 0.9166666666666666
+        }
+    },
+    {
+        "id": 5,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 351.746848547,
+        "end": 356.455840289,
+        "total": 4.71
+    },
+    {
+        "id": 5,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 356.455970359,
+        "end": 360.529570923,
+        "total": 4.07
+    },
+    {
+        "id": 5,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 360.529697853,
+        "end": 365.63943127,
+        "total": 5.11
+    },
+    {
+        "id": 5,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 365.639582879,
+        "end": 392.128750915,
+        "total": 26.49
+    },
+    {
+        "id": 5,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 392.128880719,
+        "end": 415.446427992,
+        "total": 23.32
+    },
+    {
+        "id": 5,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 415.446494929,
+        "end": 442.699974751,
+        "total": 27.25
+    },
+    {
+        "iteration_times_k": 5,
+        "mean_scores": {
+            "faithfulness": 0.5138888888888888,
+            "answer_relevancy": 0.6235421944409985,
+            "context_precision": 0.6666666666194444,
+            "context_recall": 0.9166666666666666
+        }
+    },
+    {
+        "id": 6,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 675.918538564,
+        "end": 680.932760283,
+        "total": 5.01
+    },
+    {
+        "id": 6,
+        "category": "Direct Lookup",
+        "condition": "capped",
+        "start": 680.932905248,
+        "end": 685.187015654,
+        "total": 4.25
+    },
+    {
+        "id": 6,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 685.187148525,
+        "end": 690.646548231,
+        "total": 5.46
+    },
+    {
+        "id": 6,
+        "category": "Ambiguous / Multi-rewrite",
+        "condition": "capped",
+        "start": 690.646677821,
+        "end": 716.527388047,
+        "total": 25.88
+    },
+    {
+        "id": 6,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 716.527512539,
+        "end": 744.854449751,
+        "total": 28.33
+    },
+    {
+        "id": 6,
+        "category": "Unanswered Edge Case",
+        "condition": "capped",
+        "start": 744.85451275,
+        "end": 778.442395362,
+        "total": 33.59
+    },
+    {
+        "iteration_times_k": 6,
+        "mean_scores": {
+            "faithfulness": 0.7638888888888888,
+            "answer_relevancy": 0.7092400838358907,
+            "context_precision": 0.7222222221611111,
+            "context_recall": 0.8981481481481483
+        }
+    }
+]
