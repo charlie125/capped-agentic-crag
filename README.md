@@ -86,7 +86,8 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   │   ├── txt/                          # Raw per-run sampler output
 │   │   └── plot_controlled_measurements.py
 │   ├── warmup/                   # Warm-up convergence record
-│   │   ├── warmup_run_times.json
+│   │   ├── warmup_run_times.json     # Per-run latency, 15 consecutive calls
+│   │   ├── warmup_log.txt            # Raw sampler output for the same 15 runs
 │   │   └── plot_warmup.py
 │   └── figures/                  # Figures reproduced in the dissertation
 ├── manage.py
