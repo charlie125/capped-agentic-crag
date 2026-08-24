@@ -69,6 +69,20 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   ├── resource_collector.py     # Stage 1: Hardware profiling and token collection
 │   ├── ragas_tester.py           # Stage 2: Offline RAGAS quality evaluation
 │   └── resource_ragas_dataset.json # 25-case multi-category evaluation benchmark
+├── experiment_result/            # Recorded measurements, scores and figures
+│   ├── main_experiment/          # Three architectures x 25 items
+│   │   ├── *_resource_report.json    # Stage 1 hardware, latency and token records
+│   │   ├── ragas_results_*.csv       # Stage 2 per-item RAGAS scores
+│   │   ├── ragas_metrics_summary.json # Scores grouped by question type
+│   │   └── plot_*.py, ragas_summary.py
+│   ├── iteration_cap/            # K=1-6 sensitivity sweep
+│   │   ├── ragas_result_k_[1-6].csv  # Per-K quality scores
+│   │   ├── capped_limit_log.txt      # Per-K, per-item latency log
+│   │   └── k_times.py
+│   ├── warmup/                   # Warm-up convergence record
+│   │   ├── warmup_run_times.json
+│   │   └── warm_up.py
+│   └── plot/                     # Figures reproduced in the dissertation
 ├── manage.py
 ├── requirements.txt
 └── README.md
@@ -133,7 +147,9 @@ Reads the pre-recorded JSON report from Stage 1 and executes deterministic RAGAS
 ```bash
 python testing/ragas_tester.py
 ```
-Outputs final scores to `ragas_results_<condition>.csv`.
+Outputs final scores to `ragas_results_<condition>.csv`. The recorded outputs of both
+stages, together with the K-sweep and warm-up records and the figures derived from them,
+are kept under `experiment_result/`.
 
 ---
 

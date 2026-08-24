@@ -1,0 +1,62 @@
+[
+    {
+        "run": 1,
+        "execution_time_seconds": 10.84
+    },
+    {
+        "run": 2,
+        "execution_time_seconds": 5.63
+    },
+    {
+        "run": 3,
+        "execution_time_seconds": 4.6
+    },
+    {
+        "run": 4,
+        "execution_time_seconds": 4.59
+    },
+    {
+        "run": 5,
+        "execution_time_seconds": 4.58
+    },
+    {
+        "run": 6,
+        "execution_time_seconds": 4.59
+    },
+    {
+        "run": 7,
+        "execution_time_seconds": 4.61
+    },
+    {
+        "run": 8,
+        "execution_time_seconds": 4.6
+    },
+    {
+        "run": 9,
+        "execution_time_seconds": 4.62
+    },
+    {
+        "run": 10,
+        "execution_time_seconds": 4.62
+    },
+    {
+        "run": 11,
+        "execution_time_seconds": 4.61
+    },
+    {
+        "run": 12,
+        "execution_time_seconds": 4.6
+    },
+    {
+        "run": 13,
+        "execution_time_seconds": 4.62
+    },
+    {
+        "run": 14,
+        "execution_time_seconds": 4.63
+    },
+    {
+        "run": 15,
+        "execution_time_seconds": 4.61
+    }
+]
