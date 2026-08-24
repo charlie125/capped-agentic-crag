@@ -1,0 +1,628 @@
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 58.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 875.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the Data Protection Officer
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 60.2 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.1 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.86086956521739
+peak_cpu_pct: 129.70000000000002
+avg_ram_mb: 1348.8875679347825
+peak_ram_mb: 1496.43359375
+max_n_processes: 3
+n_samples: 23
+wall_clock_seconds: 4.73042843099995
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 60.2 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.1 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the Data Protection Officer
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.7 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.73478260869565
+peak_cpu_pct: 124.9
+avg_ram_mb: 1348.859714673913
+peak_ram_mb: 1495.078125
+max_n_processes: 3
+n_samples: 23
+wall_clock_seconds: 4.741314354999986
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.7 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the Data Protection Officer
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.6 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.19130434782609
+peak_cpu_pct: 128.0
+avg_ram_mb: 1346.691745923913
+peak_ram_mb: 1495.0625
+max_n_processes: 3
+n_samples: 23
+wall_clock_seconds: 4.748048436999966
+resource state has been added to report
+refined_prompt_with_one_iteration.txt has been created!
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.6 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 876.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standard does the Company use to protect data at rest, such as on servers and storage devices?
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices?
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices, including any specific protocols or algorithms used for disk encryption?
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 60.3 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1379.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 103.83928571428571
+peak_cpu_pct: 129.5
+avg_ram_mb: 1611.7124720982142
+peak_ram_mb: 1870.28515625
+max_n_processes: 3
+n_samples: 56
+wall_clock_seconds: 11.565939714000024
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 60.3 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1379.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standard does the Company use to protect data at rest, such as on servers and storage devices?
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices?
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices, including any specific protocols or algorithms used for disk encryption?
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 60.9 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1380.0 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 104.59387755102041
+peak_cpu_pct: 133.9
+avg_ram_mb: 1721.5079719387754
+peak_ram_mb: 1873.45703125
+max_n_processes: 3
+n_samples: 49
+wall_clock_seconds: 10.161915505000024
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 60.9 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1380.0 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standard does the Company use to protect data at rest, such as on servers and storage devices?
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices?
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: What encryption standards does the Company use to protect data at rest on servers and storage devices, including any specific protocols or algorithms used for disk encryption?
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.6 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1398.1 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 104.375
+peak_cpu_pct: 129.2
+avg_ram_mb: 1733.7628580729167
+peak_ram_mb: 1893.1015625
+max_n_processes: 3
+n_samples: 48
+wall_clock_seconds: 10.032412263999959
+resource state has been added to report
+refined_prompt_with_three_iterations.txt has been created!
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.6 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1398.1 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the DPO
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.28571428571429
+peak_cpu_pct: 125.1
+avg_ram_mb: 1749.2752511160713
+peak_ram_mb: 1912.0546875
+max_n_processes: 3
+n_samples: 28
+wall_clock_seconds: 5.735520253000004
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the DPO
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.4 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.09583333333333
+peak_cpu_pct: 125.1
+avg_ram_mb: 1743.69287109375
+peak_ram_mb: 1910.02734375
+max_n_processes: 3
+n_samples: 24
+wall_clock_seconds: 4.806363897999972
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.4 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Mandatory deadline for reporting a suspected data breach to the DPO
+====================================================================================================
+Grade: yes
+====================================================================================================
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.9 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 100.25
+peak_cpu_pct: 124.9
+avg_ram_mb: 1743.9742838541667
+peak_ram_mb: 1911.5390625
+max_n_processes: 3
+n_samples: 24
+wall_clock_seconds: 4.85781689099997
+resource state has been added to report
+original_prompt_with_one_iteration.txt has been created!
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.9 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1287.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 430.5 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: The original question seems straightforward, but it could be improved for clarity and specificity. Here's a revised version:
+
+**Improved Question:**
+
+"What specific encryption algorithm (e.g., AES-128, AES-256) and mode of operation (e.g., CBC, GCM) does the Company use to protect data at rest, and what is the key management process for these encrypted assets?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption algorithm**: Instead of just asking for a "technical encryption standard," it asks for a specific algorithm (e.g., AES-128 or AES-256) to ensure clarity.
+2. **Mode of operation**: It also inquires about the mode of operation, which is crucial for understanding how data is encrypted and decrypted. Common modes include CBC (Cipher Block Chaining), GCM (Galois/Counter Mode), and others.
+3. **Key management process**: This addition ensures that the question covers not just the encryption method but also how keys are managed, which is a critical aspect of maintaining security.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices.
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company specific encryption algorithm (e.g., AES-128 or AES-256) and mode of operation (e.g., CBC or GCM), key management process for encrypted assets at rest
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Here's an example of an improved question based on the original input:
+
+**Original Question:** What technical encryption standard does the company use to protect sensitive customer information?
+
+**Improved Question:**
+
+"What specific encryption protocol (e.g., SSL/TLS, IPsec) and cryptographic hash function (e.g., SHA-256, MD5) does the Company use for secure data transmission over the internet, and what are the key exchange methods used for establishing secure connections between clients and servers?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption protocol**: Instead of just asking for a "technical encryption standard," it asks for a specific protocol (e.g., SSL/TLS or IPsec) to ensure clarity.
+2. **Cryptographic hash function**: It also inquires about the cryptographic hash function used, which is crucial for data integrity and authenticity verification.
+3. **Key exchange methods**: This addition ensures that the question covers not just the encryption method but also how keys are exchanged between clients and servers, which is a critical aspect of maintaining secure connections.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices for sensitive customer information.
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company specific encryption protocol (e.g., SSL/TLS or IPsec) and cryptographic hash function (e.g., SHA-256 or MD5), key exchange methods used for secure connections between clients and servers over the internet
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Based on the input, I'll try to reason about the underlying semantic intent/meaning. It appears that the original question is asking about the technical encryption standard used by the company to protect sensitive customer information.
+
+To improve this question, I would add more specificity and detail to ensure clarity and accuracy in the response. Here's a revised question:
+
+**Original Question:** What are the company's policies on employee use of personal devices for work-related activities?
+
+**Improved Question:**
+
+"What specific Bring Your Own Device (BYOD) policy does the Company have in place, and what measures are taken to ensure that employees' personal devices meet the required security standards (e.g., encryption, antivirus software) when accessing company data or networks? Additionally, how does the Company monitor and manage employee use of personal devices for work-related activities, and what consequences are enforced for non-compliance with these policies?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on BYOD policy**: Instead of just asking about "policies," it asks for a specific BYOD policy to ensure clarity.
+2. **Security standards**: It also inquires about the security standards required for personal devices, which is crucial for protecting company data.
+3. **Monitoring and management**: This addition ensures that the question covers not just the policy but also how the Company monitors and manages employee use of personal devices.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their policies on employee use of personal devices for work-related activities.
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1879.3 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 504.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 101.7436046511628
+peak_cpu_pct: 129.9
+avg_ram_mb: 2087.5030205305234
+peak_ram_mb: 2443.87109375
+max_n_processes: 3
+n_samples: 172
+wall_clock_seconds: 35.93004253099991
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1879.3 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 504.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: The original question seems straightforward, but it could be improved for clarity and specificity. Here's a revised version:
+
+**Improved Question:**
+
+"What specific encryption algorithm (e.g., AES-128, AES-256) and mode of operation (e.g., CBC, GCM) does the Company use to protect data at rest, and what is the key management process for these encrypted assets?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption algorithm**: Instead of just asking for a "technical encryption standard," it asks for a specific algorithm (e.g., AES-128 or AES-256) to ensure clarity.
+2. **Mode of operation**: It also inquires about the mode of operation, which is crucial for understanding how data is encrypted and decrypted. Common modes include CBC (Cipher Block Chaining), GCM (Galois/Counter Mode), and others.
+3. **Key management process**: This addition ensures that the question covers not just the encryption method but also how keys are managed, which is a critical aspect of maintaining security.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices.
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company specific encryption algorithm (e.g., AES-128 or AES-256) and mode of operation (e.g., CBC or GCM), key management process for encrypted assets at rest
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Here's an example of an improved question based on the original input:
+
+**Original Question:** What technical encryption standard does the company use to protect sensitive customer information?
+
+**Improved Question:**
+
+"What specific encryption protocol (e.g., SSL/TLS, IPsec) and cryptographic hash function (e.g., SHA-256, MD5) does the Company use for secure data transmission over the internet, and what are the key exchange methods used for establishing secure connections between clients and servers?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption protocol**: Instead of just asking for a "technical encryption standard," it asks for a specific protocol (e.g., SSL/TLS or IPsec) to ensure clarity.
+2. **Cryptographic hash function**: It also inquires about the cryptographic hash function used, which is crucial for data integrity and authenticity verification.
+3. **Key exchange methods**: This addition ensures that the question covers not just the encryption method but also how keys are exchanged between clients and servers, which is a critical aspect of maintaining secure connections.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices for sensitive customer information.
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company specific encryption protocol (e.g., SSL/TLS or IPsec) and cryptographic hash function (e.g., SHA-256 or MD5), key exchange methods used for secure connections between clients and servers over the internet
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Based on the input, I'll try to reason about the underlying semantic intent/meaning. It appears that the original question is asking about the technical encryption standard used by the company to protect sensitive customer information.
+
+To improve this question, I would add more specificity and detail to ensure clarity and accuracy in the response. Here's a revised question:
+
+**Original Question:** What are the company's policies on employee use of personal devices for work-related activities?
+
+**Improved Question:**
+
+"What specific Bring Your Own Device (BYOD) policy does the Company have in place, and what measures are taken to ensure that employees' personal devices meet the required security standards (e.g., encryption, antivirus software) when accessing company data or networks? Additionally, how do you monitor and enforce compliance with these policies, and what consequences are in place for non-compliance?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on BYOD policy**: Instead of just asking about the company's policies, it asks for a specific BYOD policy to ensure clarity.
+2. **Security standards**: It also inquires about the security standards required for personal devices, which is crucial for protecting company data.
+3. **Monitoring and enforcement**: This addition ensures that the question covers not just the policy but also how compliance is monitored and enforced.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their policies on employee use of personal devices for work-related activities.
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1879.3 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 504.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 101.76770186335403
+peak_cpu_pct: 129.3
+avg_ram_mb: 2372.806313082298
+peak_ram_mb: 2521.70703125
+max_n_processes: 3
+n_samples: 161
+wall_clock_seconds: 33.62953156099991
+resource state has been added to report
+Targets BEFORE invoke:
+PID 3019 | ollama | RSS 59.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1879.3 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 504.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+input query: Company data at rest encryption standard
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: The original question seems straightforward, but it could be improved for clarity and specificity. Here's a revised version:
+
+**Improved Question:**
+
+"What specific encryption algorithm (e.g., AES-128, AES-256) and mode of operation (e.g., CBC, GCM) does the Company use to protect data at rest, and what is the key management process for these encrypted assets?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption algorithm**: Instead of just asking for a "technical encryption standard," it asks for a specific algorithm (e.g., AES-128 or AES-256) to ensure clarity.
+2. **Mode of operation**: It also inquires about the mode of operation, which is crucial for understanding how data is encrypted and decrypted. Common modes include CBC (Cipher Block Chaining), GCM (Galois/Counter Mode), and others.
+3. **Key management process**: This addition ensures that the question covers not just the encryption method but also how keys are managed, which is a critical aspect of maintaining security.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices.
+====================================================================================================
+Rewrite counts: 1
+
+input query: Company specific encryption algorithm (e.g., AES-128 or AES-256) and mode of operation (e.g., CBC or GCM), key management process for encrypted assets at rest
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Here's an example of an improved question based on the original input:
+
+**Original Question:** What technical encryption standard does the company use to protect sensitive customer information?
+
+**Improved Question:**
+
+"What specific encryption protocol (e.g., SSL/TLS, IPsec) and cryptographic hash function (e.g., SHA-256, MD5) does the Company use for secure data transmission over the internet, and what are the key exchange methods used for establishing secure connections between clients and servers?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on encryption protocol**: Instead of just asking for a "technical encryption standard," it asks for a specific protocol (e.g., SSL/TLS or IPsec) to ensure clarity.
+2. **Cryptographic hash function**: It also inquires about the cryptographic hash function used, which is crucial for data integrity and authenticity verification.
+3. **Key exchange methods**: This addition ensures that the question covers not just the encryption method but also how keys are exchanged between clients and servers, which is a critical aspect of maintaining secure connections.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their data protection practices for sensitive customer information.
+====================================================================================================
+Rewrite counts: 2
+
+input query: Company specific encryption protocol (e.g., SSL/TLS or IPsec) and cryptographic hash function (e.g., SHA-256 or MD5), key exchange methods used for secure connections between clients and servers over the internet
+====================================================================================================
+Grade: no
+====================================================================================================
+rewrite: Based on the input, I'll try to reason about the underlying semantic intent/meaning. It appears that the original question is asking about the technical encryption standard used by the company to protect sensitive customer information.
+
+To improve this question, I would add more specificity and detail to ensure clarity and accuracy in the response. Here's a revised question:
+
+**Original Question:** What are the company's policies on employee use of personal devices for work-related activities?
+
+**Improved Question:**
+
+"What specific Bring Your Own Device (BYOD) policy does the Company have in place, and what measures are taken to ensure that employees' personal devices meet the required security standards (e.g., encryption, antivirus software) when accessing company data or networks? Additionally, how do you monitor and enforce compliance with these policies, and what consequences are in place for non-compliance?"
+
+This improved question adds more detail and specificity:
+
+1. **Specificity on BYOD policy**: Instead of just asking about the company's policies, it asks for a specific BYOD policy to ensure clarity.
+2. **Security standards**: It also inquires about the security standards required for personal devices, which is crucial for protecting company data.
+3. **Monitoring and enforcement**: This addition ensures that the question covers not just the policy but also how compliance is monitored and enforced.
+
+This revised question encourages more detailed and accurate responses from the Company, providing a clearer understanding of their policies on employee use of personal devices for work-related activities.
+====================================================================================================
+Rewrite counts: 3
+
+Targets AFTER invoke:
+PID 3019 | ollama | RSS 60.8 MB | cmdline: /usr/local/bin/ollama serve
+Target has been added to report
+PID 3558 | llama-server | RSS 1879.3 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 37851 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+Target has been added to report
+PID 3574 | llama-server | RSS 504.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 40501 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+Target has been added to report
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 101.86380368098159
+peak_cpu_pct: 124.6
+avg_ram_mb: 2372.455090107362
+peak_ram_mb: 2521.23046875
+max_n_processes: 3
+n_samples: 163
+wall_clock_seconds: 34.315781453
+resource state has been added to report
+original_prompt_with_three_iterations.txt has been created!

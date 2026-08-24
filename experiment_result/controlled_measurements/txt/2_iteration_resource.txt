@@ -1,0 +1,61 @@
+========= Before invoke ==========
+PID 2982 | ollama | RSS 59.7 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 879.0 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 423.7 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2982 | ollama | RSS 60.0 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 1267.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 430.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 103.51428571428572
+peak_cpu_pct: 128.7
+avg_ram_mb: 1581.2716836734694
+peak_ram_mb: 1769.47265625
+max_n_processes: 3
+n_samples: 49
+wall_clock_seconds: 10.148498838999899
+
+
+========= Before invoke ==========
+PID 2982 | ollama | RSS 60.0 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 1267.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 430.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2982 | ollama | RSS 60.4 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 1284.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 430.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 104.0139534883721
+peak_cpu_pct: 132.2
+avg_ram_mb: 1712.7309229651162
+peak_ram_mb: 1889.6328125
+max_n_processes: 3
+n_samples: 43
+wall_clock_seconds: 8.858739892000017
+
+
+========= Before invoke ==========
+PID 2982 | ollama | RSS 60.4 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 1284.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 430.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2982 | ollama | RSS 60.0 MB | cmdline: /usr/local/bin/ollama serve
+PID 3730 | llama-server | RSS 1284.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 35749 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 3746 | llama-server | RSS 430.8 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 33527 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 104.26666666666667
+peak_cpu_pct: 134.4
+avg_ram_mb: 1714.3231026785713
+peak_ram_mb: 1890.78515625
+max_n_processes: 3
+n_samples: 42
+wall_clock_seconds: 8.770968933000063

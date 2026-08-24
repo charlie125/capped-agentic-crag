@@ -3,7 +3,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PLOT_DIR = SCRIPT_DIR.parent / "plot"
+FIGURE_DIR = SCRIPT_DIR.parent / "figures"
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes, mark_inset
 
 # Load the JSON record and split it into x and y series
@@ -58,6 +58,6 @@ axins.grid(True, linestyle=':', alpha=0.5)
 
 # Dashed rectangle marking the inset region on the main axes
 mark_inset(ax, axins, loc1=2, loc2=4, fc="none", ec="0.5", linestyle='--', linewidth=0.8)
-PLOT_DIR.mkdir(exist_ok=True)
-plt.savefig(PLOT_DIR / 'Warm-up_Latency_Convergence.png', dpi=400, bbox_inches='tight')
+FIGURE_DIR.mkdir(exist_ok=True)
+plt.savefig(FIGURE_DIR / 'warmup_convergence.png', dpi=400, bbox_inches='tight')
 plt.show()

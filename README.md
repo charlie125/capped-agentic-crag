@@ -74,15 +74,21 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   │   ├── *_resource_report.json    # Stage 1 hardware, latency and token records
 │   │   ├── ragas_results_*.csv       # Stage 2 per-item RAGAS scores
 │   │   ├── ragas_metrics_summary.json # Scores grouped by question type
-│   │   └── plot_*.py, ragas_summary.py
+│   │   ├── ragas_summary.py          # Builds the grouped summary above
+│   │   └── plot_*.py                 # One script per figure
 │   ├── iteration_cap/            # K=1-6 sensitivity sweep
 │   │   ├── ragas_result_k_[1-6].csv  # Per-K quality scores
 │   │   ├── capped_limit_log.txt      # Per-K, per-item latency log
-│   │   └── k_times.py
+│   │   └── plot_iteration_cap.py
+│   ├── controlled_measurements/  # Two single-variable comparisons, n=3 each
+│   │   ├── orig_2.json, refined_2.json   # Rewrite prompt A/B (§4.2.2)
+│   │   ├── 2_iters.json, 6_iters.json    # Iteration depth K=2 vs K=6 (§5.5.1)
+│   │   ├── txt/                          # Raw per-run sampler output
+│   │   └── plot_controlled_measurements.py
 │   ├── warmup/                   # Warm-up convergence record
 │   │   ├── warmup_run_times.json
-│   │   └── warm_up.py
-│   └── plot/                     # Figures reproduced in the dissertation
+│   │   └── plot_warmup.py
+│   └── figures/                  # Figures reproduced in the dissertation
 ├── manage.py
 ├── requirements.txt
 └── README.md
@@ -160,7 +166,7 @@ are kept under `experiment_result/`.
    * **Uncapped CRAG:** mean **57.03s**, worst case **127.06s** (Case ID 20).
    * The uncapped loop does not terminate on its own: on Case IDs 17 and 20 it reached `llm_calls` = 22, exactly the ceiling implied by the harness's safety cap of K=6, meaning it was halted rather than converged. The gaps reported here are therefore **lower bounds** on the cost of a genuinely uncapped implementation.
 
-   ![Resource cost of the three architectures, split by question type](experiment_result/plot/question_type_comparison.png)
+   ![Resource cost of the three architectures, split by question type](experiment_result/figures/question_type_comparison.png)
 
    *Bars are means, dots individual questions. Single run, n = 25, Apple M2 Pro.
    While retrieval succeeds the three architectures are close together; once it

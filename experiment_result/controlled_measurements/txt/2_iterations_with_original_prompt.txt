@@ -1,0 +1,82 @@
+========= Before invoke ==========
+PID 2971 | ollama | RSS 59.6 MB | cmdline: /usr/local/bin/ollama serve
+========= After invoke ==========
+PID 2971 | ollama | RSS 60.8 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1109.2 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 97.042
+peak_cpu_pct: 134.4
+avg_ram_mb: 1388.9348046875
+peak_ram_mb: 5081.08984375
+max_n_processes: 3
+n_samples: 100
+wall_clock_seconds: 20.725980843000002
+
+
+========= Before invoke ==========
+PID 2971 | ollama | RSS 60.8 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1109.2 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.4 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2971 | ollama | RSS 61.4 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1254.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 102.92564102564103
+peak_cpu_pct: 128.9
+avg_ram_mb: 1603.388872195513
+peak_ram_mb: 1739.91015625
+max_n_processes: 3
+n_samples: 78
+wall_clock_seconds: 16.173741382999992
+
+
+========= Before invoke ==========
+PID 2971 | ollama | RSS 61.4 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1254.9 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2971 | ollama | RSS 61.1 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1255.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 103.12876712328767
+peak_cpu_pct: 129.8
+avg_ram_mb: 1718.4820205479452
+peak_ram_mb: 1854.9375
+max_n_processes: 3
+n_samples: 73
+wall_clock_seconds: 15.085697475000075
+
+
+========= Before invoke ==========
+PID 2971 | ollama | RSS 61.1 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1255.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+========= After invoke ==========
+PID 2971 | ollama | RSS 61.1 MB | cmdline: /usr/local/bin/ollama serve
+PID 4175 | llama-server | RSS 1255.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-667b0c1932bc6ffc593ed1d03f895bf2dc8dc6df21db3042284a6f4416b06a29 --port 39921 --host 127.0.0.1 --no-webui --offline -c 4096 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --no-jinja --chat-template chatml --flash-attn auto -b 512 -ub 512 --context-shift --keep 4
+PID 4191 | llama-server | RSS 423.6 MB | cmdline: /usr/local/lib/ollama/llama-server --model /usr/share/ollama/.ollama/models/blobs/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6 --port 44165 --host 127.0.0.1 --no-webui --offline -c 2048 -np 1 --log-verbosity 4 --no-log-prefix --no-log-timestamps --flash-attn auto --embedding -b 2048 -ub 2048 --context-shift --keep 4
+
+================================================================================
+RESOURCE STATS
+================================================================================
+avg_cpu_pct: 103.15416666666667
+peak_cpu_pct: 132.2
+avg_ram_mb: 1718.9832356770833
+peak_ram_mb: 1857.74609375
+max_n_processes: 3
+n_samples: 72
+wall_clock_seconds: 15.009561066999936
+
+

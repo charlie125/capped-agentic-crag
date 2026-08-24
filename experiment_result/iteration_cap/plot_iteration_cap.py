@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PLOT_DIR = SCRIPT_DIR.parent / "plot"
+FIGURE_DIR = SCRIPT_DIR.parent / "figures"
 import numpy as np
 
 # RAGAS metrics data from log
@@ -58,6 +58,6 @@ ax.legend(loc='lower right', frameon=True, edgecolor='none')
 ax.axvspan(0.5, 1.5, color='gray', alpha=0.15, label='Optimal Cap (K=2)')
 
 plt.tight_layout()
-PLOT_DIR.mkdir(exist_ok=True)
-plt.savefig(PLOT_DIR / 'ragas_metrics_bar_k_times.png', dpi=300)
+FIGURE_DIR.mkdir(exist_ok=True)
+plt.savefig(FIGURE_DIR / 'ragas_metrics_by_iteration_cap.png', dpi=300)
 plt.show()

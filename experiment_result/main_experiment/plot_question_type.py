@@ -22,8 +22,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PLOT_DIR = SCRIPT_DIR.parent / "plot"                  # experiment_result/plot/
-OUT_DIRS = [PLOT_DIR]
+FIGURE_DIR = SCRIPT_DIR.parent / "figures"             # experiment_result/figures/
+OUT_DIRS = [FIGURE_DIR]
 
 # When this repository sits inside the dissertation working tree, refresh the
 # manuscript's copy as well, so the two cannot drift apart. Skipped in a bare

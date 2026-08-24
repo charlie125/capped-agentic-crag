@@ -3,8 +3,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-PLOT_DIR = SCRIPT_DIR.parent / "plot"                  # experiment_result/plot/
-OUT_DIRS = [PLOT_DIR]
+FIGURE_DIR = SCRIPT_DIR.parent / "figures"             # experiment_result/figures/
+OUT_DIRS = [FIGURE_DIR]
 
 # When this repository sits inside the dissertation working tree, refresh the
 # manuscript's copy as well, so the two cannot drift apart. Skipped in a bare
@@ -91,6 +91,6 @@ plt.tight_layout()
 
 for d in OUT_DIRS:
     d.mkdir(parents=True, exist_ok=True)
-    plt.savefig(d / "llm_calls_plot.png", dpi=400)
-    print("wrote", d / "llm_calls_plot.png")
+    plt.savefig(d / "llm_calls_per_question.png", dpi=400)
+    print("wrote", d / "llm_calls_per_question.png")
 plt.show()
