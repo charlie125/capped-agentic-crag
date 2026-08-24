@@ -159,6 +159,19 @@ are kept under `experiment_result/`.
    * **Capped CRAG (K=2):** bounded latency to a mean of **16.35s**, worst case **20.22s**.
    * **Uncapped CRAG:** mean **57.03s**, worst case **127.06s** (Case ID 20).
    * The uncapped loop does not terminate on its own: on Case IDs 17 and 20 it reached `llm_calls` = 22, exactly the ceiling implied by the harness's safety cap of K=6, meaning it was halted rather than converged. The gaps reported here are therefore **lower bounds** on the cost of a genuinely uncapped implementation.
+
+   ![Resource cost of the three architectures, split by question type](experiment_result/plot/question_type_comparison.png)
+
+   *Bars are means, dots individual questions. Single run, n = 25, Apple M2 Pro.
+   While retrieval succeeds the three architectures are close together; once it
+   cannot, they separate by roughly an order of magnitude. What the cap buys is
+   visible in the spread as much as in the mean: on the unanswerable subset the
+   uncapped baseline ranges from 21.74s to 127.06s, the capped architecture from
+   12.78s to 20.22s. Mean CPU utilisation is deliberately not plotted — it is a
+   rate diluted by the sampling window, and on this subset it ranks the uncapped
+   baseline as the most economical, which reverses once expenditure is measured
+   as CPU time. Reproduce with `experiment_result/main_experiment/plot_question_type.py`.*
+
 2. **Computational Cost Substitution (Prefill vs. Decode):**
    * Capped CRAG pays an upfront compute-bound Prefill cost during grading/rewriting to prune context, eliminating Naive RAG's memory-bandwidth bound "Context Dumping" (e.g., 298 decode tokens reduced to 89 tokens on Case ID 13).
 3. **Prompt Refinement Efficiency:**
