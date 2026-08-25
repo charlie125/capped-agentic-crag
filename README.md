@@ -77,8 +77,10 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   │   ├── ragas_summary.py          # Builds the grouped summary above
 │   │   └── plot_*.py                 # One script per figure
 │   ├── iteration_cap/            # K=1-6 sensitivity sweep
+│   │   ├── limitation_testing.json   # 6-item diagnostic subset (S1-S6)
+│   │   ├── cap_times.py              # Runs the sweep and scores each K with RAGAS
 │   │   ├── ragas_result_k_[1-6].csv  # Per-K quality scores
-│   │   ├── capped_limit_log.txt      # Per-K, per-item latency log
+│   │   ├── capped_limit_log.json     # Per-K, per-item latency log
 │   │   └── plot_iteration_cap.py
 │   ├── controlled_measurements/  # Two single-variable comparisons, n=3 each
 │   │   ├── orig_2.json, refined_2.json   # Rewrite prompt A/B (§4.2.2)
