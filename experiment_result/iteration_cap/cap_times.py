@@ -267,6 +267,28 @@ def capped_testing(user_query, k):
     return data
 
 
+LOG_PATH = "capped_limit_log.json"
+
+
+def append_log(record):
+    """Append one record to the JSON array in LOG_PATH.
+
+    The log holds two record shapes -- per-question timings and the
+    per-k mean RAGAS scores -- so it is rewritten whole on each append
+    rather than streamed, keeping the file valid JSON at every point.
+    """
+    try:
+        with open(LOG_PATH, "r") as f:
+            log = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        log = []
+
+    log.append(record)
+
+    with open(LOG_PATH, "w") as f:
+        json.dump(log, f, indent=4)
+
+
 def testing(k):
     """Run the capped RAG pipeline over the full test set for a given
     rewrite cap k, log per-question timing, and evaluate with RAGAS."""
@@ -276,37 +298,36 @@ def testing(k):
     with open("limitation_testing.json", "r") as files:
         cases = json.load(files)
 
-        with open("capped_limit_log.txt", "a") as f:
-            for each in cases:
-                start = time.perf_counter()
+        for each in cases:
+            start = time.perf_counter()
 
-                retrieved = capped_testing(
-                    user_query=each["user_input"], k=k)
+            retrieved = capped_testing(
+                user_query=each["user_input"], k=k)
 
-                end = time.perf_counter()
+            end = time.perf_counter()
 
-                total = round(end - start, 2)
-                print(total)
+            total = round(end - start, 2)
+            print(total)
 
-                t = {
-                    "id": k,
-                    "category": each["category"],
-                    "condition": "capped",
-                    "start": start,
-                    "end": end,
-                    "total": total,
-                }
+            t = {
+                "id": k,
+                "category": each["category"],
+                "condition": "capped",
+                "start": start,
+                "end": end,
+                "total": total,
+            }
 
-                f.write(json.dumps(t) + "\n")
+            append_log(t)
 
-                sample = SingleTurnSample(
-                    user_input=each["user_input"],
-                    retrieved_contexts=retrieved["retrieved_contexts"],
-                    response=retrieved["response"],
-                    reference=each["reference"],
-                )
+            sample = SingleTurnSample(
+                user_input=each["user_input"],
+                retrieved_contexts=retrieved["retrieved_contexts"],
+                response=retrieved["response"],
+                reference=each["reference"],
+            )
 
-                sample_space.append(sample)
+            sample_space.append(sample)
 
     created_dataset = EvaluationDataset(samples=sample_space)
     print("Samples has been created!")
@@ -351,12 +372,10 @@ def testing(k):
 
     # result (ragas EvaluationResult) is not JSON-serializable directly.
     # Convert the per-metric scores to a plain dict via the pandas view,
-    # then json.dumps the whole record before writing.
+    # then hand the plain record to append_log.
     score_dict = result.to_pandas().mean(numeric_only=True).to_dict()
 
-    with open("capped_limit_log.txt", "a") as f:
-        formated_data = {"iteration_times": k, "score": score_dict}
-        f.write(json.dumps(formated_data) + "\n")
+    append_log({"iteration_times_k": k, "mean_scores": score_dict})
 
     df = result.to_pandas()
     print("\n--- Statistics ---")
