@@ -1,0 +1,731 @@
+{
+  "thresholds": {
+    "resource": 0.0071428571428571435,
+    "quality": 0.00625,
+    "exact_floor_n8": 0.0078125,
+    "testable_quality_comparisons": 8
+  },
+  "resource_axis": {
+    "wall_clock_seconds [answerable]": {
+      "n": 17,
+      "statistic": 20.0,
+      "p": 0.0055694580078125,
+      "n_a_greater": 15,
+      "n_b_greater": 2
+    },
+    "wall_clock_seconds [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0078125,
+      "n_a_greater": 8,
+      "n_b_greater": 0
+    },
+    "wall_clock_seconds [all 25]": {
+      "n": 25,
+      "statistic": 20.0,
+      "p": 2.2113323211669922e-05,
+      "n_a_greater": 23,
+      "n_b_greater": 2
+    },
+    "cpu_seconds [answerable]": {
+      "n": 17,
+      "statistic": 18.0,
+      "p": 0.00384521484375,
+      "n_a_greater": 14,
+      "n_b_greater": 3
+    },
+    "cpu_seconds [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0078125,
+      "n_a_greater": 8,
+      "n_b_greater": 0
+    },
+    "cpu_seconds [all 25]": {
+      "n": 25,
+      "statistic": 18.0,
+      "p": 1.5079975128173828e-05,
+      "n_a_greater": 22,
+      "n_b_greater": 3
+    },
+    "avg_cpu_pct [answerable]": {
+      "n": 17,
+      "statistic": 28.0,
+      "p": 0.0201568603515625,
+      "n_a_greater": 5,
+      "n_b_greater": 12
+    },
+    "avg_cpu_pct [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0078125,
+      "n_a_greater": 0,
+      "n_b_greater": 8
+    },
+    "avg_cpu_pct [all 25]": {
+      "n": 25,
+      "statistic": 28.0,
+      "p": 8.803606033325195e-05,
+      "n_a_greater": 5,
+      "n_b_greater": 20
+    },
+    "peak_ram_mb [answerable]": {
+      "n": 17,
+      "statistic": 48.0,
+      "p": 0.190093994140625,
+      "n_a_greater": 3,
+      "n_b_greater": 14
+    },
+    "peak_ram_mb [unanswerable]": {
+      "n": 8,
+      "statistic": 4.0,
+      "p": 0.0546875,
+      "n_a_greater": 7,
+      "n_b_greater": 1
+    },
+    "peak_ram_mb [all 25]": {
+      "n": 25,
+      "statistic": 131.0,
+      "p": 0.4107651710510254,
+      "n_a_greater": 10,
+      "n_b_greater": 15
+    },
+    "prompt_tokens [answerable]": {
+      "n": 17,
+      "statistic": 0.0,
+      "p": 3.737981840170154e-05,
+      "n_a_greater": 0,
+      "n_b_greater": 17
+    },
+    "prompt_tokens [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0078125,
+      "n_a_greater": 8,
+      "n_b_greater": 0
+    },
+    "prompt_tokens [all 25]": {
+      "n": 25,
+      "statistic": 153.0,
+      "p": 0.7905388905198595,
+      "n_a_greater": 8,
+      "n_b_greater": 17
+    },
+    "completion_tokens [answerable]": {
+      "n": 17,
+      "statistic": 10.5,
+      "p": 0.0017768989945419803,
+      "n_a_greater": 15,
+      "n_b_greater": 2
+    },
+    "completion_tokens [unanswerable]": {
+      "n": 8,
+      "statistic": 1.0,
+      "p": 0.015625,
+      "n_a_greater": 7,
+      "n_b_greater": 1
+    },
+    "completion_tokens [all 25]": {
+      "n": 25,
+      "statistic": 13.5,
+      "p": 6.0849329270603885e-05,
+      "n_a_greater": 22,
+      "n_b_greater": 3
+    },
+    "llm_calls [answerable]": {
+      "n": 17,
+      "p": null,
+      "note": "no variance -- not testable"
+    },
+    "llm_calls [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0625,
+      "n_a_greater": 5,
+      "n_b_greater": 0
+    },
+    "llm_calls [all 25]": {
+      "n": 25,
+      "statistic": 0.0,
+      "p": 0.042168197097155954,
+      "n_a_greater": 5,
+      "n_b_greater": 0
+    },
+    "total_tokens [answerable]": {
+      "n": 17,
+      "statistic": 0.0,
+      "p": 0.00029247830381213245,
+      "n_a_greater": 0,
+      "n_b_greater": 17
+    },
+    "total_tokens [unanswerable]": {
+      "n": 8,
+      "statistic": 0.0,
+      "p": 0.0078125,
+      "n_a_greater": 8,
+      "n_b_greater": 0
+    },
+    "total_tokens [all 25]": {
+      "n": 25,
+      "statistic": 153.0,
+      "p": 0.7982386912274775,
+      "n_a_greater": 8,
+      "n_b_greater": 17
+    }
+  },
+  "quality_axis": {
+    "faithfulness N-U": {
+      "n": 17,
+      "statistic": 34.5,
+      "p": 0.25825139497654537,
+      "n_a_greater": 8,
+      "n_b_greater": 6
+    },
+    "faithfulness N-C": {
+      "n": 17,
+      "statistic": 30.0,
+      "p": 0.7885499210185534,
+      "n_a_greater": 5,
+      "n_b_greater": 6
+    },
+    "faithfulness U-C": {
+      "n": 17,
+      "statistic": 18.0,
+      "p": 0.18144920772142048,
+      "n_a_greater": 4,
+      "n_b_greater": 7
+    },
+    "answer_relevancy N-U": {
+      "n": 17,
+      "statistic": 19.0,
+      "p": 0.004638671875,
+      "n_a_greater": 3,
+      "n_b_greater": 14
+    },
+    "answer_relevancy N-C": {
+      "n": 17,
+      "statistic": 33.0,
+      "p": 0.0395355224609375,
+      "n_a_greater": 4,
+      "n_b_greater": 13
+    },
+    "answer_relevancy U-C": {
+      "n": 17,
+      "statistic": 35.0,
+      "p": 0.15563546075803855,
+      "n_a_greater": 11,
+      "n_b_greater": 4
+    },
+    "context_precision N-U": {
+      "n": 17,
+      "p": null,
+      "note": "no variance -- not testable"
+    },
+    "context_precision N-C": {
+      "n": 17,
+      "p": null,
+      "note": "no variance -- not testable"
+    },
+    "context_precision U-C": {
+      "n": 17,
+      "p": null,
+      "note": "no variance -- not testable"
+    },
+    "context_recall N-U": {
+      "n": 17,
+      "statistic": 0.0,
+      "p": 0.31731050786291415,
+      "n_a_greater": 1,
+      "n_b_greater": 0
+    },
+    "context_recall N-C": {
+      "n": 17,
+      "statistic": 0.0,
+      "p": 0.31731050786291415,
+      "n_a_greater": 1,
+      "n_b_greater": 0
+    },
+    "context_recall U-C": {
+      "n": 17,
+      "p": null,
+      "note": "no variance -- not testable"
+    }
+  },
+  "context_precision_mannwhitney": {
+    "wall_clock_seconds": {
+      "n_zero": 23,
+      "n_one": 52,
+      "median_zero": 15.5,
+      "median_one": 7.415,
+      "U": 781.0,
+      "p": 0.03599437881232596,
+      "rank_biserial": 0.306020066889632
+    },
+    "cpu_seconds": {
+      "n_zero": 23,
+      "n_one": 52,
+      "median_zero": 1.3924680000000003,
+      "median_one": 0.695344,
+      "U": 772.0,
+      "p": 0.04620598230160861,
+      "rank_biserial": 0.29096989966555187
+    },
+    "peak_ram_mb": {
+      "n_zero": 23,
+      "n_one": 52,
+      "median_zero": 6451.44,
+      "median_one": 6178.055,
+      "U": 829.0,
+      "p": 0.008086561964541626,
+      "rank_biserial": 0.3862876254180603
+    },
+    "total_tokens": {
+      "n_zero": 23,
+      "n_one": 52,
+      "median_zero": 2140.0,
+      "median_one": 988.5,
+      "U": 829.0,
+      "p": 0.008085210104522927,
+      "rank_biserial": 0.3862876254180603
+    }
+  },
+  "stratified_spearman": {
+    "answerable wall_clock_seconds x faithfulness": {
+      "rho": 0.06323147219403007,
+      "p": 0.6593506753222431,
+      "n": 51
+    },
+    "answerable cpu_seconds x faithfulness": {
+      "rho": -0.09123191716795465,
+      "p": 0.5243176446957548,
+      "n": 51
+    },
+    "answerable peak_ram_mb x faithfulness": {
+      "rho": 0.017923102017883743,
+      "p": 0.9006555072646903,
+      "n": 51
+    },
+    "answerable total_tokens x faithfulness": {
+      "rho": 0.1668340427437132,
+      "p": 0.24195313644391964,
+      "n": 51
+    },
+    "answerable wall_clock_seconds x answer_relevancy": {
+      "rho": 0.11662216638256209,
+      "p": 0.4150792136454015,
+      "n": 51
+    },
+    "answerable cpu_seconds x answer_relevancy": {
+      "rho": 0.26179432229992605,
+      "p": 0.06348962298555115,
+      "n": 51
+    },
+    "answerable peak_ram_mb x answer_relevancy": {
+      "rho": 0.18667270172639497,
+      "p": 0.1896470094233476,
+      "n": 51
+    },
+    "answerable total_tokens x answer_relevancy": {
+      "rho": 0.1944469589246945,
+      "p": 0.17153302620861455,
+      "n": 51
+    },
+    "answerable wall_clock_seconds x context_recall": {
+      "rho": -0.09407390060833876,
+      "p": 0.5114218472540897,
+      "n": 51
+    },
+    "answerable cpu_seconds x context_recall": {
+      "rho": -0.05375529840883977,
+      "p": 0.707925529453821,
+      "n": 51
+    },
+    "answerable peak_ram_mb x context_recall": {
+      "rho": -0.13438824602209942,
+      "p": 0.3471120701826994,
+      "n": 51
+    },
+    "answerable total_tokens x context_recall": {
+      "rho": 0.0223995613875026,
+      "p": 0.876018324915515,
+      "n": 51
+    },
+    "unanswerable wall_clock_seconds x faithfulness": {
+      "rho": 0.27259153799990765,
+      "p": 0.19750232702449771,
+      "n": 24
+    },
+    "unanswerable cpu_seconds x faithfulness": {
+      "rho": 0.3172140441087157,
+      "p": 0.13094505485588684,
+      "n": 24
+    },
+    "unanswerable peak_ram_mb x faithfulness": {
+      "rho": 0.40311686000275426,
+      "p": 0.05079252774867269,
+      "n": 24
+    },
+    "unanswerable total_tokens x faithfulness": {
+      "rho": 0.29126423514072486,
+      "p": 0.16731549934542114,
+      "n": 24
+    },
+    "unanswerable wall_clock_seconds x answer_relevancy": {
+      "rho": 0.0881979488703021,
+      "p": 0.681942271371547,
+      "n": 24
+    },
+    "unanswerable cpu_seconds x answer_relevancy": {
+      "rho": -0.03183540879858955,
+      "p": 0.8826014538731594,
+      "n": 24
+    },
+    "unanswerable peak_ram_mb x answer_relevancy": {
+      "rho": 0.03305984759853531,
+      "p": 0.8781183416469264,
+      "n": 24
+    },
+    "unanswerable total_tokens x answer_relevancy": {
+      "rho": 0.10407729799538894,
+      "p": 0.6284060235578235,
+      "n": 24
+    },
+    "unanswerable wall_clock_seconds x context_recall": {
+      "rho": 0.19303542700509183,
+      "p": 0.3661362125525289,
+      "n": 24
+    },
+    "unanswerable cpu_seconds x context_recall": {
+      "rho": 0.19578900207451214,
+      "p": 0.3592053848081559,
+      "n": 24
+    },
+    "unanswerable peak_ram_mb x context_recall": {
+      "rho": 0.19578900207451214,
+      "p": 0.3592053848081559,
+      "n": 24
+    },
+    "unanswerable total_tokens x context_recall": {
+      "rho": 0.21281413268968713,
+      "p": 0.31807883494350575,
+      "n": 24
+    }
+  },
+  "pooled_and_per_architecture": {
+    "latency x AnsRel (n=75) pearson": {
+      "r": -0.4137254232150836,
+      "p": 0.00022464316347228948
+    },
+    "latency x AnsRel (n=75) spearman": {
+      "rho": -0.09685515472831362,
+      "p": 0.4084366168130633
+    },
+    "capped total_tokens x CtxPrec (n=25) pearson": {
+      "r": -0.9290945000322601
+    },
+    "naive latency x AnsRel (n=25)": {
+      "r": 0.44008554099004304,
+      "spearman": 0.6118506919502301
+    },
+    "uncapped latency x AnsRel (n=25)": {
+      "r": -0.8030155549290172,
+      "spearman": -0.687855599536002
+    },
+    "capped latency x AnsRel (n=25)": {
+      "r": -0.7437373071135742,
+      "spearman": -0.5043478620845975
+    }
+  },
+  "latency_decomposition": {
+    "naive latency x prefill": {
+      "r": 0.16498048046275304,
+      "p": 0.430642014303897
+    },
+    "naive latency x decode": {
+      "r": 0.9383437748310821,
+      "p": 4.2840509055596475e-12
+    },
+    "naive prompt x completion": {
+      "r": 0.11103399082631277,
+      "p": 0.5972315180891847
+    },
+    "uncapped latency x prefill": {
+      "r": 0.9903031047198249,
+      "p": 3.1922344907257603e-21
+    },
+    "uncapped latency x decode": {
+      "r": 0.8748832006541333,
+      "p": 1.0655105111392868e-08
+    },
+    "uncapped prompt x completion": {
+      "r": 0.8878134814616341,
+      "p": 3.2458184216693335e-09
+    },
+    "capped latency x prefill": {
+      "r": 0.9111661919960907,
+      "p": 2.493753161241622e-10
+    },
+    "capped latency x decode": {
+      "r": 0.4147549628915212,
+      "p": 0.03925456568227896
+    },
+    "capped prompt x completion": {
+      "r": 0.3052272930178401,
+      "p": 0.13789523893896338
+    }
+  },
+  "verification": [
+    {
+      "claim": "\u00a76.2 \u5176\u4e00 latency U-C answerable",
+      "kind": "p",
+      "paper": 0.0056,
+      "recomputed": 0.0055694580078125,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.2 \u5176\u4e8c total_tokens U-C answerable",
+      "kind": "p",
+      "paper": 0.0003,
+      "recomputed": 0.00029247830381213245,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.2 \u5176\u4e94 total_tokens U-C all 25",
+      "kind": "p",
+      "paper": 0.798,
+      "recomputed": 0.7982386912274775,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.2 \u5176\u4e94 total_tokens U-C unanswerable",
+      "kind": "p",
+      "paper": 0.0078,
+      "recomputed": 0.0078125,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.2 \u5176\u516d peak_ram U-C unanswerable",
+      "kind": "p",
+      "paper": 0.0547,
+      "recomputed": 0.0546875,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 faithfulness N-U",
+      "kind": "p",
+      "paper": 0.2583,
+      "recomputed": 0.25825139497654537,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 faithfulness N-C",
+      "kind": "p",
+      "paper": 0.7885,
+      "recomputed": 0.7885499210185534,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 faithfulness U-C",
+      "kind": "p",
+      "paper": 0.1814,
+      "recomputed": 0.18144920772142048,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 answer_relevancy N-U",
+      "kind": "p",
+      "paper": 0.0046,
+      "recomputed": 0.004638671875,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 answer_relevancy N-C",
+      "kind": "p",
+      "paper": 0.0395,
+      "recomputed": 0.0395355224609375,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 answer_relevancy U-C",
+      "kind": "p",
+      "paper": 0.1556,
+      "recomputed": 0.15563546075803855,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 context_recall N-U",
+      "kind": "p",
+      "paper": 0.3173,
+      "recomputed": 0.31731050786291415,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.3 context_recall N-C",
+      "kind": "p",
+      "paper": 0.3173,
+      "recomputed": 0.31731050786291415,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 wall_clock_seconds U",
+      "kind": "U",
+      "paper": 781.0,
+      "recomputed": 781.0,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 wall_clock_seconds rb",
+      "kind": "rb",
+      "paper": 0.306,
+      "recomputed": 0.306020066889632,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 cpu_seconds U",
+      "kind": "U",
+      "paper": 772.0,
+      "recomputed": 772.0,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 cpu_seconds rb",
+      "kind": "rb",
+      "paper": 0.291,
+      "recomputed": 0.29096989966555187,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 peak_ram_mb U",
+      "kind": "U",
+      "paper": 829.0,
+      "recomputed": 829.0,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 peak_ram_mb rb",
+      "kind": "rb",
+      "paper": 0.386,
+      "recomputed": 0.3862876254180603,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 total_tokens U",
+      "kind": "U",
+      "paper": 829.0,
+      "recomputed": 829.0,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e00 total_tokens rb",
+      "kind": "rb",
+      "paper": 0.386,
+      "recomputed": 0.3862876254180603,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 pooled latency-AnsRel pearson",
+      "kind": "r",
+      "paper": -0.414,
+      "recomputed": -0.4137254232150836,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 pooled latency-AnsRel spearman",
+      "kind": "r",
+      "paper": -0.097,
+      "recomputed": -0.09685515472831362,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 capped total_tokens-CtxPrec",
+      "kind": "r",
+      "paper": -0.929,
+      "recomputed": -0.9290945000322601,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 naive latency-AnsRel",
+      "kind": "r",
+      "paper": 0.44,
+      "recomputed": 0.44008554099004304,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 uncapped latency-AnsRel",
+      "kind": "r",
+      "paper": -0.803,
+      "recomputed": -0.8030155549290172,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a76.7 \u4e09 capped latency-AnsRel",
+      "kind": "r",
+      "paper": -0.744,
+      "recomputed": -0.7437373071135742,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 naive latency-prefill",
+      "kind": "r",
+      "paper": 0.165,
+      "recomputed": 0.16498048046275304,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 naive latency-decode",
+      "kind": "r",
+      "paper": 0.938,
+      "recomputed": 0.9383437748310821,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 uncapped latency-prefill",
+      "kind": "r",
+      "paper": 0.99,
+      "recomputed": 0.9903031047198249,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 uncapped latency-decode",
+      "kind": "r",
+      "paper": 0.875,
+      "recomputed": 0.8748832006541333,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 capped latency-prefill",
+      "kind": "r",
+      "paper": 0.911,
+      "recomputed": 0.9111661919960907,
+      "verdict": "match"
+    },
+    {
+      "claim": "\u00a75.6.1 capped latency-decode",
+      "kind": "r",
+      "paper": 0.415,
+      "recomputed": 0.4147549628915212,
+      "verdict": "match"
+    },
+    {
+      "claim": "collinearity naive prompt-completion",
+      "kind": "r",
+      "paper": 0.111,
+      "recomputed": 0.11103399082631277,
+      "verdict": "match"
+    },
+    {
+      "claim": "collinearity uncapped prompt-completion",
+      "kind": "r",
+      "paper": 0.888,
+      "recomputed": 0.8878134814616341,
+      "verdict": "match"
+    },
+    {
+      "claim": "collinearity capped prompt-completion",
+      "kind": "r",
+      "paper": 0.305,
+      "recomputed": 0.3052272930178401,
+      "verdict": "match"
+    }
+  ]
+}
