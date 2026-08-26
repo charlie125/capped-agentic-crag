@@ -73,7 +73,7 @@ group_x = np.arange(len(GROUPS))
 bar_w = 0.24
 offsets = np.array([-bar_w, 0.0, bar_w])
 
-fig, axes = plt.subplots(2, 2, figsize=(13, 9))
+fig, axes = plt.subplots(2, 2, figsize=(9.5, 6.6))
 rng = np.random.default_rng(0)          # fixed seed: the jitter is reproducible
 
 for ax, (title, ylabel, value_of, fmt) in zip(axes.flat, PANELS):
@@ -105,12 +105,12 @@ for ax, (title, ylabel, value_of, fmt) in zip(axes.flat, PANELS):
             ax.annotate(fmt.format(value),
                         (rect.get_x() + rect.get_width() / 2, rect.get_height()),
                         textcoords="offset points", xytext=(0, 4),
-                        ha="center", va="bottom", fontsize=8.5, color=INK)
+                        ha="center", va="bottom", fontsize=10, color=INK)
 
-    ax.set_title(title, fontsize=12, color=INK, pad=10)
-    ax.set_ylabel(ylabel, fontsize=9.5, color=MUTED)
+    ax.set_title(title, fontsize=13, color=INK, pad=8)
+    ax.set_ylabel(ylabel, fontsize=10.5, color=MUTED)
     ax.set_xticks(group_x)
-    ax.set_xticklabels(GROUPS, fontsize=10, color=INK)
+    ax.set_xticklabels(GROUPS, fontsize=11, color=INK)
     ax.set_ylim(0, panel_max * 1.16)
     ax.grid(axis="y", linestyle="--", color="lightgray", alpha=0.7, zorder=0)
     ax.set_axisbelow(True)
@@ -118,20 +118,20 @@ for ax, (title, ylabel, value_of, fmt) in zip(axes.flat, PANELS):
         ax.spines[side].set_visible(False)
     for side in ("left", "bottom"):
         ax.spines[side].set_color("lightgray")
-    ax.tick_params(colors=MUTED, length=0)
+    ax.tick_params(colors=MUTED, length=0, labelsize=10)
 
 fig.tight_layout(rect=[0, 0.030, 1, 0.905])
 
-fig.suptitle("Resource cost by question type", fontsize=15, color=INK, y=0.985)
+fig.suptitle("Resource cost by question type", fontsize=16, color=INK, y=0.985)
 
 handles, labels = axes.flat[0].get_legend_handles_labels()
 fig.legend(handles, labels, loc="center", ncol=3, frameon=False,
-           fontsize=10.5, bbox_to_anchor=(0.5, 0.935))
+           fontsize=12, bbox_to_anchor=(0.5, 0.935))
 
 fig.text(0.5, 0.012,
          "Bars are means; dots are individual questions. Single run, n = 25, Apple M2 Pro. "
          "CPU time is computed per question as avg_cpu_pct x wall_clock, then averaged.",
-         ha="center", fontsize=8.5, color=MUTED)
+         ha="center", fontsize=9, color=MUTED)
 
 for d in OUT_DIRS:
     d.mkdir(parents=True, exist_ok=True)
