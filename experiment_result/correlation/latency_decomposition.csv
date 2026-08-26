@@ -1,0 +1,7 @@
+architecture,phase,token_field,pearson_r,p_value,n
+Naive,Prefill,prompt_tokens,0.165,0.4306,25
+Naive,Decode,completion_tokens,0.9383,0.0,25
+Uncapped,Prefill,prompt_tokens,0.9903,0.0,25
+Uncapped,Decode,completion_tokens,0.8749,0.0,25
+Capped,Prefill,prompt_tokens,0.9112,0.0,25
+Capped,Decode,completion_tokens,0.4148,0.0393,25
