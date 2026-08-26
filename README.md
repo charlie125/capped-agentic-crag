@@ -75,6 +75,10 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   │   ├── ragas_results_*.csv       # Stage 2 per-item RAGAS scores
 │   │   ├── ragas_metrics_summary.json # Scores grouped by question type
 │   │   ├── ragas_summary.py          # Builds the grouped summary above
+│   │   ├── stats_tests.py            # Re-runs every significance test and checks
+│   │   │                             #   each against the value the write-up reports
+│   │   ├── stats_tests_results.json  # Output of the above, including the 24
+│   │   │                             #   stratified Spearman coefficients
 │   │   └── plot_*.py                 # One script per figure
 │   ├── iteration_cap/            # K=1-6 sensitivity sweep
 │   │   ├── limitation_testing.json   # 6-item diagnostic subset (S1-S6)
@@ -91,6 +95,14 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 │   │   ├── warmup_run_times.json     # Per-run latency, 15 consecutive calls
 │   │   ├── warmup_log.txt            # Raw sampler output for the same 15 runs
 │   │   └── plot_warmup.py
+│   ├── loop_trace/               # The uncapped rewrite chain, round by round
+│   │   ├── uncapped_loop_trace.py
+│   │   └── uncapped_loop_trace.json
+│   ├── correlation/              # Resource load against generation quality
+│   │   ├── correlation_analysis.py   # Joins Stage 1 and Stage 2 item by item
+│   │   ├── paired_per_question.csv   # The joined table, 75 rows
+│   │   ├── latency_decomposition.csv # Latency against Prefill / Decode tokens
+│   │   └── resource_quality_correlation.csv
 │   └── figures/                  # Figures reproduced in the dissertation
 ├── manage.py
 ├── requirements.txt
@@ -159,6 +171,34 @@ python testing/ragas_tester.py
 Outputs final scores to `ragas_results_<condition>.csv`. The recorded outputs of both
 stages, together with the K-sweep and warm-up records and the figures derived from them,
 are kept under `experiment_result/`.
+
+### Stage 3: Analysis and Verification
+
+Both scripts read only the recorded outputs of Stages 1 and 2, so they can be run on a
+fresh clone without re-executing the experiment. Both resolve their paths relative to
+their own location and so run from any working directory.
+
+```bash
+# Re-run every significance test and check it against the reported value
+python experiment_result/main_experiment/stats_tests.py
+
+# Join hardware load to quality scores and compute the correlations
+python experiment_result/correlation/correlation_analysis.py
+
+# Regenerate every figure
+for f in experiment_result/*/plot_*.py; do python "$f"; done
+```
+
+`stats_tests.py` carries the values the dissertation reports in an `EXPECTED` table and
+compares each against a fresh computation, printing a line per test and a final count.
+It should report **36 of 36 reported values reproduce exactly**; any drift between the
+recorded data and the write-up surfaces there rather than silently.
+
+One detail matters to both scripts and is applied identically in each: RAGAS returns
+`0.9999999999` where its computation lands on 1. Left raw, that floating-point artefact
+gives distinct Spearman ranks to scores that are in fact tied, so quality scores are
+rounded to six decimal places before any test is run — well beyond anything an 8B judge
+resolves.
 
 ---
 
