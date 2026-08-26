@@ -20,11 +20,15 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 
 ## Evaluated Architectures
 
-| Architecture | Control Flow | Self-Correction | Behavior on Unanswerable Queries |
-| :--- | :--- | :--- | :--- |
-| **Naive RAG** | Single-pass retrieve -> generate | None | Refuses correctly on all 8, at 14 completion tokens each (a fixed template); mean 2.72s |
-| **Uncapped Agentic CRAG** | Retrieve -> grade -> rewrite loop, no state cap | Unconstrained retry | Mean 57.03s, worst case 127.06s; 2 of 8 halted only by the harness rather than converging |
-| **Capped Agentic CRAG (Proposed)** | LangGraph state-enforced cap (K=2) with graceful fallback | Controlled | Mean 16.35s, worst case 20.22s, closing with `give_up_msg` |
+The three architectures differ in one place only: what happens after the grader
+rejects the retrieved context. The timings below are from the eight unanswerable
+questions, where the rewrite loop is the only component that actually runs.
+
+| | |
+| :--- | :--- |
+| **Naive RAG** | A single retrieve-then-generate pass: no grader, no return edge, so no self-correction. Refuses correctly on all 8, at 14 completion tokens each — a fixed template — and a mean of 2.72s. |
+| **Uncapped Agentic CRAG** | Retrieve, grade, rewrite, and back to retrieval, with nothing on the return path to stop it. Mean 57.03s and 127.06s in the worst case; 2 of the 8 were halted by the harness rather than converging on their own. |
+| **Capped Agentic CRAG** (proposed) | The same loop with a state-enforced cap on the return path: `rewrite_counts` is carried in LangGraph state, and on the second failed grade (K=2) the graph routes to `give_up_msg` instead of rewriting again. Mean 16.35s, worst case 20.22s. |
 
 ---
 
@@ -33,7 +37,10 @@ Agentic Corrective RAG (CRAG) frameworks introduce dynamic grading and query-rew
 * **Local LLM Engine:** Ollama running `llama3.1` (8B parameters, 4-bit quantized, `temperature=0` for determinism).
 * **Local Embedding Model:** `nomic-embed-text` (embedding dimension: 768).
 * **Vector Database:** ChromaDB with structured metadata citations (`chunk_size=1200`, `chunk_overlap=200`).
-* **Agent Orchestration:** LangGraph state machine tracking `rewrite_counts` with structured Pydantic binary grading outputs.
+* **Model and Tool Bindings:** LangChain 1.3.13 underlies all three architectures alike, supplying the prompt, chat, embedding and retriever interfaces (`langchain-core`, `langchain-ollama`, `langchain-chroma`). Naive RAG is built on these directly, as a single chain with no state graph.
+* **Agent Orchestration:** LangGraph 1.2.9 adds the state machine that tracks `rewrite_counts` across nodes (`langgraph-checkpoint`, `langgraph-prebuilt`) — used by the two agentic architectures only.
+* **Structured Grading Output:** Pydantic 2.13.4 bound through `with_structured_output`, so the relevance grader returns a binary verdict rather than free text.
+* **Document Loading and Chunking:** `pypdf` 6.14.2 through LangChain's `PyPDFLoader`, split by `langchain-text-splitters` on paragraph boundaries so clauses are not cut mid-sentence.
 * **Web UI and Streaming:** Django 6.0 with Server-Sent Events (SSE) streaming thinking steps and token outputs.
 * **Hardware Profiling:** Background `ResourceSampler` daemon polling CPU percentage and RSS memory (0.2s interval) via `psutil`.
 * **Quality Evaluation:** RAGAS 0.3.9 (Faithfulness, Answer Relevance, Context Precision, Context Recall) running offline with local LLM-as-a-judge.
