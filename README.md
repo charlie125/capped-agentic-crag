@@ -24,7 +24,7 @@ The three architectures differ in one place only: what happens after the grader
 rejects the retrieved context. The timings below are from the eight unanswerable
 questions, where the rewrite loop is the only component that actually runs.
 
-| | |
+| Architecture | Control flow, and what it does on the unanswerable set |
 | :--- | :--- |
 | **Naive RAG** | A single retrieve-then-generate pass: no grader, no return edge, so no self-correction. Refuses correctly on all 8, at 14 completion tokens each — a fixed template — and a mean of 2.72s. |
 | **Uncapped Agentic CRAG** | Retrieve, grade, rewrite, and back to retrieval, with nothing on the return path to stop it. Mean 57.03s and 127.06s in the worst case; 2 of the 8 were halted by the harness rather than converging on their own. |
