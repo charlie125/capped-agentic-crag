@@ -53,11 +53,11 @@ QUALITY_FAMILY = 8       # 12 cells of Table 6.3 less 4 with no variance
 # What the manuscript prints, and where. A run that disagrees with any of these has
 # either found an error in the text or changed the analysis.
 EXPECTED = {
-    "§6.2 其一 latency U-C answerable":        ("p", 0.0056),
-    "§6.2 其二 total_tokens U-C answerable":   ("p", 0.0003),
-    "§6.2 其五 total_tokens U-C all 25":       ("p", 0.798),
-    "§6.2 其五 total_tokens U-C unanswerable": ("p", 0.0078),
-    "§6.2 其六 peak_ram U-C unanswerable":     ("p", 0.0547),
+    "§6.2 First latency U-C answerable":        ("p", 0.0056),
+    "§6.2 Second total_tokens U-C answerable":   ("p", 0.0003),
+    "§6.2 Fifth total_tokens U-C all 25":       ("p", 0.798),
+    "§6.2 Fifth total_tokens U-C unanswerable": ("p", 0.0078),
+    "§6.2 Sixth peak_ram U-C unanswerable":     ("p", 0.0547),
     "§6.3 faithfulness N-U":                   ("p", 0.2583),
     "§6.3 faithfulness N-C":                   ("p", 0.7885),
     "§6.3 faithfulness U-C":                   ("p", 0.1814),
@@ -66,20 +66,20 @@ EXPECTED = {
     "§6.3 answer_relevancy U-C":               ("p", 0.1556),
     "§6.3 context_recall N-U":                 ("p", 0.3173),
     "§6.3 context_recall N-C":                 ("p", 0.3173),
-    "§6.7 一 wall_clock_seconds U":            ("U", 781.0),
-    "§6.7 一 wall_clock_seconds rb":           ("rb", 0.306),
-    "§6.7 一 cpu_seconds U":                   ("U", 772.0),
-    "§6.7 一 cpu_seconds rb":                  ("rb", 0.291),
-    "§6.7 一 peak_ram_mb U":                   ("U", 829.0),
-    "§6.7 一 peak_ram_mb rb":                  ("rb", 0.386),
-    "§6.7 一 total_tokens U":                  ("U", 829.0),
-    "§6.7 一 total_tokens rb":                 ("rb", 0.386),
-    "§6.7 三 pooled latency-AnsRel pearson":   ("r", -0.414),
-    "§6.7 三 pooled latency-AnsRel spearman":  ("r", -0.097),
-    "§6.7 三 capped total_tokens-CtxPrec":     ("r", -0.929),
-    "§6.7 三 naive latency-AnsRel":            ("r", 0.440),
-    "§6.7 三 uncapped latency-AnsRel":         ("r", -0.803),
-    "§6.7 三 capped latency-AnsRel":           ("r", -0.744),
+    "§6.7 First wall_clock_seconds U":            ("U", 781.0),
+    "§6.7 First wall_clock_seconds rb":           ("rb", 0.306),
+    "§6.7 First cpu_seconds U":                   ("U", 772.0),
+    "§6.7 First cpu_seconds rb":                  ("rb", 0.291),
+    "§6.7 First peak_ram_mb U":                   ("U", 829.0),
+    "§6.7 First peak_ram_mb rb":                  ("rb", 0.386),
+    "§6.7 First total_tokens U":                  ("U", 829.0),
+    "§6.7 First total_tokens rb":                 ("rb", 0.386),
+    "§6.7 Third pooled latency-AnsRel pearson":   ("r", -0.414),
+    "§6.7 Third pooled latency-AnsRel spearman":  ("r", -0.097),
+    "§6.7 Third capped total_tokens-CtxPrec":     ("r", -0.929),
+    "§6.7 Third naive latency-AnsRel":            ("r", 0.440),
+    "§6.7 Third uncapped latency-AnsRel":         ("r", -0.803),
+    "§6.7 Third capped latency-AnsRel":           ("r", -0.744),
     "§5.6.1 naive latency-prefill":            ("r", 0.165),
     "§5.6.1 naive latency-decode":             ("r", 0.938),
     "§5.6.1 uncapped latency-prefill":         ("r", 0.990),
@@ -172,11 +172,11 @@ def main():
         for subset, name in ((True, "answerable"), (False, "unanswerable"), (None, "all 25")):
             resource[f"{metric} [{name}]"] = paired(
                 rows, "uncapped", "capped", metric, subset)
-    R["§6.2 其一 latency U-C answerable"] = resource["wall_clock_seconds [answerable]"]["p"]
-    R["§6.2 其二 total_tokens U-C answerable"] = resource["total_tokens [answerable]"]["p"]
-    R["§6.2 其五 total_tokens U-C all 25"] = resource["total_tokens [all 25]"]["p"]
-    R["§6.2 其五 total_tokens U-C unanswerable"] = resource["total_tokens [unanswerable]"]["p"]
-    R["§6.2 其六 peak_ram U-C unanswerable"] = resource["peak_ram_mb [unanswerable]"]["p"]
+    R["§6.2 First latency U-C answerable"] = resource["wall_clock_seconds [answerable]"]["p"]
+    R["§6.2 Second total_tokens U-C answerable"] = resource["total_tokens [answerable]"]["p"]
+    R["§6.2 Fifth total_tokens U-C all 25"] = resource["total_tokens [all 25]"]["p"]
+    R["§6.2 Fifth total_tokens U-C unanswerable"] = resource["total_tokens [unanswerable]"]["p"]
+    R["§6.2 Sixth peak_ram U-C unanswerable"] = resource["peak_ram_mb [unanswerable]"]["p"]
 
     # --- §6.3 quality axis: three pairs on the answerable subset --------------
     quality = {}
@@ -188,7 +188,7 @@ def main():
             R[f"§6.3 {metric} {tag}"] = out["p"]
     testable = sum(1 for v in quality.values() if v["p"] is not None)
 
-    # --- §6.7 一 Context Precision is binary: Mann-Whitney plus rank-biserial --
+    # --- §6.7 First Context Precision is binary: Mann-Whitney plus rank-biserial --
     mw = {}
     zero = [r for r in rows if r["context_precision"] == 0]
     one = [r for r in rows if r["context_precision"] == 1]
@@ -201,10 +201,10 @@ def main():
         mw[metric] = {"n_zero": len(a), "n_one": len(b),
                       "median_zero": float(np.median(a)), "median_one": float(np.median(b)),
                       "U": float(u), "p": float(p), "rank_biserial": float(rb)}
-        R[f"§6.7 一 {metric} U"] = float(u)
-        R[f"§6.7 一 {metric} rb"] = float(rb)
+        R[f"§6.7 First {metric} U"] = float(u)
+        R[f"§6.7 First {metric} rb"] = float(rb)
 
-    # --- §6.7 二 stratified Spearman, and 三 the pooled coefficients ----------
+    # --- §6.7 Second stratified Spearman, and Third the pooled coefficients ------
     strat = {}
     for stratum, sel in (("answerable", True), ("unanswerable", False)):
         for q in ("faithfulness", "answer_relevancy", "context_recall"):
@@ -223,14 +223,14 @@ def main():
         "r": float(r_p), "p": float(p_p)}
     pooled["latency x AnsRel (n=75) spearman"] = {
         "rho": float(rho_p), "p": float(p_s)}
-    R["§6.7 三 pooled latency-AnsRel pearson"] = float(r_p)
-    R["§6.7 三 pooled latency-AnsRel spearman"] = float(rho_p)
+    R["§6.7 Third pooled latency-AnsRel pearson"] = float(r_p)
+    R["§6.7 Third pooled latency-AnsRel spearman"] = float(rho_p)
 
     cap = [r for r in rows if r["arch"] == "capped"]
     r_c, _ = pearsonr([r["total_tokens"] for r in cap], [
                       r["context_precision"] for r in cap])
     pooled["capped total_tokens x CtxPrec (n=25) pearson"] = {"r": float(r_c)}
-    R["§6.7 三 capped total_tokens-CtxPrec"] = float(r_c)
+    R["§6.7 Third capped total_tokens-CtxPrec"] = float(r_c)
 
     # --- §5.6.1 latency decomposition, and the collinearity check ------------
     decomp = {}
@@ -254,12 +254,12 @@ def main():
                           for r in sub], [r["answer_relevancy"] for r in sub])
         pooled[f"{arch} latency x AnsRel (n=25)"] = {
             "r": float(r_v), "spearman": float(rho)}
-        R[f"§6.7 三 {arch} latency-AnsRel"] = float(r_v)
+        R[f"§6.7 Third {arch} latency-AnsRel"] = float(r_v)
 
     # --- report --------------------------------------------------------------
     W = 46
     print("=" * 78)
-    print("BONFERRONI THRESHOLDS (§6.1 其三) -- applied within each family separately")
+    print("BONFERRONI THRESHOLDS (§6.1 Third) -- applied within each family separately")
     print(
         f"  resource axis: .05 / {RESOURCE_FAMILY} metrics            = {ALPHA/RESOURCE_FAMILY:.5f}")
     print(
@@ -291,7 +291,7 @@ def main():
             f"  {k:<{W}} {v['n']:>3} {'--' if p is None else f'{p:>9.4f}'}  {mark}")
 
     print("\n" + "=" * 78)
-    print("§6.7 一 CONTEXT PRECISION IS BINARY -- Mann-Whitney U with rank-biserial")
+    print("§6.7 First CONTEXT PRECISION IS BINARY -- Mann-Whitney U with rank-biserial")
     print(
         f"  {'resource metric':<{W}} {'med=0':>9} {'med=1':>9} {'U':>7} {'p':>7} {'rb':>7}")
     for k, v in mw.items():
@@ -299,7 +299,7 @@ def main():
               f"{v['U']:>7.0f} {v['p']:>7.3f} {v['rank_biserial']:>+7.3f}")
 
     print("\n" + "=" * 78)
-    print("§6.7 二 STRATIFIED SPEARMAN -- 24 coefficients, trend description only")
+    print("§6.7 Second STRATIFIED SPEARMAN -- 24 coefficients, trend description only")
     for stratum in ("answerable", "unanswerable"):
         vals = [v["rho"] for k, v in strat.items() if k.startswith(stratum)]
         sig = [k for k, v in strat.items() if k.startswith(stratum)

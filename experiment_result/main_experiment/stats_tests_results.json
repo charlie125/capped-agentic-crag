@@ -476,35 +476,35 @@
   },
   "verification": [
     {
-      "claim": "\u00a76.2 \u5176\u4e00 latency U-C answerable",
+      "claim": "\u00a76.2 First latency U-C answerable",
       "kind": "p",
       "paper": 0.0056,
       "recomputed": 0.0055694580078125,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.2 \u5176\u4e8c total_tokens U-C answerable",
+      "claim": "\u00a76.2 Second total_tokens U-C answerable",
       "kind": "p",
       "paper": 0.0003,
       "recomputed": 0.00029247830381213245,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.2 \u5176\u4e94 total_tokens U-C all 25",
+      "claim": "\u00a76.2 Fifth total_tokens U-C all 25",
       "kind": "p",
       "paper": 0.798,
       "recomputed": 0.7982386912274775,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.2 \u5176\u4e94 total_tokens U-C unanswerable",
+      "claim": "\u00a76.2 Fifth total_tokens U-C unanswerable",
       "kind": "p",
       "paper": 0.0078,
       "recomputed": 0.0078125,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.2 \u5176\u516d peak_ram U-C unanswerable",
+      "claim": "\u00a76.2 Sixth peak_ram U-C unanswerable",
       "kind": "p",
       "paper": 0.0547,
       "recomputed": 0.0546875,
@@ -567,98 +567,98 @@
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 wall_clock_seconds U",
+      "claim": "\u00a76.7 First wall_clock_seconds U",
       "kind": "U",
       "paper": 781.0,
       "recomputed": 781.0,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 wall_clock_seconds rb",
+      "claim": "\u00a76.7 First wall_clock_seconds rb",
       "kind": "rb",
       "paper": 0.306,
       "recomputed": 0.306020066889632,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 cpu_seconds U",
+      "claim": "\u00a76.7 First cpu_seconds U",
       "kind": "U",
       "paper": 772.0,
       "recomputed": 772.0,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 cpu_seconds rb",
+      "claim": "\u00a76.7 First cpu_seconds rb",
       "kind": "rb",
       "paper": 0.291,
       "recomputed": 0.29096989966555187,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 peak_ram_mb U",
+      "claim": "\u00a76.7 First peak_ram_mb U",
       "kind": "U",
       "paper": 829.0,
       "recomputed": 829.0,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 peak_ram_mb rb",
+      "claim": "\u00a76.7 First peak_ram_mb rb",
       "kind": "rb",
       "paper": 0.386,
       "recomputed": 0.3862876254180603,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 total_tokens U",
+      "claim": "\u00a76.7 First total_tokens U",
       "kind": "U",
       "paper": 829.0,
       "recomputed": 829.0,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e00 total_tokens rb",
+      "claim": "\u00a76.7 First total_tokens rb",
       "kind": "rb",
       "paper": 0.386,
       "recomputed": 0.3862876254180603,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 pooled latency-AnsRel pearson",
+      "claim": "\u00a76.7 Third pooled latency-AnsRel pearson",
       "kind": "r",
       "paper": -0.414,
       "recomputed": -0.4137254232150836,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 pooled latency-AnsRel spearman",
+      "claim": "\u00a76.7 Third pooled latency-AnsRel spearman",
       "kind": "r",
       "paper": -0.097,
       "recomputed": -0.09685515472831362,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 capped total_tokens-CtxPrec",
+      "claim": "\u00a76.7 Third capped total_tokens-CtxPrec",
       "kind": "r",
       "paper": -0.929,
       "recomputed": -0.9290945000322601,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 naive latency-AnsRel",
+      "claim": "\u00a76.7 Third naive latency-AnsRel",
       "kind": "r",
       "paper": 0.44,
       "recomputed": 0.44008554099004304,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 uncapped latency-AnsRel",
+      "claim": "\u00a76.7 Third uncapped latency-AnsRel",
       "kind": "r",
       "paper": -0.803,
       "recomputed": -0.8030155549290172,
       "verdict": "match"
     },
     {
-      "claim": "\u00a76.7 \u4e09 capped latency-AnsRel",
+      "claim": "\u00a76.7 Third capped latency-AnsRel",
       "kind": "r",
       "paper": -0.744,
       "recomputed": -0.7437373071135742,
