@@ -133,8 +133,8 @@ ollama pull nomic-embed-text
 ### 2. Environment Setup
 ```bash
 # Clone the repository
-git clone https://git.cs.bham.ac.uk/projects-2025-26/kxy500.git
-cd kxy500
+git clone https://github.com/charlie125/capped-agentic-crag.git
+cd capped-agentic-crag
 
 # Create and activate virtual environment
 python3 -m venv .venv
