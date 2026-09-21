@@ -1,0 +1,20 @@
+services:
+  agentic-crag:
+    build: .
+    image: charlie125/agentic-crag:1.0
+    ports:
+      - "15076:15076"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - ./data/vector_db:/app/data/vector_db
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama_llm:/root/.ollama
+
+volumes:
+  ollama_llm:

@@ -1,0 +1,7 @@
+.venv
+experiment_result/
+**/__pycache__
+db.sqlite3
+data/
+.git
+.env
