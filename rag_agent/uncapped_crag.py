@@ -1,4 +1,5 @@
 import json
+import os
 
 from langchain_ollama import ChatOllama
 from langchain_core.messages import BaseMessage, AIMessage, HumanMessage, ToolMessage
@@ -12,8 +13,11 @@ from pydantic import BaseModel, Field
 from .vector_store import vector_db_search
 from langgraph.checkpoint.memory import MemorySaver
 
+
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+
 memory = MemorySaver()
-llm = ChatOllama(model="llama3.1", temperature=0)
+llm = ChatOllama(model="llama3.1", temperature=0, base_url=OLLAMA_BASE_URL)
 
 
 def build_uncapped_graph(use_memory=True):

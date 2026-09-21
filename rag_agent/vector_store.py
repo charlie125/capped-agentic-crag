@@ -1,5 +1,4 @@
 import os
-import json
 
 # LangChain
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -13,9 +12,10 @@ from langchain_ollama import OllamaEmbeddings
 # Vector Database
 from langchain_chroma import Chroma
 
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 embeddings = OllamaEmbeddings(
-    model="nomic-embed-text")
+    model="nomic-embed-text", base_url=OLLAMA_BASE_URL)
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

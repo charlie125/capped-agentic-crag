@@ -1,11 +1,12 @@
-import json
-import ast
+import os
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_ollama import ChatOllama
 from .vector_store import vector_db_search
 
-llm = ChatOllama(model="llama3.1", temperature=0)
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+
+llm = ChatOllama(model="llama3.1", temperature=0, base_url=OLLAMA_BASE_URL)
 
 SYSTEM_PROMPT = """You are a strict internal corporate compliance assistant.
     Your core mission is to answer the user's query using ONLY the provided internal database context.
