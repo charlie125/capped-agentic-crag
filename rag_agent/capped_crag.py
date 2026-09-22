@@ -20,7 +20,12 @@ from langgraph.checkpoint.memory import MemorySaver
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
 memory = MemorySaver()
+
+# Original model in dissertation
 llm = ChatOllama(model="llama3.1", temperature=0, base_url=OLLAMA_BASE_URL)
+
+# containerize model in Docker
+# llm = ChatOllama(model="llama3.2:1b", temperature=0, base_url=OLLAMA_BASE_URL)
 
 
 def build_capped_graph(use_memory=True):

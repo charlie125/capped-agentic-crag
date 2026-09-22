@@ -6,7 +6,11 @@ from .vector_store import vector_db_search
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
 
+# Original model in dissertation
 llm = ChatOllama(model="llama3.1", temperature=0, base_url=OLLAMA_BASE_URL)
+
+# containerize model in Docker
+# llm = ChatOllama(model="llama3.2:1b", temperature=0, base_url=OLLAMA_BASE_URL)
 
 SYSTEM_PROMPT = """You are a strict internal corporate compliance assistant.
     Your core mission is to answer the user's query using ONLY the provided internal database context.
