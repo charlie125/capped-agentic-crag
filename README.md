@@ -157,6 +157,39 @@ Visit `http://127.0.0.1:8000/` in your browser. You can test different architect
 * Uncapped Baseline: `http://127.0.0.1:8000/?mode=uncapped`
 * Naive RAG Baseline: `http://127.0.0.1:8000/?mode=naive`
 
+### 4. Running with Docker (Containerized Setup)
+If you prefer not to manage local Python environments, you can run the entire application using Docker Compose. This spins up two containers — the Django app (`agentic-crag`) and a dedicated `ollama` service — and handles all Python dependencies for you.
+
+```bash
+# Build the image and start both containers in the background
+docker compose up -d --build
+```
+
+Docker Compose starts the Ollama server but does not pull any models into it. Pull the two models into the running `ollama` container once, right after the first `docker compose up`:
+```bash
+docker compose exec ollama ollama pull llama3.1
+docker compose exec ollama ollama pull nomic-embed-text
+```
+These are persisted in the `ollama_llm` volume, so this only needs to be done once — later `docker compose up` runs reuse them.
+
+Then run database migrations inside the app container:
+```bash
+docker compose exec agentic-crag python manage.py migrate
+```
+
+Visit `http://localhost:15076/` in your browser — note that the Docker setup exposes the app on port **15076**, not 8000. The same mode selector applies, e.g. `http://localhost:15076/?mode=capped`.
+
+To stop the containers:
+```bash
+docker compose down
+```
+Add `-v` (`docker compose down -v`) to also remove the `ollama_llm` volume and delete the downloaded models.
+
+**Notes:**
+* Inside the containers, `agentic-crag` reaches Ollama via the `OLLAMA_BASE_URL=http://ollama:11434` environment variable (set in `docker-compose.yml`), not `localhost:11434`.
+* `./data/vector_db` is bind-mounted into the container, so the persisted Chroma store is shared with the host and survives container restarts.
+* By default, the Docker setup still runs `llama3.1`, matching the model used throughout the dissertation. Each `rag_agent/*.py` pipeline has a commented-out fallback line pointing at the smaller `llama3.2:1b` instead — uncomment it (and run `docker compose exec ollama ollama pull llama3.2:1b`) if you're on constrained hardware, keeping in mind this has not been evaluated and will not reproduce the reported figures.
+
 ---
 
 ## Reproducing Experiments (Two-Stage Evaluation)
