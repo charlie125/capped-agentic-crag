@@ -113,6 +113,10 @@ questions, where the rewrite loop is the only component that actually runs.
 │   └── figures/                  # Figures reproduced in the dissertation
 ├── manage.py
 ├── requirements.txt
+├── requirements-eval.txt         # RAGAS-based evaluation dependencies
+├── Dockerfile                    # agentic-crag app image
+├── docker-compose.yml            # agentic-crag + ollama services, exposes app on :15076
+├── .dockerignore
 └── README.md
 ```
 
@@ -123,6 +127,8 @@ questions, where the rewrite loop is the only component that actually runs.
 ### 1. Prerequisites
 * Python 3.10 or higher
 * [Ollama](https://ollama.com/) installed and running locally
+
+> Prefer not to set up a local Python environment? Skip straight to [Running with Docker](#4-running-with-docker-containerized-setup) — it only requires Docker and Docker Compose.
 
 ```bash
 # Pull local models into Ollama
