@@ -1,7 +1,7 @@
 services:
   agentic-crag:
     build: .
-    image: charlie125/agentic-crag:1.1
+    image: charlie125/agentic-crag:1.2
     ports:
       - "15076:15076"
     environment:
